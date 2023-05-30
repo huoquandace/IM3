@@ -38,7 +38,9 @@ urlpatterns += i18n_patterns (
     path('user/group/list/', UserGroupList.as_view(), name='user_group_list'),
     path('user/group/add/', UserGroupAdd.as_view(), name='user_group_add'),
 
+    path('category/list/', CategoryList.as_view(), name='category_list'),
     path('category/add/', CategoryAdd.as_view(), name='category_add'),
+    path('category/update/<int:pk>', CategoryUpdate.as_view(), name='category_update'),
 
     prefix_default_language=False
 )

@@ -415,6 +415,9 @@ class UserGroupAdd(CreateView):
     fields = '__all__'
     template_name = 'auth/user_group_add.html'
 
+class CategoryList(ListView):
+    model = Category
+    template_name = 'categories/category_list.html'
 
 class CategoryAdd(CreateView):
     model = Category
@@ -425,4 +428,10 @@ class CategoryAdd(CreateView):
         form.save()
         return redirect('category_list')
 
+class CategoryUpdate(UpdateView):
+    model = Category
+    fields = '__all__'
+    template_name = 'categories/category_update.html'
 
+class CategoryDelete(DeleteView):
+    model = Category

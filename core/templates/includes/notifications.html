@@ -1,0 +1,9 @@
+{% load static %}
+{% load i18n %}
+
+{% if messages %}
+{% for msg in messages %}
+  {{ msg.level_tag }}: {{ msg }}
+{% endfor %}
+{% endif %}
+{% block content %}{% endblock content %}

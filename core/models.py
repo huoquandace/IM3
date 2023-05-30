@@ -67,7 +67,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = _("categories")
     def __str__(self):
-        return self.title
+        return f'{ self.label } - { self.title }'
     
 class Product(models.Model):
     id_product = models.CharField(_("product id"), max_length=255)

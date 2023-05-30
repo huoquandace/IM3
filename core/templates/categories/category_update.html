@@ -2,13 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans "CATEGORY_ADD" %} {% endblock title %}
+{% block title %} {% trans "CATEGORY_UPDATE" %} {% endblock title %}
 
 {% block content %}
-<form method="post" enctype='multipart/form-data'>
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <img id="image" src="#" hidden/>
+    <img id="image" src="{{ form.instance.image.url }}"/>
     <input type="submit" value="{% trans "SUBMIT" %}">
 </form>
 {% endblock content %}

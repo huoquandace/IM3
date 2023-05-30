@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "CATEGORY_LIST" %} {% endblock title %}
+
+{% block content %}
+{% for object in object_list %}
+    {{ object }} <a href="">Delete</a>
+    <br>
+{% endfor %}
+{% endblock content %}
