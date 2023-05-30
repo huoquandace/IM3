@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock title %}</title>
+  {% block css %}{% endblock css %}
+</head>
+<body>
+  {% if messages %}
+    {% for msg in messages %}
+      {{ msg.level_tag }}: {{ msg }}
+    {% endfor %}
+  {% endif %}
+  {% block content %}{% endblock content %}
+  {% block script %}{% endblock script %}
+</body>
+</html>
