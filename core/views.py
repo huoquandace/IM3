@@ -469,5 +469,36 @@ class ProductDelete(SuccessMessageMixin, DeleteView):
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
+    
+class SupplierList(ListView):
+    model = Supplier
+    template_name = 'suppliers/supplier_list.html'
 
+class SupplierAdd(SuccessMessageMixin, CreateView):
+    model = Supplier
+    fields = '__all__'
+    success_url = reverse_lazy('supplier_list')
+    success_message = _(' successfully.')
+    template_name = 'suppliers/supplier_add.html'
+
+class SupplierUpdate(SuccessMessageMixin, UpdateView):
+    model = Supplier
+    fields = '__all__'
+    success_url = reverse_lazy('supplier_list')
+    success_message = _('Update successfully.')
+    template_name = 'suppliers/supplier_update.html'
+
+class SupplierDelete(SuccessMessageMixin, DeleteView):
+    model = Supplier
+    success_url = reverse_lazy('supplier_list')
+    success_message = _('Delete successfully.')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+    
+    def post(self, *args, **kwargs):
+        user = Supplier.objects.get(id=self.request.get_full_path().split('/')[-1]).account
+        get_user_model().objects.get(id=user.id).delete()
+        messages.success(self.request, _('Delete successfully.'))
+        return redirect('supplier_list')
 

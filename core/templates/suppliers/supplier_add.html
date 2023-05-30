@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "SUPPLIER_ADD" %} {% endblock title %}
+
+{% block content %}
+<form method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <img id="image" src="#" hidden/>
+    <input type="submit" value="{% trans "SUBMIT" %}">
+</form>
+{% endblock content %}

@@ -48,6 +48,11 @@ urlpatterns += i18n_patterns (
     path('product/update/<int:pk>', ProductUpdate.as_view(), name='product_update'),
     path('product/delete/<int:pk>', ProductDelete.as_view(), name='product_delete'),
 
+    path('supplier/list/', SupplierList.as_view(), name='supplier_list'),
+    path('supplier/add/', SupplierAdd.as_view(), name='supplier_add'),
+    path('supplier/update/<int:pk>', SupplierUpdate.as_view(), name='supplier_update'),
+    path('supplier/delete/<int:pk>', SupplierDelete.as_view(), name='supplier_delete'),
+
     prefix_default_language=False
 )
 

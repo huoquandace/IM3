@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "SUPPLIER_UPDATE" %} {% endblock title %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <img id="image" src="{{ form.instance.image.url }}"/>
+    <input type="submit" value="{% trans "SUBMIT" %}">
+</form>
+{% endblock content %}
