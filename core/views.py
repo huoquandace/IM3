@@ -15,6 +15,7 @@ from django.contrib.auth.mixins import *
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import Group
 from django.views.generic import *
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
@@ -415,23 +416,58 @@ class UserGroupAdd(CreateView):
     fields = '__all__'
     template_name = 'auth/user_group_add.html'
 
+
 class CategoryList(ListView):
     model = Category
     template_name = 'categories/category_list.html'
 
-class CategoryAdd(CreateView):
+class CategoryAdd(SuccessMessageMixin, CreateView):
     model = Category
     fields = '__all__'
+    success_url = reverse_lazy('category_list')
+    success_message = _(' successfully.')
     template_name = 'categories/category_add.html'
 
-    def form_valid(self, form):
-        form.save()
-        return redirect('category_list')
-
-class CategoryUpdate(UpdateView):
+class CategoryUpdate(SuccessMessageMixin, UpdateView):
     model = Category
     fields = '__all__'
+    success_url = reverse_lazy('category_list')
+    success_message = _('Update successfully.')
     template_name = 'categories/category_update.html'
 
-class CategoryDelete(DeleteView):
+class CategoryDelete(SuccessMessageMixin, DeleteView):
     model = Category
+    success_url = reverse_lazy('category_list')
+    success_message = _('Delete successfully.')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+    
+
+class ProductList(ListView):
+    model = Product
+    template_name = 'products/product_list.html'
+
+class ProductAdd(SuccessMessageMixin, CreateView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('product_list')
+    success_message = _(' successfully.')
+    template_name = 'products/product_add.html'
+
+class ProductUpdate(SuccessMessageMixin, UpdateView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('product_list')
+    success_message = _('Update successfully.')
+    template_name = 'products/product_update.html'
+
+class ProductDelete(SuccessMessageMixin, DeleteView):
+    model = Product
+    success_url = reverse_lazy('product_list')
+    success_message = _('Delete successfully.')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
+

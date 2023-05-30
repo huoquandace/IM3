@@ -5,8 +5,10 @@
 {% block title %} {% trans "CATEGORY_LIST" %} {% endblock title %}
 
 {% block content %}
+<a href="{% url 'category_add' %}">{% trans "NEW" %}</a> <br>
 {% for object in object_list %}
-    {{ object }} <a href="">Delete</a>
+    {{ object }} <a href="{% url 'category_update' object.id%}">{% trans "UPDATE" %}</a>
+    <form method="POST" action="{% url 'category_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form>
     <br>
 {% endfor %}
 {% endblock content %}
