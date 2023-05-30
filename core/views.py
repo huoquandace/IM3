@@ -83,20 +83,16 @@ class Login(LoginView):
     next_page = reverse_lazy('dashboard')
     redirect_authenticated_user = True # If it is false, authenticated_user is still access to login
 
-
 class Logout(LoginRequiredMixin, LogoutView):
     # template_name = 'auth/logged_out.html'
     next_page = reverse_lazy('login') # if not default render to template
-
 
 class PasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'auth/password_change_form.html'
     success_url = reverse_lazy('password_change_done')
 
-
 class PasswordChangeDone(LoginRequiredMixin, PasswordChangeDoneView):
     template_name = 'auth/password_change_done.html'
-
 
 class PasswordReset(PasswordResetView):
     template_name = 'auth/password_reset_form.html'
@@ -105,19 +101,15 @@ class PasswordReset(PasswordResetView):
     email_template_name = 'auth/password_reset_email.html'
     subject_template_name = 'auth/password_reset_subject.txt'
 
-
 class PasswordResetDone(PasswordResetDoneView):
     template_name = 'auth/password_reset_done.html'
-
 
 class PasswordResetConfirm(PasswordResetConfirmView):
     template_name = 'auth/password_reset_confirm.html'
     success_url = reverse_lazy('password_reset_complete')
 
-
 class PasswordResetComplete(PasswordResetCompleteView):
     template_name = 'auth/password_reset_complete.html'
-
 
 class Register(FormView):
 
@@ -147,7 +139,6 @@ class Register(FormView):
         url = f"{reverse('register_done')}?username={new_user.username}"
         return redirect(url)
 
-
 class RegisterDone(TemplateView):
     template_name = 'auth/register_done.html'
 
@@ -156,10 +147,8 @@ class RegisterDone(TemplateView):
         context['username'] = self.request.GET.get('username')
         return context
 
-
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'auth/profile.html'
-
 
 class ProfileUpdateView(LoginRequiredMixin, View):
     
@@ -202,7 +191,6 @@ class UserDetail(DetailView):
     template_name = 'auth/user_detail.html'
     context_object_name = 'user'
 
-
 class UserList(ListView):
     template_name = 'auth/user_list.html'
     model = get_user_model()
@@ -215,7 +203,6 @@ class UserList(ListView):
             return self.model.objects.filter(username__icontains=query)
         return super().get_queryset()
 
-
 class UserAdd(CreateView):
     model = get_user_model()
     fields = ['username', 'password']
@@ -226,7 +213,6 @@ class UserAdd(CreateView):
         user.set_password(user.password)
         user.save()
         return redirect('user_list')
-
 
 class UserEdit(LoginRequiredMixin, View):
     
@@ -264,12 +250,10 @@ class UserEdit(LoginRequiredMixin, View):
             messages.error(request, 'errors')
             return redirect('user_edit')
 
-
 class UserDelete(DeleteView):
     model = get_user_model()
     template_name = 'auth/user_delete.html'
     success_url = reverse_lazy('user_list')
-
 
 class UserAddByInfo(LoginRequiredMixin, View):
     
@@ -350,7 +334,6 @@ class UserAddByInfo(LoginRequiredMixin, View):
             'acc_form': acc_form,
         })
 
-
 class UserAddByCsv(LoginRequiredMixin, FormView):
     form_class = UploadFileForm
     template_name = 'auth/user_add_by_csv.html'
@@ -377,7 +360,6 @@ class UserAddByCsv(LoginRequiredMixin, FormView):
             return HttpResponseRedirect(self.request.path_info)
         return JsonResponse('Successful', safe=False)
 
-
 class DowloadUserCsvTemplate(View):
 
     def get(self, request, *args, **kwargs):
@@ -391,7 +373,6 @@ class DowloadUserCsvTemplate(View):
         except Exception as e:
             print(e)
         return HttpResponseRedirect(request.path_info)
-
 
 class UserListToPdf(View):
     
@@ -409,7 +390,6 @@ class UserGroupList(ListView):
     template_name = 'auth/user_group_list.html'
     model = Group
     context_object_name = 'groups'
-
 
 class UserGroupAdd(CreateView):
     model = Group
@@ -469,7 +449,8 @@ class ProductDelete(SuccessMessageMixin, DeleteView):
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
-    
+
+
 class SupplierList(ListView):
     model = Supplier
     template_name = 'suppliers/supplier_list.html'
