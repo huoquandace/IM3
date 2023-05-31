@@ -483,3 +483,10 @@ class SupplierDelete(SuccessMessageMixin, DeleteView):
         messages.success(self.request, _('Delete successfully.'))
         return redirect('supplier_list')
 
+class SupplierProvie(View):
+    
+    def get(self, request):
+        
+        return render(request, 'suppliers/supolier_provide.html', {
+
+        })

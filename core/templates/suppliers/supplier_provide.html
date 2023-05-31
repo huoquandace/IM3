@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "SUPPLIER_PROVIDE" %} {% endblock title %}
+
+{% block content %}
+<a href="{% url 'supplier_add' %}">{% trans "NEW" %}</a> <br>
+{% for object in object_list %}
+    {{ object }} <a href="{% url 'supplier_update' object.id%}">{% trans "UPDATE" %}</a>
+    <form method="POST" action="{% url 'supplier_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form>
+    <br>
+{% endfor %}
+{% endblock content %}
