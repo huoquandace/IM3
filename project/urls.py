@@ -50,11 +50,12 @@ urlpatterns += i18n_patterns (
 
     path('supplier/list/', SupplierList.as_view(), name='supplier_list'),
     path('supplier/add/', SupplierAdd.as_view(), name='supplier_add'),
-    path('supplier/update/<int:pk>', SupplierUpdate.as_view(), name='supplier_update'),
-    path('supplier/delete/<int:pk>', SupplierDelete.as_view(), name='supplier_delete'),
+    path('supplier/update/<int:pk>/', SupplierUpdate.as_view(), name='supplier_update'),
+    path('supplier/delete/<int:pk>/', SupplierDelete.as_view(), name='supplier_delete'),
     path('supplier/provide/', SupplierProvie.as_view(), name='supplier_provide')
     ,
     path('quote/add/', QuoteAdd.as_view(), name='quote_add'),
+    path('quote/edit/<int:pk>/', QuoteEdit.as_view(), name='quote_edit'),
 
     prefix_default_language=False
 )
