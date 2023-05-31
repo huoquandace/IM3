@@ -98,7 +98,7 @@ class Supplier(models.Model):
 
 class POrder(models.Model):
     label = models.CharField(_("label"), max_length=255, null=True, blank=True)
-    supplier = models.ForeignKey(Supplier, verbose_name=_("supplier"), on_delete=models.CASCADE)
+    supplier = models.ForeignKey(Supplier, verbose_name=_("supplier"), on_delete=models.CASCADE, blank=True)
     order_date = models.DateField(_("order date"), null=True, blank=True)
     status = models.CharField(_("status"), max_length=255, null=True, blank=True, default="draft")
     created_at = models.DateTimeField(auto_now=True, editable=False)

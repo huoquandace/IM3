@@ -2,14 +2,18 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans "SUPPLIER_PROVIDE" %} {% endblock title %}
+{% block title %} {% trans "QUOTE_ADD" %} {% endblock title %}
 
 {% block content %}
+<form method="get">
+    {{ form.supplier }}
+    <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
+</form>
 <div id="products">
 {% for product in products %}
     <div>
         {{ product.id }} - {{ product }}
-        <input name="{{ product.id }}" hidden>
+        <input type="number" id="quantity" name="{{ product.id }}" hidden>
         <span class="add_btn">{% trans "ADD" %}</span> 
         <span class="del_btn" hidden>{% trans "REMOVE" %}</span> 
         <br>
@@ -22,7 +26,7 @@
     {% for product in selected_products %}
     <div>
         {{ product.id }} - {{ product }}
-        <input name="{{ product.id }}" hidden>
+        <input type="number" id="quantity" name="{{ product.id }}">
         <span class="add_btn" hidden>{% trans "ADD" %}</span> 
         <span class="del_btn" >{% trans "REMOVE" %}</span> 
         <br>
@@ -36,14 +40,19 @@
     $('.add_btn').click(function(){
         selected_product = $(this).parent()
         $('#selected_products').append(selected_product)
+        selected_product.find('#quantity').show()
         selected_product.find('.add_btn').hide()
         selected_product.find('.del_btn').show()
     })
     $('.del_btn').click(function(){
         selected_product = $(this).parent()
         $('#products').append(selected_product)
+        selected_product.find('#quantity').hide()
         selected_product.find('.add_btn').show()
         selected_product.find('.del_btn').hide()
+    })
+    $('#id_supplier').change(function() {
+        $('#supplier_submit').click()
     })
 </script>
 {% endblock script %}

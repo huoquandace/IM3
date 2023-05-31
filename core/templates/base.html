@@ -8,7 +8,7 @@
   {% block css %}{% endblock css %}
 </head>
 <body>
-  <a href="{% url 'dashboard' %}">{% trans "HOME" %}</a>
+  <a href="{% url 'dashboard' %}">{% trans "HOME" %}</a> <br>
   {% include 'includes/notifications.html' %}
   {% block content %}{% endblock content %}
 

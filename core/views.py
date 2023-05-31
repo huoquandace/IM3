@@ -19,6 +19,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
+from django.db.models import Q
 
 from .models import *
 from core.forms import UploadFileForm
@@ -486,7 +487,73 @@ class SupplierDelete(SuccessMessageMixin, DeleteView):
 class SupplierProvie(View):
     
     def get(self, request):
-        
-        return render(request, 'suppliers/supolier_provide.html', {
+        supplier = Supplier.objects.get(account=request.user)
+        selected_products = supplier.products.all()
+        products = Product.objects.filter(supplier__isnull=True)
 
+        return render(request, 'suppliers/supplier_provide.html', {
+            'products': products,
+            'selected_products': selected_products,
         })
+
+    def post(self, request):
+        supplier = Supplier.objects.get(account=request.user)
+        products = []
+        for i in range(Product.objects.last().id):
+            if request.POST.get(str(i+1)) is not None:
+                # print(Product.objects.get(id=i+1))
+                products.append(Product.objects.get(id=i+1))
+                # print(request.POST.get(str(i+1)))
+        supplier.products.set(products)
+        return redirect('./')
+    
+
+class QuoteAdd(View):
+    
+    class SupplierChoiceForm(forms.ModelForm):
+        class Meta:
+            model = POrder
+            fields = ['supplier', ]
+
+    def get(self, request):
+        if request.GET.get('supplier') is not None:
+            if request.GET.get('supplier') == "":
+                return redirect('./')
+            supplier = Supplier.objects.get(id=request.GET.get('supplier'))
+            products = supplier.products.all()
+        else:
+            supplier = None
+            products = None
+        # products = Product.objects.all()
+        supplier_choice_form = self.SupplierChoiceForm(initial={'supplier': supplier})
+
+        return render(request, 'quotes/quote_add.html', {
+            'form': supplier_choice_form,
+            'products': products,
+            # 'selected_products': selected_products,
+        })
+
+    def post(self, request):
+        if request.GET.get('supplier') is not None:
+            supplier = Supplier.objects.get(id=request.GET.get('supplier'))
+        else:
+            messages.error(request, _('Please choose a supplier'))
+            return redirect('./')
+        if supplier.products.all().count() == 0:
+            messages.error(request, _('The supplier has not registered the product'))
+            return redirect('./')
+        products = []
+        for i in range(supplier.products.all().last().id):
+            if request.POST.get(str(i+1)) is not None:
+                quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 0
+                products.append([Product.objects.get(id=i+1), quantity])
+                print(Product.objects.get(id=i+1))
+        # supplier.products.set(products)
+        if len(products) == 0:
+            messages.error(request, _('Please choose at least one product'))
+            return redirect('./')
+        porder = POrder.objects.create(supplier=supplier)
+        for couple in products:
+            POrderDetail.objects.create(porder=porder, product=couple[0], quantity=couple[1])
+        messages.success(request, _('Create successfully'))
+        return redirect('./')
