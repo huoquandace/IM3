@@ -54,8 +54,9 @@ urlpatterns += i18n_patterns (
     path('supplier/delete/<int:pk>/', SupplierDelete.as_view(), name='supplier_delete'),
     path('supplier/provide/', SupplierProvie.as_view(), name='supplier_provide')
     ,
+    path('quote/list/', QuoteList.as_view(), name='quote_list'),
     path('quote/add/', QuoteAdd.as_view(), name='quote_add'),
-    path('quote/edit/<int:pk>/', QuoteEdit.as_view(), name='quote_edit'),
+    path('quote/update/<int:pk>/', QuoteUpdate.as_view(), name='quote_update'),
 
     prefix_default_language=False
 )

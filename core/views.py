@@ -549,7 +549,7 @@ class QuoteAdd(View):
         messages.success(request, _('Create successfully'))
         return redirect('./')
 
-class QuoteEdit(View):
+class QuoteUpdate(View):
     
     class SupplierChoiceForm(forms.ModelForm):
         class Meta:
@@ -562,7 +562,7 @@ class QuoteEdit(View):
             if request.GET.get('supplier') == "":
                 return redirect('./')
             if request.GET.get('supplier') != str(porder.supplier.id) and request.GET.get('status') != 'change':
-                redirect_url = reverse('quote_edit', kwargs={'pk':pk})
+                redirect_url = reverse('quote_update', kwargs={'pk':pk})
                 parameters = porder.supplier.id
                 return redirect(f'{redirect_url}?supplier={parameters}')
             supplier = Supplier.objects.get(id=request.GET.get('supplier'))
@@ -575,13 +575,13 @@ class QuoteEdit(View):
                 products = supplier.products.all()
                 selected_products = []
         else:
-            redirect_url = reverse('quote_edit', kwargs={'pk':pk})
+            redirect_url = reverse('quote_update', kwargs={'pk':pk})
             parameters = porder.supplier.id
             return redirect(f'{redirect_url}?supplier={parameters}')
         # products = Product.objects.all()
         supplier_choice_form = self.SupplierChoiceForm(initial={'supplier': supplier}, instance=porder)
 
-        return render(request, 'quotes/quote_edit.html', {
+        return render(request, 'quotes/quote_update.html', {
             'form': supplier_choice_form,
             'products': products,
             'selected_products': selected_products,
@@ -630,4 +630,7 @@ class QuoteEdit(View):
         messages.success(request, _('Update successfully'))
         return redirect('./')
 
+class QuoteList(ListView):
+    model = POrder
+    template_name = 'quotes/quote_list.html'
 
