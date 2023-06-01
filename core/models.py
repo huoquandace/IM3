@@ -105,6 +105,9 @@ class POrder(models.Model):
     total = models.IntegerField(_("total"), null=True, blank=True)
     note = models.TextField(_("note"), null=True, blank=True)
 
+    def __str__(self):
+        return f'{ self.supplier } - { self.label }'
+
     def save(self, *args, **kwargs):
         self.label = "PUR-" + str(POrder.objects.count()+1)
         return super(POrder, self).save(*args, **kwargs)

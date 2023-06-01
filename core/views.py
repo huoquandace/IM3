@@ -481,8 +481,10 @@ class SupplierDelete(SuccessMessageMixin, DeleteView):
         messages.success(self.request, _('Delete successfully.'))
         return redirect('supplier_list')
 
-class SupplierProvie(View):
-    
+
+class SupplierProvie(GroupRequiredMixin, View):
+    group_required = ['Supplier']
+
     def get(self, request):
         supplier = Supplier.objects.get(account=request.user)
         selected_products = supplier.products.all()
@@ -501,7 +503,41 @@ class SupplierProvie(View):
                 products.append(Product.objects.get(id=i+1))
         supplier.products.set(products)
         return redirect('./')
+
+class SupplierQuoteList(GroupRequiredMixin, View):
+    class NoteChoiceForm(forms.ModelForm):
+        class Meta:
+            model = POrder
+            fields = ['note', ]
+
+    group_required = ['Supplier']
     
+    def get(self, request):
+        supplier = Supplier.objects.get(account=request.user)
+        quotes = supplier.porder_set.filter(~Q(status='Draft'))
+        # return redirect('supplier_quote_list')
+        return render(request, 'quotes/supplier_quote_list.html', {
+            'quotes': quotes,
+            'form': self.NoteChoiceForm,
+        })
+
+class SupplierQuoteReject(GroupRequiredMixin, View):
+    
+
+    group_required = ['Supplier']
+
+    def post(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        porder.status = 'Reject'
+        if request.POST.get('note') is not None:
+            porder.note = request.POST.get('note')
+        porder.save()
+        messages.success(request, _('Reject succesfully'))
+        return redirect('supplier_quote_list')
+
+class QuoteList(ListView):
+    model = POrder
+    template_name = 'quotes/quote_list.html'
 
 class QuoteAdd(View):
     
@@ -547,7 +583,7 @@ class QuoteAdd(View):
         for couple in products:
             POrderDetail.objects.create(porder=porder, product=couple[0], quantity=couple[1])
         messages.success(request, _('Create successfully'))
-        return redirect('./')
+        return redirect('quote_list')
 
 class QuoteUpdate(View):
     
@@ -630,7 +666,20 @@ class QuoteUpdate(View):
         messages.success(request, _('Update successfully'))
         return redirect('./')
 
-class QuoteList(ListView):
+class QuoteDelete(SuccessMessageMixin, DeleteView):
     model = POrder
-    template_name = 'quotes/quote_list.html'
+    success_url = reverse_lazy('quote_list')
+    success_message = _('Delete successfully.')
 
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
+class QuoteRequest(GroupRequiredMixin, View):
+    group_required = ['Manager']
+    
+    def get(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        porder.status = 'Request'
+        porder.save()
+        messages.success(request, _('Request succesfully'))
+        return redirect('quote_list')

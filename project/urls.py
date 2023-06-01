@@ -52,11 +52,16 @@ urlpatterns += i18n_patterns (
     path('supplier/add/', SupplierAdd.as_view(), name='supplier_add'),
     path('supplier/update/<int:pk>/', SupplierUpdate.as_view(), name='supplier_update'),
     path('supplier/delete/<int:pk>/', SupplierDelete.as_view(), name='supplier_delete'),
-    path('supplier/provide/', SupplierProvie.as_view(), name='supplier_provide')
-    ,
+
+    path('supplier/provide/', SupplierProvie.as_view(), name='supplier_provide'),
+    path('supplier/quote/list/', SupplierQuoteList.as_view(), name='supplier_quote_list'),
+    path('quote/quote/reject/<int:pk>/', SupplierQuoteReject.as_view(), name='supplier_quote_reject'),
+
     path('quote/list/', QuoteList.as_view(), name='quote_list'),
     path('quote/add/', QuoteAdd.as_view(), name='quote_add'),
     path('quote/update/<int:pk>/', QuoteUpdate.as_view(), name='quote_update'),
+    path('quote/delete/<int:pk>/', QuoteDelete.as_view(), name='quote_delete'),
+    path('quote/request/<int:pk>/', QuoteRequest.as_view(), name='quote_request'),
 
     prefix_default_language=False
 )

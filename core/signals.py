@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -16,6 +17,8 @@ def create_profile(sender, instance, created, **kwargs):
         user = get_user_model().objects.create(username=instance.id_supplier)
         user.set_password(user.username)
         user.save()
+        group = Group.objects.get(name='Supplier')
+        group.user_set.add(user)
         supplier = Supplier.objects.get(id=instance.id)
         supplier.account = user
         supplier.save()
