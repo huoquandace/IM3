@@ -57,12 +57,15 @@ urlpatterns += i18n_patterns (
     path('supplier/quote/list/', SupplierQuoteList.as_view(), name='supplier_quote_list'),
     path('supplier/quote/reject/<int:pk>/', SupplierQuoteReject.as_view(), name='supplier_quote_reject'),
     path('supplier/quote/<int:pk>/', SupplierQuote.as_view(), name='supplier_quote'),
+    path('supplier/delivery/<int:pk>/', SupplierDelivery.as_view(), name='supplier_delivery'),
 
     path('quote/list/', QuoteList.as_view(), name='quote_list'),
     path('quote/add/', QuoteAdd.as_view(), name='quote_add'),
     path('quote/update/<int:pk>/', QuoteUpdate.as_view(), name='quote_update'),
     path('quote/delete/<int:pk>/', QuoteDelete.as_view(), name='quote_delete'),
     path('quote/request/<int:pk>/', QuoteRequest.as_view(), name='quote_request'),
+    path('quote/cancel/<int:pk>/', QuoteCancel.as_view(), name='quote_cancel'),
+    path('quote/order/<int:pk>/', QuoteOrder.as_view(), name='quote_order'),
 
     prefix_default_language=False
 )

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "ORDER" %} {% endblock title %}
+
+{% block content %}
+{% for porder_detail in porder.porderdetail_set.all %}
+    {{ porder_detail.product }} -- {{ porder_detail.quantity }} -- {{ porder_detail.price }}
+    <br>
+{% endfor %}
+{% trans "TOTAL" %}: {{ porder.total }} <br>
+{% if porder.status == 'Quote' %}
+    <form method="post">{% csrf_token %}<input type="submit" value="{% trans "SUBMIT" %}"></form>
+{% else %}
+    {{ porder.order_date|date:'d-m-Y' }}
+{% endif %}
+{% endblock content %}

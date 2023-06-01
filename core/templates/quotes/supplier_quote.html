@@ -5,52 +5,13 @@
 {% block title %} {% trans "SUPPLIER_QUOTE" %} {% endblock title %}
 
 {% block content %}
-<div id="products">
-{% for product in products %}
-    <div>
-        {{ product.id }} - {{ product }}
-        <input type="number" id="quantity" name="{{ product.id }}" value="{{ product.1 }}" hidden>
-        <span class="add_btn">{% trans "ADD" %}</span> 
-        <span class="del_btn" hidden>{% trans "REMOVE" %}</span> 
-        <br>
-    </div>
-{% endfor %}
-</div> <hr>
-<form id="selected_products" method="post">
+<form method="post">
     {% csrf_token %}
-    <input type="submit" value="{% trans "SUBMIT" %}">
-    {% for product in selected_products %}
-    <div>
-        {{ product.0.id }} - {{ product.0 }}
-        <input type="number" id="quantity" name="{{ product.0.id }}" value="{{ product.1 }}">
-        <span class="add_btn" hidden>{% trans "ADD" %}</span> 
-        <span class="del_btn" >{% trans "REMOVE" %}</span> 
+    {% for product in products %}
+        {{ product.id }} - {{ product }}
+        <input type="number" id="price" name="{{ product.0.id }}">
         <br>
-    </div>
-{% endfor %}
+    {% endfor %}
+    <input type="submit" value="{% trans "SUBMIT" %}">
 </form>
 {% endblock content %}
-
-{% block script %}
-<script>
-    $('.add_btn').click(function(){
-        console.log($(this).parent())
-        selected_product = $(this).parent()
-        $('#selected_products').append(selected_product)
-        selected_product.find('#quantity').show()
-        selected_product.find('.add_btn').hide()
-        selected_product.find('.del_btn').show()
-    })
-    $('.del_btn').click(function(){
-        selected_product = $(this).parent().removeAttr('value')
-        $('#products').append(selected_product)
-        selected_product.find('#quantity').hide()
-        selected_product.find('.add_btn').show()
-        selected_product.find('.del_btn').hide()
-    })
-    $('#id_supplier').change(function() {
-        $('#supplier_get').append($('<input name="status" value="change">'))
-        $('#supplier_submit').click()
-    })
-</script>
-{% endblock script %}
