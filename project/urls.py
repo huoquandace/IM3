@@ -55,7 +55,8 @@ urlpatterns += i18n_patterns (
 
     path('supplier/provide/', SupplierProvie.as_view(), name='supplier_provide'),
     path('supplier/quote/list/', SupplierQuoteList.as_view(), name='supplier_quote_list'),
-    path('quote/quote/reject/<int:pk>/', SupplierQuoteReject.as_view(), name='supplier_quote_reject'),
+    path('supplier/quote/reject/<int:pk>/', SupplierQuoteReject.as_view(), name='supplier_quote_reject'),
+    path('supplier/quote/<int:pk>/', SupplierQuote.as_view(), name='supplier_quote'),
 
     path('quote/list/', QuoteList.as_view(), name='quote_list'),
     path('quote/add/', QuoteAdd.as_view(), name='quote_add'),

@@ -535,6 +535,88 @@ class SupplierQuoteReject(GroupRequiredMixin, View):
         messages.success(request, _('Reject succesfully'))
         return redirect('supplier_quote_list')
 
+class SupplierQuote(View):
+    
+    class SupplierChoiceForm(forms.ModelForm):
+        class Meta:
+            model = POrder
+            fields = ['supplier', ]
+
+    def get(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        if request.GET.get('supplier') is not None:
+            if request.GET.get('supplier') == "":
+                return redirect('./')
+            if request.GET.get('supplier') != str(porder.supplier.id) and request.GET.get('status') != 'change':
+                redirect_url = reverse('quote_update', kwargs={'pk':pk})
+                parameters = porder.supplier.id
+                return redirect(f'{redirect_url}?supplier={parameters}')
+            supplier = Supplier.objects.get(id=request.GET.get('supplier'))
+            selected_products = [[porder_detail.product, porder_detail.quantity] for porder_detail in porder.porderdetail_set.all()]
+            products = []
+            for product in supplier.products.all():
+                if product not in [porder_detail.product for porder_detail in porder.porderdetail_set.all()]:
+                    products.append(product)
+            if request.GET.get('status') == 'change':
+                products = supplier.products.all()
+                selected_products = []
+        else:
+            redirect_url = reverse('quote_update', kwargs={'pk':pk})
+            parameters = porder.supplier.id
+            return redirect(f'{redirect_url}?supplier={parameters}')
+        # products = Product.objects.all()
+        supplier_choice_form = self.SupplierChoiceForm(initial={'supplier': supplier}, instance=porder)
+
+        return render(request, 'quotes/quote_update.html', {
+            'form': supplier_choice_form,
+            'products': products,
+            'selected_products': selected_products,
+        })
+
+    def post(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        if request.GET.get('supplier') is not None:
+            supplier = Supplier.objects.get(id=request.GET.get('supplier'))
+        else:
+            messages.error(request, _('Please choose a supplier'))
+            return redirect('./')
+        if supplier.products.all().count() == 0:
+            messages.error(request, _('The supplier has not registered the product'))
+            return redirect('./')
+        new_products = []
+        del_products = []
+        upd_products = []
+        for i in range(supplier.products.all().last().id):
+            if request.POST.get(str(i+1)) is not None:
+                quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 0
+                product = Product.objects.get(id=i+1)
+                if product not in [porder_detail.product for porder_detail in porder.porderdetail_set.all()]:
+                    new_products.append([Product.objects.get(id=i+1), quantity])
+                else:
+                    upd_products.append([Product.objects.get(id=i+1), quantity])
+            else:
+                try:
+                    del_products.append(Product.objects.get(id=i+1))
+                except Product.DoesNotExist:
+                    pass
+        if len(new_products) + len(upd_products) == 0:
+            messages.error(request, _('Please choose at least one product'))
+            return redirect('./')
+        for del_product in del_products:
+            try:
+                POrderDetail.objects.get(porder=porder, product=del_product).delete()
+            except POrderDetail.DoesNotExist:
+                pass
+        for new_product in new_products:
+            POrderDetail.objects.create(porder=porder, product=new_product[0], quantity=new_product[1])
+        for upd_product in upd_products:
+            porder_detail = POrderDetail.objects.get(porder=porder, product=upd_product[0])
+            porder_detail.quantity = upd_product[1]
+            porder_detail.save()
+        messages.success(request, _('Update successfully'))
+        return redirect('./')
+
+
 class QuoteList(ListView):
     model = POrder
     template_name = 'quotes/quote_list.html'
@@ -683,3 +765,4 @@ class QuoteRequest(GroupRequiredMixin, View):
         porder.save()
         messages.success(request, _('Request succesfully'))
         return redirect('quote_list')
+    

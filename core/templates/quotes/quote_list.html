@@ -7,7 +7,7 @@
 {% block content %}
 <a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
 {% for object in object_list %}
-    {{ object }}
+    {{ object }} -- {{ object.status }}
     <a href="{% url 'quote_update' object.id%}">{% trans "UPDATE" %}</a>
     <a href="{% url 'quote_request' object.id%}">{% trans "REQUEST" %}</a>
     <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form>

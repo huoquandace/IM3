@@ -2,15 +2,17 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans "QUOTE_LIST" %} {% endblock title %}
+{% block title %} {% trans "SUPPLIER_QUOTE_LIST" %} {% endblock title %}
 
 {% block content %}
 <a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
 {% for object in quotes %}
-    {{ object }}
-    <a href="{% url 'quote_update' object.id%}">{% trans "UPDATE" %}</a>
-    <form method="POST" action="{% url 'supplier_quote_reject' object.id %}">{% csrf_token %}{{ form.note }}<input type="submit" value="{% trans "REJECT" %}"></form>
-    <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form>
+    {{ object }} -- {{ object.status }}
+    {% if object.status != 'Reject' %}
+        <a href="{% url 'supplier_quote' object.id%}">{% trans "QUOTE" %}</a>
+        <form method="POST" action="{% url 'supplier_quote_reject' object.id %}">{% csrf_token %}{{ form.note }}<input type="submit" value="{% trans "REJECT" %}"></form>
+    {% endif %}
+    {% comment %} <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form> {% endcomment %}
     <br>
 {% endfor %}
 {% endblock content %}
