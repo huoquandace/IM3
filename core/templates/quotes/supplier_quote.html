@@ -5,10 +5,6 @@
 {% block title %} {% trans "SUPPLIER_QUOTE" %} {% endblock title %}
 
 {% block content %}
-<form method="get" id="supplier_get">
-    {{ form.supplier }}
-    <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
-</form>
 <div id="products">
 {% for product in products %}
     <div>

@@ -544,32 +544,14 @@ class SupplierQuote(View):
 
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
-        if request.GET.get('supplier') is not None:
-            if request.GET.get('supplier') == "":
-                return redirect('./')
-            if request.GET.get('supplier') != str(porder.supplier.id) and request.GET.get('status') != 'change':
-                redirect_url = reverse('quote_update', kwargs={'pk':pk})
-                parameters = porder.supplier.id
-                return redirect(f'{redirect_url}?supplier={parameters}')
-            supplier = Supplier.objects.get(id=request.GET.get('supplier'))
-            selected_products = [[porder_detail.product, porder_detail.quantity] for porder_detail in porder.porderdetail_set.all()]
-            products = []
-            for product in supplier.products.all():
-                if product not in [porder_detail.product for porder_detail in porder.porderdetail_set.all()]:
-                    products.append(product)
-            if request.GET.get('status') == 'change':
-                products = supplier.products.all()
-                selected_products = []
-        else:
-            redirect_url = reverse('quote_update', kwargs={'pk':pk})
-            parameters = porder.supplier.id
-            return redirect(f'{redirect_url}?supplier={parameters}')
+
+        supplier = Supplier.objects.get(account=request.user)
+        selected_products = [[porder_detail.product, porder_detail.quantity] for porder_detail in porder.porderdetail_set.all()]
         # products = Product.objects.all()
         supplier_choice_form = self.SupplierChoiceForm(initial={'supplier': supplier}, instance=porder)
 
-        return render(request, 'quotes/quote_update.html', {
+        return render(request, 'quotes/supplier_quote.html', {
             'form': supplier_choice_form,
-            'products': products,
             'selected_products': selected_products,
         })
 
