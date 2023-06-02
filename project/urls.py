@@ -65,7 +65,8 @@ urlpatterns += i18n_patterns (
     path('quote/delete/<int:pk>/', QuoteDelete.as_view(), name='quote_delete'),
     path('quote/request/<int:pk>/', QuoteRequest.as_view(), name='quote_request'),
     path('quote/cancel/<int:pk>/', QuoteCancel.as_view(), name='quote_cancel'),
-    path('quote/order/<int:pk>/', QuoteOrder.as_view(), name='quote_order'),
+
+    path('order/<int:pk>/', Order.as_view(), name='order'),
 
     prefix_default_language=False
 )

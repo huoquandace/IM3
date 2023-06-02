@@ -744,18 +744,20 @@ class QuoteCancel(GroupRequiredMixin, View):
         messages.success(request, _('Cancel succesfully'))
         return redirect('quote_list')
     
-class QuoteOrder(GroupRequiredMixin, View):
+    
+class Order(GroupRequiredMixin, View):
     group_required = ['Manager']
     
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
-        return render(request, 'quotes/order_view.html', {
+        return render(request, 'orders/order_view.html', {
             'porder': porder,
         })
     
     def post(self, request, pk):
         porder = POrder.objects.get(id=pk)
         porder.status = 'Order'
+        porder.is_ordered = True
         porder.order_date = timezone.now()
         porder.save()
         return redirect('./')

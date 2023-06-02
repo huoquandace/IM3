@@ -13,6 +13,7 @@
 {% if porder.status == 'Quote' %}
     <form method="post">{% csrf_token %}<input type="submit" value="{% trans "SUBMIT" %}"></form>
 {% else %}
-    {{ porder.order_date|date:'d-m-Y' }}
+    {% trans "ORDER ON" %}: {{ porder.order_date|date:'d-m-Y' }} <br>
+    {% trans "STATUS" %}: {{ porder.status }}
 {% endif %}
 {% endblock content %}
