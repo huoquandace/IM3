@@ -123,8 +123,23 @@ class POrder(models.Model):
             if porderdetail.price is not None:
                 sum += porderdetail.price * porderdetail.quantity
         return sum
-    
-
+    def get_issue(self):
+        state = []
+        grns = self.grn_set.all()
+        products = [porder_detail.product for porder_detail in self.porderdetail_set.all()]    
+        for product in products:
+            fact_quantity = 0
+            for grn in grns:
+                for grn_detail in grn.grndetail_set.all():
+                    if grn_detail.product == product:
+                        fact_quantity += grn_detail.quantity
+            state.append([product, fact_quantity])
+        issue = 0
+        for item in state:
+            porder_detail = POrderDetail.objects.get(porder=self, product=item[0])
+            if item[1] < porder_detail.quantity:
+                issue += 1
+        return issue
 
 class POrderDetail(models.Model):
     porder = models.ForeignKey(POrder, verbose_name=_("purchare order"), on_delete=models.CASCADE, null=True, blank=True)
@@ -138,3 +153,14 @@ class POrderDetail(models.Model):
             return 0
         return self.price * self.quantity
     
+class GRN(models.Model):
+    porder = models.ForeignKey(POrder, verbose_name=_("purchare order"), on_delete=models.CASCADE)
+    date = models.DateField(_("date"), null=True, blank=True)
+
+class GRNDetail(models.Model):
+    grn = models.ForeignKey(GRN, verbose_name=_("grn"), on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name=_("product"), on_delete=models.CASCADE, null=True, blank=True)
+    quantity = models.IntegerField(_("quantity"), default=1, null=True, blank=True)
+    is_done = models.BooleanField(_("is done"), null=True, blank=True)
+
+    # porder_detail = models.ForeignKey(POrderDetail, verbose_name=_("porder detail"), on_delete=models.CASCADE)

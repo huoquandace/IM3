@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "GRN" %} {% endblock title %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {% for porder_detail in porder_details %}
+        {{ forloop.counter }} - {{ porder_detail.product }} -- {{ porder_detail.quantity }}
+        <input type="number" id="price" name="{{ porder_detail.product.id }}">
+        <br>
+    {% endfor %}
+    <input type="submit" value="{% trans "SUBMIT" %}">
+</form>
+{% endblock content %}

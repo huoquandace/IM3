@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "ISSUE" %} {% endblock title %}
+
+{% block content %}
+{% trans "SUPPLIER" %} -- {{ porder.supplier }} <br>
+{% for item in data %}
+    ---- {{ item.0 }} -- {{ item.1 }} -- {{ item.2 }}
+    {% if item.3 == False %} -- {% trans "ISSUE" %} {% endif %}
+    <br>
+{% endfor %}
+{% trans "TOTAL" %}: {{ porder.total }} <br>
+{% trans "ORDER ON" %}: {{ porder.order_date|date:'d-m-Y' }} <br>
+{% trans "STATUS" %}: {{ porder.status }} <br>
+<a href="{% url 'report' porder.id %}">{% trans "REPORT" %}</a>
+<hr>
+{% for grn in grns %}
+    {{ grn.date|date:'d-m-Y' }} <br>
+    {% for grn_detail in grn.grndetail_set.all %}
+        ---- {{ grn_detail.product }}: {{ grn_detail.quantity }} <br>
+    {% endfor %}
+{% endfor %}
+{% endblock content %}

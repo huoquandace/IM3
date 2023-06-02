@@ -762,8 +762,85 @@ class Order(GroupRequiredMixin, View):
         porder.save()
         return redirect('./')
 
+class GRN_add(GroupRequiredMixin, View):
+    group_required = ['Manager', 'Staff']
 
+    def get(self, request, pk):
+        porder = POrder.objects.get(pk=pk)
+        porder_details = porder.porderdetail_set.all()
 
+        return render(request, 'orders/grn.html', {
+            'porder_details': porder_details,
+        })
+
+    def post(self, request, pk):
+        porder = POrder.objects.get(pk=pk)
+
+        data = []
+        for porder_detail in porder.porderdetail_set.all():
+            product = porder_detail.product
+            if request.POST.get(str(porder_detail.product.id)) is None or request.POST.get(str(porder_detail.product.id)) == "":
+                data.append([product, 0])
+            else:
+                fact_quantity = int(request.POST.get(str(porder_detail.product.id)))
+                if fact_quantity < porder_detail.quantity:
+                    data.append([product, fact_quantity])
+                else:
+                    data.append([product, fact_quantity])
+        if sum([x[1] for x in data]) == 0:
+            messages.error(request, _('Must at least one item'))
+            return redirect('./')
+        
+        grn = GRN.objects.create(porder=porder, date=timezone.now())
+        for item in data:
+            GRNDetail.objects.create(
+                grn = grn,
+                product = item[0],
+                quantity = item[1],
+            )
+
+        porder.status = 'Delivered'
+        porder.save()
+        messages.success(request, _('Create successfully'))
+        return redirect('quote_list')
+
+class Issue(GroupRequiredMixin, View):
+    group_required = ['Manager']
+    
+    def get(self, request, pk):
+        data = []
+        porder = POrder.objects.get(id=pk)
+        grns = porder.grn_set.all()
+        products = [porder_detail.product for porder_detail in porder.porderdetail_set.all()]    
+        for product in products:
+            base_quantity = POrderDetail.objects.get(porder=porder, product=product).quantity
+            fact_quantity = 0
+            is_done = False
+            for grn in grns:
+                for grn_detail in grn.grndetail_set.all():
+                    if grn_detail.product == product:
+                        fact_quantity += grn_detail.quantity
+            if fact_quantity == base_quantity:
+                is_done = True
+            data.append([product, base_quantity, fact_quantity, is_done])
+
+        print(data)
+        return render(request, 'orders/issue.html', {
+            'porder': porder,
+            'data': data,
+            'grns': grns,
+        })
+
+class Report(GroupRequiredMixin, View):
+    group_required = ['Manager']
+
+    def get(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        porder.status = 'Report'
+        porder.save()
+        messages.success(request, _('Report successfully'))
+        return redirect('issue', porder.id)
+        
 
 """ 
     Manager tao moi -> Draft

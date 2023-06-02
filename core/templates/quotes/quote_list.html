@@ -8,7 +8,12 @@
 <a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
 {% for object in object_list %}
     {% if object.is_ordered %}
-        {{ object }} -- {% trans "ORDERED" %} -- <a href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+        {{ object }} -- {% trans "ORDERED" %}
+        -- <a href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+        -- <a href="{% url 'grn' object.id%}">{% trans "CREATE GRN" %}</a>
+        {% if object.status == 'Delivered' and object.get_issue != 0 %}
+            -- <a href="{% url 'issue' object.id %}"> {% trans "ISSUE" %}: {{ object.get_issue }} </a>
+        {% endif %}
     {% else %}
         {{ object }} -- {{ object.status }}
         {% if object.status == 'Draft' %}
