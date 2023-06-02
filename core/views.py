@@ -744,7 +744,11 @@ class QuoteCancel(GroupRequiredMixin, View):
         messages.success(request, _('Cancel succesfully'))
         return redirect('quote_list')
     
-    
+
+class OrderList(ListView):
+    model = POrder
+    template_name = 'orders/order_list.html'
+
 class Order(GroupRequiredMixin, View):
     group_required = ['Manager']
     
@@ -850,4 +854,7 @@ class Report(GroupRequiredMixin, View):
             Manager huy bo -> Cancel
             Manager dat hang -> Order
                 Supplier giao hang -> Delivery
+                Staff nhap hang -> Delivered
+                    Hoan thanh ->
+                    Giao hang thieu, manager report -> Report
 """

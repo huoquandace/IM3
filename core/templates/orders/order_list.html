@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "ORDER_LIST" %} {% endblock title %}
+
+{% block content %}
+<a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
+{% for object in object_list %}
+    {% if object.is_ordered %}
+        {{ object }} -- {{ object.status }}
+        -- <a href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+        -- <a href="{% url 'grn' object.id%}">{% trans "CREATE GRN" %}</a>
+        {% if object.status == 'Delivered' or object.status == 'Report' and object.get_issue != 0 %}
+            -- <a href="{% url 'issue' object.id %}"> {% trans "ISSUE" %}: {{ object.get_issue }} </a>
+        {% endif %}
+        <br>
+    {% endif %}
+{% endfor %}
+{% endblock content %}

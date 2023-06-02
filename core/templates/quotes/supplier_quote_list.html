@@ -8,7 +8,7 @@
 <a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
 {% for object in quotes %}
     {{ object }} -- {{ object.status }}
-    {% if object.status != 'Reject' and object.status != 'Quote' and object.status != 'Cancel' and object.status != 'Order' and object.status != 'Delivery' %}
+    {% if object.status != 'Reject' and object.status != 'Quote' and object.status != 'Cancel' and object.status != 'Order' and object.status != 'Delivery' and object.status != 'Report' %}
         <a href="{% url 'supplier_quote' object.id%}">{% trans "QUOTE" %}</a>
         <form method="POST" action="{% url 'supplier_quote_reject' object.id %}">{% csrf_token %}{{ form.note }}<input type="submit" value="{% trans "REJECT" %}"></form>
     {% endif %}

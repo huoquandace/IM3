@@ -66,6 +66,7 @@ urlpatterns += i18n_patterns (
     path('quote/request/<int:pk>/', QuoteRequest.as_view(), name='quote_request'),
     path('quote/cancel/<int:pk>/', QuoteCancel.as_view(), name='quote_cancel'),
 
+    path('order/list/', OrderList.as_view(), name='order_list'),
     path('order/<int:pk>/', Order.as_view(), name='order'),
     path('grn/<int:pk>/', GRN_add.as_view(), name='grn'),
     path('issue/<int:pk>/', Issue.as_view(), name='issue'),
