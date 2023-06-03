@@ -5,21 +5,83 @@
 {% block title %} {% trans "ISSUE" %} {% endblock title %}
 
 {% block content %}
-{% trans "SUPPLIER" %} -- {{ porder.supplier }} <br>
-{% for item in data %}
-    ---- {{ item.0 }} -- {{ item.1 }} -- {{ item.2 }}
-    {% if item.3 == False %} -- {% trans "ISSUE" %} {% endif %}
-    <br>
-{% endfor %}
-{% trans "TOTAL" %}: {{ porder.total }} <br>
-{% trans "ORDER ON" %}: {{ porder.order_date|date:'d-m-Y' }} <br>
-{% trans "STATUS" %}: {{ porder.status }} <br>
-{% if porder.status != 'Report' %} <a href="{% url 'report' porder.id %}">{% trans "REPORT" %}</a> {% endif %}
-<hr>
-{% for grn in grns %}
-    {{ grn.date|date:'d-m-Y' }} <br>
-    {% for grn_detail in grn.grndetail_set.all %}
-        ---- {{ grn_detail.product }}: {{ grn_detail.quantity }} <br>
-    {% endfor %}
-{% endfor %}
+<div class="card-box mb-30" style="margin: 0 70px;">
+	<div class="pd-20 d-flex justify-content-between">
+        <div class="d-flex flex-column"> 
+            <h4 class="text-blue h4"> {% trans "ORDER ID: " %} 120934{{ porder.id }} </h4>
+            <h5 class="text-green h5 ml-5"> {% trans "SUPPLIER: " %} <span class="text-orange">{{ porder.supplier.name }}</span> </h5>
+        {% if porder.status == 'Quote' %}
+        </div>
+        <div class="d-flex"> 
+            <div>
+                <a class="btn btn-warning mr-2" href="{% url 'quote_cancel' porder.id %}"> {% trans "CANCEL" %} </a>
+            </div>
+            <form method="post">{% csrf_token %}<input class="btn btn-primary" type="submit" value="{% trans "ORDER NOW" %}"></form>
+        </div>
+        {% else %}
+        <h5 class="text-green h5 ml-5"> {% trans "ORDER ON" %}: <span class="text-orange">{{ porder.order_date|date:'d-m-Y' }}</span> </h5>
+        </div>
+            {% if porder.status != 'Report' %} <div class=""> <a href="{% url 'report' porder.id %}" class="btn btn-warning">{% trans "REPORT" %}</a> </div> {% endif %}
+        {% endif %}
+	</div>
+
+	<div class="pb-20 mt-2">
+	    <hr>
+        {% for item in data %}
+            <div class="row">
+                <div class="col-2">
+                    <div class="box" style="border: 1px solid #ccc; width: 90px; height: 90px; text-align: center; border-radius: 15px; background-color: #ddd; margin-left: 50px;">
+                        <img src="{{ item.0.image.url }}" style="height: 60px; margin-top: 15px;" alt="">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h5> {{ item.0.name }} </h5>
+                </div>
+                <div class="col-2">
+                    <h5>  {% trans "ORDER:" %}</span></h5>
+                    <p class="mt-3">  {% trans "QTY:" %} {{ item.1 }} </p> 
+                </div>
+                <div class="col-2">
+                    <h5>  {% trans "ACTUAL:" %}</span></h5>
+                    <p class="mt-3">  {% trans "QTY:" %} {{ item.2 }} </p> 
+                </div>
+                <div class="col-1">
+                    <h5>  {% trans "STATUS:" %}</span></h5>
+                    <p class="mt-3"> {% if item.1 == item.2 %} {% trans "DONE" %} {% else %} {% trans "ISSUE" %} {% endif %} </p> 
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+	</div>
+    <div class="pb-20 mt-1 clearfix">
+        <div class="pd-20 mt-1 clearfix">
+            <h4 class="text-blue h4"> {% trans "DELIVERY STATUS" %} </h4>      
+            <hr>
+            {% for grn in grns %}
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-6 d-flex justify-content-between">
+                        <div> {{ grn.date|date:'d-m-Y' }}: </div>
+                        <div> {% trans "STAFF: " %} {{ grn.user }} </div>
+                    </div>
+                </div>    
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-6">
+                        {% for grn_detail in grn.grndetail_set.all %}
+                            {{ grn_detail.product }}: {{ grn_detail.quantity }} <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row mb-20">
+                    <div class="col-1"></div>
+                    <div class="col-11">
+                        --------------------------------------------------------------------------
+                    </div>
+                </div>    
+            {% endfor %}
+        </div>
+	</div>
+
+</div>
 {% endblock content %}

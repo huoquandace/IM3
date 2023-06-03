@@ -97,6 +97,7 @@ class Supplier(models.Model):
         return self.name
 
 class POrder(models.Model):
+
     label = models.CharField(_("label"), max_length=255, null=True, blank=True)
     supplier = models.ForeignKey(Supplier, verbose_name=_("supplier"), on_delete=models.CASCADE, blank=True)
     is_ordered = models.BooleanField(_("is ordered"), default=False)
@@ -105,6 +106,9 @@ class POrder(models.Model):
     created_at = models.DateTimeField(auto_now=True, editable=False)
     total = models.IntegerField(_("total"), null=True, blank=True)
     note = models.TextField(_("note"), null=True, blank=True)
+
+    class Meta:
+        ordering = ["-id"]
 
     def __str__(self):
         return f'{ self.supplier } - { self.label }'
@@ -156,6 +160,10 @@ class POrderDetail(models.Model):
 class GRN(models.Model):
     porder = models.ForeignKey(POrder, verbose_name=_("purchare order"), on_delete=models.CASCADE)
     date = models.DateField(_("date"), null=True, blank=True)
+    user = models.ForeignKey(get_user_model(), verbose_name=_("account"), on_delete=models.CASCADE, null=True, blank=True)
+
+    class Meta:
+        ordering = ["-id"]
 
 class GRNDetail(models.Model):
     grn = models.ForeignKey(GRN, verbose_name=_("grn"), on_delete=models.CASCADE)

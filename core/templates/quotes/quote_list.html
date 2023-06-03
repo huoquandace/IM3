@@ -5,27 +5,79 @@
 {% block title %} {% trans "QUOTE_LIST" %} {% endblock title %}
 
 {% block content %}
-<a href="{% url 'quote_add' %}">{% trans "NEW" %}</a> <br>
-{% for object in object_list %}
-    {% if object.is_ordered %}
-        {{ object }} -- {% trans "ORDERED" %}
-        -- <a href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
-        -- <a href="{% url 'grn' object.id%}">{% trans "CREATE GRN" %}</a>
-        {% if object.status == 'Delivered' and object.get_issue != 0 %}
-            -- <a href="{% url 'issue' object.id %}"> {% trans "ISSUE" %}: {{ object.get_issue }} </a>
-        {% endif %}
-    {% else %}
-        {{ object }} -- {{ object.status }}
-        {% if object.status == 'Draft' %}
-            <a href="{% url 'quote_update' object.id%}">{% trans "UPDATE" %}</a>
-            <a href="{% url 'quote_request' object.id%}">{% trans "REQUEST" %}</a>
-        {% endif %}
-        {% if object.status == 'Quote' %}
-            <a href="{% url 'quote_cancel' object.id%}">{% trans "CANCEL" %}</a>
-            <a href="{% url 'order' object.id%}">{% trans "ORDER" %}</a>
-        {% endif %}
-        {% comment %} <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form> {% endcomment %}
-    {% endif %}
-    <br>
-{% endfor %}
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "QUOTES" %} </h4>
+		<a href="{% url 'quote_add' %}" class="btn btn-primary">{% trans "Create a new quote" %}</a>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap text-center">
+			<thead>
+				<tr>
+					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+					<th> {% trans "Label" %} </th>
+					<th> {% trans "Supplier" %} </th>
+					<th> {% trans "Total Product" %} </th>
+					<th> {% trans "Total Item" %} </th>
+					<th> {% trans "Create At" %} </th>
+					<th style="width: 15%"> {% trans "Status" %} </th>
+					<th class="datatable-nosort" style="width: 10%">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in object_list %}
+                {% if object.is_ordered %}
+				<tr>
+					<td class="table-plus"> {{ forloop.counter }} </td>
+					<td> {{ object.label }} </td>
+					<td> {{ object.supplier }} </td>
+					<td> {{ object.total_product }} </td>
+					<td> {{ object.total_item }} </td>
+					<td> {{ object.created_at|date:'Y-m-d H:i' }} </td>
+					<td> <div style="margin-left: 3rem; border: solid 2px green; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:green"> {% trans "ORDERED" %} </div> </td>
+					<td class="d-flex flex-column" >
+                        <a class="btn btn-sm btn-outline-success" href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+                        {% comment %} <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'grn' object.id%}">{% trans "CREATE GRN" %}</a>
+                        {% if object.status == 'Delivered' and object.get_issue != 0 %}
+                            <a class="btn btn-sm btn-outline-warning" href="{% url 'issue' object.id %}"> {% trans "ISSUE" %}: {{ object.get_issue }} </a>
+                        {% endif %} {% endcomment %}
+					</td>
+				</tr>
+                {% else %}
+				<tr>
+					<td class="table-plus"> {{ forloop.counter }} </td>
+					<td> {{ object.label }} </td>
+					<td> {{ object.supplier }} </td>
+					<td> {{ object.total_product }} </td>
+					<td> {{ object.total_item }} </td>
+					<td> {{ object.created_at|date:'Y-m-d H:i' }} </td>
+					<td >
+                        {% if object.status == 'Draft' %}<div style="margin-left: 3rem; border: solid 2px black; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:black"> {{ object.status }}  </div>{% endif %}
+                        {% if object.status == 'Request' %}<div style="margin-left: 3rem; border: solid 2px purple; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:purple"> {{ object.status }}  </div>{% endif %}
+                        {% if object.status == 'Reject' %}<div style="margin-left: 3rem; border: solid 2px red; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:red"> {{ object.status }}  </div>{% endif %}
+                        {% if object.status == 'Cancel' %}<div style="margin-left: 3rem; border: solid 2px orange; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:orange"> {{ object.status }}  </div>{% endif %}
+                        {% if object.status == 'Quote' %}<div style="margin-left: 3rem; border: solid 2px blue; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:blue"> {{ object.status }}  </div>{% endif %}
+                    </td>
+					<td class="d-flex flex-column">
+                        {% if object.status == 'Draft' %}
+                            <a class="btn btn-sm btn-outline-success" href="{% url 'quote_update' object.id%}">{% trans "UPDATE" %}</a>
+                            <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'quote_request' object.id%}">{% trans "REQUEST" %}</a>
+                            <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input class="btn btn-sm btn-outline-danger mt-1" type="submit" value="{% trans "DELETE" %}"></form>
+                        {% endif %}
+                        {% if object.status == 'Quote' %}
+                            <a class="btn btn-sm btn-outline-success" href="{% url 'quote_cancel' object.id%}">{% trans "CANCEL" %}</a>
+                            <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'order' object.id%}">{% trans "ORDER" %}</a>
+                        {% endif %}
+					</td>
+				</tr>
+                {% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
 {% endblock content %}
+
+{% block script %}
+<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+{% endblock script %}

@@ -5,15 +5,53 @@
 {% block title %} {% trans "ORDER" %} {% endblock title %}
 
 {% block content %}
-{% for porder_detail in porder.porderdetail_set.all %}
-    {{ porder_detail.product }} -- {{ porder_detail.quantity }} -- {{ porder_detail.price }}
-    <br>
-{% endfor %}
-{% trans "TOTAL" %}: {{ porder.total }} <br>
-{% if porder.status == 'Quote' %}
-    <form method="post">{% csrf_token %}<input type="submit" value="{% trans "SUBMIT" %}"></form>
-{% else %}
-    {% trans "ORDER ON" %}: {{ porder.order_date|date:'d-m-Y' }} <br>
-    {% trans "STATUS" %}: {{ porder.status }}
-{% endif %}
+<div class="card-box mb-30" style="margin: 0 70px;">
+	<div class="pd-20 d-flex justify-content-between">
+        <div class="d-flex flex-column"> 
+            <h4 class="text-blue h4"> {% trans "ORDER ID: " %} 120934{{ porder.id }} </h4>
+            <h5 class="text-green h5 ml-5"> {% trans "SUPPLIER: " %} <span class="text-orange">{{ porder.supplier.name }}</span> </h5>
+        {% if porder.status == 'Quote' %}
+        </div>
+        <div class="d-flex"> 
+            <div>
+                <a class="btn btn-warning mr-2" href="{% url 'quote_cancel' porder.id %}"> {% trans "CANCEL" %} </a>
+            </div>
+            <form method="post">{% csrf_token %}<input class="btn btn-primary" type="submit" value="{% trans "ORDER NOW" %}"></form>
+        </div>
+        {% else %}
+        <h5 class="text-green h5 ml-5"> {% trans "ORDER ON" %}: <span class="text-orange">{{ porder.order_date|date:'d-m-Y' }}</span> </h5>
+        </div>
+            <div class="btn btn-outline-success" style="border-radius: 30px ;width: 150px; height: 100px; line-height: 75px; text-align: center; vertical-align: middle; font-weight: 700; font-size: larger;">{{ porder.status }}</div>
+        {% endif %}
+	</div>
+
+	<div class="pb-20 mt-2">
+	    <hr>
+        {% for porder_detail in porder.porderdetail_set.all %}
+            <div class="row">
+                <div class="col-3">
+                    <div class="box" style="border: 1px solid #ccc; width: 170px; height: 170px; text-align: center; border-radius: 15px; background-color: #ddd; margin-left: 50px;">
+                        <img src="{{ porder_detail.product.image.url }}" style="height: 110px; margin-top: 30px;" alt="">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <h4> {{ porder_detail.product.name }} </h4>
+                    <!-- <p> {{ porder_detail.product.description }} </p> -->
+                    <p class="mt-3 w-75"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, tempora. </p>
+                </div>
+                <div class="col-3">
+                    <h5>  {% trans "PRICE:" %} {{ porder_detail.price }}  <span class="ml-3">VND</span></h5>
+                    <p class="mt-3">  {% trans "QUANTITY:" %} {{ porder_detail.quantity }} </p> 
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+	</div>
+    <div class="pb-20 mt-1 clearfix">
+        <div class="pull-right h3 mr-5 text-green">
+            {% trans "TOTAL" %}: {{ porder.total }}
+        </div>
+	</div>
+
+</div>
 {% endblock content %}

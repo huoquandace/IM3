@@ -1,4 +1,4 @@
-import os
+import os, time
 from csv import reader
 from django import forms
 from django.forms import EmailInput
@@ -64,7 +64,7 @@ class Login(LoginView):
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             for field in self.fields.values():
-                field.widget.attrs['class'] = 'form-control'
+                field.widget.attrs['class'] = 'form-control form-control-lg'
                 
         error_messages = {
             'invalid_login': _("Please enter a correct %(username)s and password. Note that both fields may be case-sensitive."),
@@ -502,6 +502,7 @@ class SupplierProvie(GroupRequiredMixin, View):
             if request.POST.get(str(i+1)) is not None:
                 products.append(Product.objects.get(id=i+1))
         supplier.products.set(products)
+        messages.success(request, _("Change has been saved"))
         return redirect('./')
 
 class SupplierQuoteList(GroupRequiredMixin, View):
@@ -595,6 +596,10 @@ class QuoteAdd(View):
         class Meta:
             model = POrder
             fields = ['supplier', ]
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
 
     def get(self, request):
         if request.GET.get('supplier') is not None:
@@ -626,6 +631,7 @@ class QuoteAdd(View):
             if request.POST.get(str(i+1)) is not None:
                 quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 1
                 products.append([Product.objects.get(id=i+1), quantity])
+        print(request.POST)
         if len(products) == 0:
             messages.error(request, _('Please choose at least one product'))
             return redirect('./')
@@ -795,7 +801,8 @@ class GRN_add(GroupRequiredMixin, View):
             messages.error(request, _('Must at least one item'))
             return redirect('./')
         
-        grn = GRN.objects.create(porder=porder, date=timezone.now())
+        print(request.user)
+        grn = GRN.objects.create(porder=porder, date=timezone.now(), user=request.user)
         for item in data:
             GRNDetail.objects.create(
                 grn = grn,
@@ -806,7 +813,7 @@ class GRN_add(GroupRequiredMixin, View):
         porder.status = 'Delivered'
         porder.save()
         messages.success(request, _('Create successfully'))
-        return redirect('quote_list')
+        return redirect('order_list')
 
 class Issue(GroupRequiredMixin, View):
     group_required = ['Manager']
@@ -844,7 +851,16 @@ class Report(GroupRequiredMixin, View):
         porder.save()
         messages.success(request, _('Report successfully'))
         return redirect('issue', porder.id)
-        
+
+class PayOrder(GroupRequiredMixin, View):
+    group_required = ['Manager']
+
+    def get(self, request, pk):
+        porder = POrder.objects.get(id=pk)
+        porder.status = 'Paid'
+        porder.save()
+        messages.success(request, _('Order paid successfully'))
+        return redirect('order_list')
 
 """ 
     Manager tao moi -> Draft

@@ -1,0 +1,16 @@
+{% if messages %}
+  {% for message in messages %}
+  <div class="card-box mb-10 
+    {% if message.tags %}
+      {% if message.tags == "error" %}
+        bg-danger
+      {% else %}
+        bg-{{ message.tags }}
+      {% endif %}
+    {% endif %}">
+    <div class="pd-20">
+        <h5 class="card-title text-white" >{{ message }}</h5>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}

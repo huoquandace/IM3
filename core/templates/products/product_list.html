@@ -5,10 +5,79 @@
 {% block title %} {% trans "PRODUCT_LIST" %} {% endblock title %}
 
 {% block content %}
-<a href="{% url 'product_add' %}">{% trans "NEW" %}</a> <br>
-{% for object in object_list %}
-    {{ object }} <a href="{% url 'product_update' object.id%}">{% trans "UPDATE" %}</a>
-    <form method="POST" action="{% url 'product_delete' object.id %}">{% csrf_token %}<input type="submit" value="{% trans "DELETE" %}"></form>
-    <br>
-{% endfor %}
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "PRODUCTS" %} </h4>
+		<a href="{% url 'product_add' %}" class="btn btn-primary">{% trans "CREATE A NEW PRODUCT" %}</a>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap">
+			<thead>
+				<tr>
+					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+					<th> {% trans "NAME" %} </th>
+					<th> {% trans "BRAND" %} </th>
+					<th> {% trans "PRICE" %} </th>
+					<th> {% trans "IMAGE" %} </th>
+					<th> {% trans "CATEGORY" %} </th>
+					<th class="datatable-nosort">{% trans "ACTION" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in object_list %}
+				<tr>
+					<td class="table-plus"> {{ object.id_product }} </td>
+					<td> {{ object.name }} </td>
+					<td> {{ object.brand }} </td>
+					<td> {{ object.price }} </td>
+					<td> <img src="{{ object.image.url }}" alt="product_logo" style="height: 50px"> </td>
+					<td> {{ object.category.title }} </td>
+					<td>
+						<div class="d-flex flex-column">
+							{% comment %} <a href="#"><i class="dw dw-eye"></i> View</a> {% endcomment %}
+							<a href="{% url 'product_update' object.id %}" class="mb-3"><i class="dw dw-edit2"></i> {% trans "EDIT" %}</a>
+							<form method="POST" action="{% url 'product_delete' object.id %}">
+								{% csrf_token %}
+								{% comment %} <input name="_method" type="hidden" value="DELETE">
+								<button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button> {% endcomment %}
+								<a href="#" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i> {% trans "DELETE" %}</a>
+							</form>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
 {% endblock content %}
+
+{% block script %}
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
+
+	<script type="text/javascript">
+		$('.show_confirm').click(function (event) {
+			var form =  $(this).closest("form");
+			var name = $(this).data("name");
+			event.preventDefault();
+            swal({
+                title: '{% trans "ARE YOU SURE DELETE IT" %}',
+                text: "{% trans "YOU WON'T BE ABLE TO REVERT THIS!" %}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{% trans "YES" %}',
+                cancelButtonText: '{% trans "NO" %}',
+                confirmButtonClass: 'btn btn-success margin-5',
+                cancelButtonClass: 'btn btn-danger margin-5',
+                buttonsStyling: false
+            }).then(function (res) {
+				if (res.value == true) {
+					form.submit();
+				}
+            })
+        });
+	</script>
+{% endblock script %}

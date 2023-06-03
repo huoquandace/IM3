@@ -71,6 +71,7 @@ urlpatterns += i18n_patterns (
     path('grn/<int:pk>/', GRN_add.as_view(), name='grn'),
     path('issue/<int:pk>/', Issue.as_view(), name='issue'),
     path('report/<int:pk>/', Report.as_view(), name='report'),
+    path('payment/<int:pk>/', PayOrder.as_view(), name='payment'),
 
     prefix_default_language=False
 )
