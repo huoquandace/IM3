@@ -78,7 +78,7 @@ urlpatterns += i18n_patterns (
     path('sale/order/edit/<int:pk>', SOrderEdit.as_view(), name='sale_order_edit'),
     path('sale/order/list/', SOrderList.as_view(), name='sale_order_list'),
     path('sale/order/bill/<int:pk>/', SOrderToBill.as_view(), name='sale_order_bill'),
-    path('sale/order/payment/<int:pk>', SOrderEdit.as_view(), name='sale_order_payment'),
+    path('sale/order/payment/<int:pk>', SOrderPay.as_view(), name='sale_order_payment'),
 
     prefix_default_language=False
 )
