@@ -8,9 +8,9 @@
 <div class="card-box mb-30">
 	<div class="pd-20 d-flex justify-content-between">
 		<h4 class="text-blue h4"> {% trans "QUOTES" %} </h4>
-		{% if not request.user.supplier %}
-			<a href="{% url 'quote_add' %}" class="btn btn-primary">{% trans "Create a new quote" %}</a>
-		
+		{% if request.user.supplier %}
+		{% else %}
+		<a href="{% url 'quote_add' %}" class="btn btn-primary">{% trans "Create a new quote" %}</a>
 		{% endif %}
 	</div>
 	<div class="pb-20">
