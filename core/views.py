@@ -771,7 +771,7 @@ class OrderList(ListView):
     template_name = 'orders/order_list.html'
 
 class Order(GroupRequiredMixin, View):
-    group_required = ['Manager', 'Staff', 'Supplier']
+    group_required = ['Manager', 'Staff']
     
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
