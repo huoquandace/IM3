@@ -82,6 +82,10 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} ({self.brand})'
     
+    def inventory(self):
+        grn_details = self.grndetail_set.all()
+        return sum([grn_detail.quantity for grn_detail in grn_details])
+    
 class Supplier(models.Model):
     id_supplier = models.CharField(_("supplier id"), max_length=255)
     name = models.CharField(_("name"), max_length=255)
@@ -172,3 +176,42 @@ class GRNDetail(models.Model):
     is_done = models.BooleanField(_("is done"), null=True, blank=True)
 
     # porder_detail = models.ForeignKey(POrderDetail, verbose_name=_("porder detail"), on_delete=models.CASCADE)
+
+class Customer(models.Model):
+
+    class Gender(models.TextChoices):
+        MALE = 'M', _('Male')
+        FEMALE = 'F', _('Female')
+        UNKNOWN = 'U', _('Unknown')
+
+    name = models.CharField(_("name"), max_length=50)
+    gender = models.CharField(_("gender"), max_length=100, blank=True, choices=Gender.choices)
+    phone = models.CharField(_("phone"), max_length=100, blank=True, null=True, unique=True)
+    age = models.IntegerField(_("age"), blank=True, null=True)
+    address = models.TextField(_("address"), blank=True, null=True)
+    birthday = models.DateField(_("birthday"), max_length=10, blank=True, null=True)
+    type = models.CharField(_("type"), max_length=50, default='Normal', blank=True, null=True)
+
+class SOrder(models.Model):
+    customer = models.ForeignKey(Customer, verbose_name=_("customer"), on_delete=models.CASCADE, blank=True)
+    created_at = models.DateTimeField(auto_now=True, editable=False)
+    status = models.CharField(_("status"), max_length=255)
+    note = models.TextField(_("note"), null=True, blank=True)
+
+    class Meta:
+        ordering = ["-id"]
+
+    def bill(self):
+        sum = 0
+        for sorderdetail in self.sorderdetail_set.all():
+            if sorderdetail.product.price is not None:
+                sum += sorderdetail.product.price * sorderdetail.quantity
+        return sum
+
+class SOrderDetail(models.Model):
+    sorder = models.ForeignKey(SOrder, verbose_name=_("sale order"), on_delete=models.CASCADE, null=True, blank=True)
+    product = models.ForeignKey(Product, verbose_name=_("product"), on_delete=models.CASCADE, null=True, blank=True)
+    quantity = models.IntegerField(_("quantity"), default=1, null=True, blank=True)
+
+    def total(self):
+        return self.quantity * self.product.price

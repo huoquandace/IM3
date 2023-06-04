@@ -73,6 +73,11 @@ urlpatterns += i18n_patterns (
     path('report/<int:pk>/', Report.as_view(), name='report'),
     path('payment/<int:pk>/', PayOrder.as_view(), name='payment'),
 
+    path('sale/get_customer/', get_customer, name='get_customer'),
+    path('sale/order/add', SOrderAdd.as_view(), name='sale_order_add'),
+    path('sale/order/list/', SOrderList.as_view(), name='sale_order_list'),
+    path('sale/order/bill/<int:pk>/', SOrderToBill.as_view(), name='sale_order_bill'),
+
     prefix_default_language=False
 )
 

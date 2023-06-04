@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "PRODUCT_LIST" %} {% endblock title %}
+
+{% block content %}
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "PRODUCTS" %} </h4>
+		<a href="{% url 'sale_order_add' %}" class="btn btn-primary">{% trans "NEW" %}</a>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap">
+			<thead>
+				<tr>
+					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+					<th> {% trans "Customer" %} </th>
+					<th> {% trans "Bill" %} </th>
+					<th> {% trans "PRICE" %} </th>
+					<th> {% trans "Status" %} </th>
+					<th class="datatable-nosort">{% trans "ACTION" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in object_list %}
+				<tr>
+					<td class="table-plus"> {{ forloop.counter }} </td>
+					<td> {{ object.customer.name }} </td>
+					<td> {{ object.bill }} </td>
+					<td> {{ object.created_at|date:'d-m-Y' }} </td>
+					<td> {{ object.status }} </td>
+					<td>
+						{% if object.status == 'Order' %}
+							<a class="btn btn-sm btn-outline-success" target="_blank" href="{% url 'sale_order_bill' object.id %}"> {% trans "Bill" %} </a>
+						{% endif %}
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+{% endblock script %}

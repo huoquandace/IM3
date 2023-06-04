@@ -20,6 +20,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.db.models import Q
+from django.http import JsonResponse
 
 from .models import *
 from core.forms import UploadFileForm
@@ -861,6 +862,75 @@ class PayOrder(GroupRequiredMixin, View):
         porder.save()
         messages.success(request, _('Order paid successfully'))
         return redirect('order_list')
+
+
+class SOrderAdd(View):
+    
+
+    def get(self, request):
+        products = Product.objects.all()
+        return render(request, 'sales/order_add.html', {
+            'products': products,
+        })
+
+    def post(self, request):
+        phone = request.POST.get('cs_phone')
+
+        try:
+            Customer.objects.get(phone=phone)
+        except Customer.DoesNotExist:
+            pass
+            # Customer.objects.create(phone=phone)
+        
+        customer = Customer.objects.get(phone=phone)
+        products = []
+        for i in range(Product.objects.all().last().id):
+            if request.POST.get(str(i+1)) is not None:
+                quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 1
+                products.append([Product.objects.get(id=i+1), quantity])
+        
+        sorder = SOrder.objects.create(
+            customer = customer,
+            status = 'Order'
+        )
+
+        for couple in products:
+            SOrderDetail.objects.create(sorder=sorder, product=couple[0], quantity=couple[1])
+
+        return redirect('sale_order_list')
+
+class SOrderList(ListView):
+    model = SOrder
+    template_name = 'sales/order_list.html'
+
+class SOrderToBill(View):
+    
+    def get(self, request, pk, *args, **kwargs):
+        import core, os
+        app_dir = os.path.dirname(core.__file__)
+        temp_dir = os.path.join(app_dir, "templates/reports/temp.html")
+        sorder = SOrder.objects.get(id=pk)
+        open(temp_dir, "w").write(render_to_string('sales/bill.html', {'sorder': sorder}))
+        pdf = html_to_pdf(temp_dir)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+def get_customer(request):
+    phone = request.POST.get('phone')
+    if phone is None or phone == "":
+        return JsonResponse({'is_exist': False})
+    try:
+        customer = Customer.objects.get(phone=phone)
+    except Customer.DoesNotExist:
+        pass
+    is_exist = True if customer is not None else None
+    data = {
+        'is_exist': is_exist,
+        'name': customer.name,
+        'gender': customer.gender,
+        'phone': customer.phone,
+        'age': customer.age,
+    }
+    return JsonResponse(data)
 
 """ 
     Manager tao moi -> Draft
