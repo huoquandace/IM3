@@ -41,6 +41,7 @@
                 <th> {% trans "Image" %} </th>
                 <th> {% trans "Price" %} </th>
                 <th> {% trans "Inventory" %} </th>
+                <th hidden> </th>
                 <th class="datatable-nosort">Action</th>
               </tr>
             </thead>
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                 <div class="pb-20">
-                    <table class="data-table table hover nowrap">
+                    <table class=" table hover nowrap">
                         <thead>
                             <tr>
                                 <th class="table-plus datatable-nosort"> {% trans "Name" %} </th>
@@ -127,34 +128,6 @@
     </div>
   </div>
 
-{% comment %} <form method="get">
-    {{ form.supplier }}
-    <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
-</form> {% endcomment %}
-{% comment %} <div id="products">
-{% for product in products %}
-    <div>
-        {{ product.id }} - {{ product }}
-        <input type="number" id="quantity" name="{{ product.id }}" hidden>
-        <span class="add_btn">{% trans "ADD" %}</span> 
-        <span class="del_btn" hidden>{% trans "REMOVE" %}</span> 
-        <br>
-    </div>
-{% endfor %}
-</div> <hr> {% endcomment %}
-{% comment %} <form id="selected_products" method="post">
-    {% csrf_token %}
-    <input type="submit" value="{% trans "SUBMIT" %}">
-    {% for product in selected_products %}
-    <div>
-        {{ product.id }} - {{ product }}
-        <input type="number" id="quantity" name="{{ product.id }}">
-        <span class="add_btn" hidden>{% trans "ADD" %}</span> 
-        <span class="del_btn" >{% trans "REMOVE" %}</span> 
-        <br>
-    </div>
-{% endfor %}
-</form> {% endcomment %}
 {% endblock content %}
 
 {% block script %}
