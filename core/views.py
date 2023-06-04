@@ -31,7 +31,7 @@ from .mixins import *
 CSV_FILE_PATH = 'data/csv/'
 USER_CSV_FILE_TEMPLALTE = 'data/csv.csv'
 
-class Dashboard(StaffRequiredMixin, View):
+class Dashboard(View):
     def get(self, request):
         products = Product.objects.all()
         product_best_seller_couple = [None, 0]
