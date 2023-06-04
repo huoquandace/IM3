@@ -910,7 +910,12 @@ class SOrderAdd(View):
                 else:
                     print('no')
 
-        products = Product.objects.all()
+        # products = Product.objects.all()
+        products = []
+        for product in Product.objects.all():
+            ivt = product.inventory()
+            if ivt > 0:
+                products.append(product)
         return render(request, 'sales/order_add.html', {
             'products': products,
         })
@@ -933,6 +938,10 @@ class SOrderAdd(View):
                 quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 1
                 products.append([Product.objects.get(id=i+1), quantity])
         
+        if len(products) == 0:
+            messages.error(request, _('Must at least one item'))
+            return redirect('sale_order_add')
+
         sorder = SOrder.objects.create(
             customer = customer,
             status = 'Order'

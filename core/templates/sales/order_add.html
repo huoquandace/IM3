@@ -50,7 +50,7 @@
                 <td class="table-plus" id="prd_id"> {{ product.id_product }} </td>
                 <td> {{ product.name }} </td>
                 <td> <img src="{{ product.image.url }}" alt="product_logo" style="height: 50px" id="prd_img"> </td>
-                <td id="css_price"> {{ product.price }} </td>
+                <td id="css_price" class="css_price"> {{ product.price }} </td>
                 <td id="inventory"> {{ product.inventory }} </td>
                 <td hidden> <input type="number" id="quantity"  class="form-control quantity" style="width:100px" name="{{ product.id }}" > </td>
                 <td>
@@ -196,6 +196,7 @@
                     $('#cs_phone').attr('value', response.phone)
                     $('#exist').removeAttr('hidden')
                 } else {
+                    $('#cs_name').attr('value', "")
                     $('#cs_phone').attr('value', phone)
                     $('#exist').removeAttr('hidden')
                 }
@@ -204,7 +205,15 @@
     })
 
     $('.quantity').on('change', function() {
-        total += parseInt($(this).val()) * parseInt($(this).parent().parent().find('#css_price').text())
+        total = 0
+        var a = $(this).parent().parent().parent().find('.css_price')
+        var b = $(this).parent().parent().parent().find('.quantity')
+        for (var i = 0; i < a.length ; i++) {
+            if (b[i].value == '') {
+                b[i].value = 0
+            }
+            total += parseInt(a[i].textContent) * parseInt(b[i].value)
+        }
         $('#total').text(total)
     })
 </script>
