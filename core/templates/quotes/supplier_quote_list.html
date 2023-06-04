@@ -46,7 +46,11 @@
                         {% if object.status == 'Paid' %}<div style="margin-left: 3rem; border: solid 2px green; width:100px; line-height: 50px; border-radius: 50%; text-align: center; vertical-align: middle; font-weight: 700; color:green"> {% trans "DONE" %} </div>{% endif %}
                     </td>
 					<td>
-                        <a class="btn btn-sm btn-outline-success" href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+                        {% if object.status != 'Reject' and object.status != 'Cancel' %}
+                            <a class="btn btn-sm btn-outline-success" href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
+                        {% else %}
+                            <a class="btn btn-sm btn-outline-success" href="{% url 'order' object.id%}">{% trans "VIEW QUOTE" %}</a>
+                        {% endif %}
                         {% if object.status != 'Reject' and object.status != 'Quote' and object.status != 'Cancel' and object.status != 'Order' and object.status != 'Delivery' and object.status != 'Report' and object.status != 'Delivered' and object.status != 'Paid' %}
                             <a class="btn btn-sm btn-outline-success" href="{% url 'supplier_quote' object.id%}">{% trans "QUOTE" %}</a>
                             <a href="#"class="btn btn-sm btn-outline-danger mt-1"data-toggle="modal"data-target="#Medium-modal"type="button">{% trans "REJECT" %}</a>

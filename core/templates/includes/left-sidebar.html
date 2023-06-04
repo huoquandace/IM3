@@ -14,8 +14,8 @@
 			<ul id="accordion-menu">
 				{% comment %} <li><a href="{% url 'user_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "USER" %} </span></a></li> {% endcomment %}
 				{% if request.user.supplier%}
-					<li><a href="{% url 'supplier_provide' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER PROVIDE" %} </span></a></li>
-					<li><a href="{% url 'supplier_quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER QUOTE" %} </span></a></li>
+					<li><a href="{% url 'supplier_provide' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PROVIDE PRODUCT" %} </span></a></li>
+					<li><a href="{% url 'supplier_quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "QUOTE & ORDER" %} </span></a></li>
 				{% else %}
 					<li><a href="{% url 'category_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "CATEGORY" %} </span></a></li>
 					<li><a href="{% url 'product_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PRODUCT" %} </span></a></li>
