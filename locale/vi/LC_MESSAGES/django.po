@@ -1,0 +1,1167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-04 20:54+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: .\core\includes\header.html:16 .\core\templates\includes\header.html:16
+msgid "Search Here"
+msgstr "Tìm kiếm ở đây"
+
+#: .\core\includes\left-sidebar.html:17
+msgid "Category"
+msgstr "Danh mục"
+
+#: .\core\includes\left-sidebar.html:22
+msgid "Product"
+msgstr "Sản phẩm"
+
+#: .\core\includes\left-sidebar.html:27
+#: .\core\templates\suppliers\supplier_list.html:10
+msgid "Suppliers"
+msgstr "Nhà cung cấp"
+
+#: .\core\includes\left-sidebar.html:32
+msgid "Quote"
+msgstr "Báo giá"
+
+#: .\core\includes\left-sidebar.html:37
+msgid "Supplier / Register Product"
+msgstr "Đăng kí cung cấp sản phẩm"
+
+#: .\core\includes\left-sidebar.html:42
+msgid "Supplier / View Quote"
+msgstr "Xem yêu cầu báo giá"
+
+#: .\core\includes\pre-loader.html:13
+#: .\core\templates\includes\pre-loader.html:13
+msgid "Loading..."
+msgstr "Đang tải"
+
+#: .\core\models.py:9
+msgid "username"
+msgstr ""
+
+#: .\core\models.py:9
+msgid "A user with that username already exists."
+msgstr ""
+
+#: .\core\models.py:10
+msgid "first name"
+msgstr ""
+
+#: .\core\models.py:11
+msgid "last name"
+msgstr ""
+
+#: .\core\models.py:12
+msgid "email address"
+msgstr ""
+
+#: .\core\models.py:13
+msgid "staff status"
+msgstr "Trạng thái"
+
+#: .\core\models.py:14
+msgid "active"
+msgstr ""
+
+#: .\core\models.py:15
+msgid "date joined"
+msgstr ""
+
+#: .\core\models.py:24
+msgid "user"
+msgstr ""
+
+#: .\core\models.py:25
+msgid "users"
+msgstr ""
+
+#: .\core\models.py:40 .\core\models.py:191
+msgid "Male"
+msgstr ""
+
+#: .\core\models.py:41 .\core\models.py:192
+msgid "Female"
+msgstr ""
+
+#: .\core\models.py:42 .\core\models.py:193
+msgid "Unknown"
+msgstr ""
+
+#: .\core\models.py:46 .\core\models.py:196
+msgid "gender"
+msgstr ""
+
+#: .\core\models.py:47 .\core\models.py:94 .\core\models.py:197
+msgid "phone"
+msgstr ""
+
+#: .\core\models.py:48 .\core\models.py:198
+msgid "age"
+msgstr ""
+
+#: .\core\models.py:49 .\core\models.py:95 .\core\models.py:199
+msgid "address"
+msgstr ""
+
+#: .\core\models.py:50 .\core\models.py:200
+msgid "birthday"
+msgstr ""
+
+#: .\core\models.py:63
+msgid "title"
+msgstr ""
+
+#: .\core\models.py:64 .\core\models.py:106
+msgid "label"
+msgstr ""
+
+#: .\core\models.py:65 .\core\models.py:76
+msgid "image"
+msgstr ""
+
+#: .\core\models.py:66 .\core\models.py:78
+msgid "description"
+msgstr ""
+
+#: .\core\models.py:68
+msgid "categories"
+msgstr ""
+
+#: .\core\models.py:73
+msgid "product id"
+msgstr ""
+
+#: .\core\models.py:74 .\core\models.py:92 .\core\models.py:195
+msgid "name"
+msgstr ""
+
+#: .\core\models.py:75
+msgid "brand"
+msgstr ""
+
+#: .\core\models.py:77 .\core\models.py:162
+msgid "price"
+msgstr ""
+
+#: .\core\models.py:79
+msgid "category"
+msgstr ""
+
+#: .\core\models.py:81 .\core\models.py:98
+msgid "products"
+msgstr "Sản phẩm"
+
+#: .\core\models.py:91
+msgid "supplier id"
+msgstr ""
+
+#: .\core\models.py:93
+msgid "logo"
+msgstr ""
+
+#: .\core\models.py:96
+msgid "fax"
+msgstr ""
+
+#: .\core\models.py:97
+msgid "email"
+msgstr ""
+
+#: .\core\models.py:99 .\core\models.py:173
+msgid "account"
+msgstr ""
+
+#: .\core\models.py:107
+msgid "supplier"
+msgstr ""
+
+#: .\core\models.py:108
+msgid "is ordered"
+msgstr ""
+
+#: .\core\models.py:109
+msgid "order date"
+msgstr ""
+
+#: .\core\models.py:110 .\core\models.py:163 .\core\models.py:206
+msgid "status"
+msgstr "Trạng thái"
+
+#: .\core\models.py:112
+msgid "total"
+msgstr ""
+
+#: .\core\models.py:113 .\core\models.py:207
+msgid "note"
+msgstr ""
+
+#: .\core\models.py:159 .\core\models.py:171
+msgid "purchare order"
+msgstr ""
+
+#: .\core\models.py:160 .\core\models.py:180 .\core\models.py:221
+msgid "product"
+msgstr ""
+
+#: .\core\models.py:161 .\core\models.py:181 .\core\models.py:222
+msgid "quantity"
+msgstr ""
+
+#: .\core\models.py:172
+msgid "date"
+msgstr ""
+
+#: .\core\models.py:179
+msgid "grn"
+msgstr ""
+
+#: .\core\models.py:182
+msgid "is expiry"
+msgstr ""
+
+#: .\core\models.py:183
+msgid "expiry"
+msgstr ""
+
+#: .\core\models.py:201
+msgid "type"
+msgstr ""
+
+#: .\core\models.py:204
+msgid "customer"
+msgstr ""
+
+#: .\core\models.py:220
+msgid "sale order"
+msgstr ""
+
+#: .\core\templates\auth\logged_out.html:3
+msgid "LOGGED_OUT_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\logged_out.html:6
+msgid "LOGGED_OUT"
+msgstr ""
+
+#: .\core\templates\auth\login.html:9 .\core\templates\auth\login.html:46
+msgid "LOGIN"
+msgstr ""
+
+#: .\core\templates\auth\login.html:22 .\core\templates\auth\register.html:9
+msgid "REGISTER"
+msgstr ""
+
+#: .\core\templates\auth\login.html:31
+msgid "LOGIN TO SYSTEM"
+msgstr ""
+
+#: .\core\templates\auth\login.html:41
+msgid "REMEMBER"
+msgstr ""
+
+#: .\core\templates\auth\login.html:42
+msgid "FORGOT PASSWORD"
+msgstr ""
+
+#: .\core\templates\auth\login.html:47
+msgid "OR"
+msgstr ""
+
+#: .\core\templates\auth\login.html:48
+msgid "REGISTER TO CREATE ACCOUNT"
+msgstr ""
+
+#: .\core\templates\auth\password_change_done.html:3
+msgid "PASSWORD_CHANGE_DONE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_change_done.html:6
+msgid "PASSWORD_CHANGE_DONE"
+msgstr ""
+
+#: .\core\templates\auth\password_change_form.html:3
+msgid "PASSWORD_CHANGE_FORM_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_change_form.html:9
+msgid "CHANGE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_complete.html:3
+msgid "PASSWORD_RESET_COMPLETE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_complete.html:6
+msgid "PASSWORD_RESET_COMPLETE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_confirm.html:3
+msgid "PASSWORD_RESET_CONFIRM_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_confirm.html:9
+#: .\core\templates\auth\password_reset_form.html:9
+msgid "RESET"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_done.html:3
+msgid "PASSWORD_RESET_DONE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_done.html:6
+msgid "CHECK_EMAIL_PLEASE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:3
+msgid "Greetings"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:5
+#, python-format
+msgid ""
+"\n"
+"You are receiving this email because you (or someone pretending to be you)\n"
+"requested that your password be reset on the %(domain)s site. If you do not\n"
+"wish to reset your password, please ignore this message.\n"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:11
+msgid ""
+"\n"
+"To reset your password, please click the following link, or copy and paste "
+"it\n"
+"into your web browser:\n"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:20
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:23
+msgid "Best"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_email.html:24
+msgid "Management"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_form.html:3
+msgid "PASSWORD_RESET_FORM_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\password_reset_subject.txt:2
+#, python-format
+msgid "Password reset on %(site_name)s"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:3
+msgid "PROFILE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:6
+msgid "PROFILE"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:7
+#: .\core\templates\auth\user_detail.html:7
+msgid "USERNAME"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:8
+#: .\core\templates\auth\user_detail.html:8
+msgid "EMAIL"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:9
+#: .\core\templates\auth\user_detail.html:9
+msgid "DATE_JOINED"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:10
+msgid "LOGOUT"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:11
+#: .\core\templates\auth\user_detail.html:10
+msgid "PROFILE_UPDATE"
+msgstr ""
+
+#: .\core\templates\auth\profile.html:12
+#: .\core\templates\auth\user_detail.html:11
+msgid "PASSWORD_CHANGE"
+msgstr ""
+
+#: .\core\templates\auth\profile_update.html:3
+msgid "PROFILE_UPDATE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\profile_update.html:11
+#: .\core\templates\auth\user_add.html:9
+#: .\core\templates\auth\user_add_by_csv.html:9
+#: .\core\templates\auth\user_add_by_info.html:14
+#: .\core\templates\auth\user_delete.html:9
+#: .\core\templates\auth\user_edit.html:10
+#: .\core\templates\auth\user_group_add.html:9
+#: .\core\templates\categories\category_add.html:12
+#: .\core\templates\categories\category_update.html:12
+#: .\core\templates\orders\grn.html:16
+#: .\core\templates\products\product_add.html:12
+#: .\core\templates\products\product_update.html:12
+#: .\core\templates\quotes\quote_add.html:13
+#: .\core\templates\quotes\quote_update.html:10
+#: .\core\templates\quotes\quote_update.html:25
+#: .\core\templates\quotes\supplier_quote.html:15
+#: .\core\templates\sales\order_add.html:73
+#: .\core\templates\sales\order_edit.html:73
+#: .\core\templates\suppliers\supplier_add.html:12
+#: .\core\templates\suppliers\supplier_update.html:12
+msgid "SUBMIT"
+msgstr ""
+
+#: .\core\templates\auth\register.html:3
+msgid "REGISTER_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\register_done.html:3
+msgid "REGISTER_DONE_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\register_done.html:6
+msgid "REGISTER_DONE"
+msgstr ""
+
+#: .\core\templates\auth\user_add.html:3
+msgid "USER_ADD_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_add_by_csv.html:3
+msgid "USER_ADD_CSV_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_add_by_info.html:3
+msgid "USER_ADD_BY_INFO_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_delete.html:3
+msgid "USER_DELETE_CONFIRM_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_delete.html:8
+#: .\core\templates\auth\user_group_list.html:29
+#: .\core\templates\auth\user_list.html:32
+#: .\core\templates\categories\category_list.html:38
+#: .\core\templates\products\product_list.html:45
+#: .\core\templates\quotes\quote_list.html:66
+msgid "DELETE"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:3
+msgid "USER_DETAIL_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:6
+msgid "USER_DETAIL"
+msgstr ""
+
+#: .\core\templates\auth\user_edit.html:3
+msgid "USER_EDIT_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_group_add.html:3
+msgid "USER_GROUP_ADD_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_group_list.html:3
+msgid "USER_GROUP_LIST_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_group_list.html:28
+#: .\core\templates\categories\category_list.html:35
+#: .\core\templates\products\product_list.html:39
+msgid "EDIT"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:3
+msgid "USER_LIST_TITLE"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:31
+msgid "RESET_PASSWORD"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:40
+msgid "PREVIOUS"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:41
+msgid "PAGE"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:42
+msgid "NEXT"
+msgstr ""
+
+#: .\core\templates\auth_index.html:3
+msgid "AUTH_INDEX_TITLE"
+msgstr ""
+
+#: .\core\templates\auth_index.html:22
+msgid "URL_LIST"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:5
+msgid "CATEGORY_ADD"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:5
+msgid "CATEGORY_LIST"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:10
+msgid "Categories"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:11
+msgid "Create a new category"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:17
+#: .\core\templates\orders\order_list.html:17
+#: .\core\templates\products\product_list.html:17
+#: .\core\templates\quotes\quote_add.html:28
+#: .\core\templates\quotes\quote_add.html:64
+#: .\core\templates\quotes\quote_list.html:17
+#: .\core\templates\quotes\supplier_quote_list.html:16
+#: .\core\templates\sales\order_add.html:39
+#: .\core\templates\sales\order_edit.html:39
+#: .\core\templates\sales\order_list.html:17
+#: .\core\templates\suppliers\supplier_list.html:17
+#: .\core\templates\suppliers\supplier_provide.html:18
+#: .\core\templates\suppliers\supplier_provide.html:54
+msgid "ID"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:18
+msgid "TITLE"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:19
+msgid "LABEL"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:20
+#: .\core\templates\products\product_list.html:21
+msgid "IMAGE"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:21
+msgid "DESCRIPTION"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:22
+#: .\core\templates\products\product_list.html:23
+#: .\core\templates\sales\order_list.html:22
+msgid "ACTION"
+msgstr "Hành động"
+
+#: .\core\templates\categories\category_list.html:61
+#: .\core\templates\products\product_list.html:69
+#: .\core\templates\suppliers\supplier_list.html:65
+msgid "ARE YOU SURE DELETE IT"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:62
+#: .\core\templates\products\product_list.html:70
+#: .\core\templates\suppliers\supplier_list.html:66
+msgid "YOU WON'T BE ABLE TO REVERT THIS!"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:65
+#: .\core\templates\products\product_list.html:73
+#: .\core\templates\suppliers\supplier_list.html:69
+msgid "YES"
+msgstr ""
+
+#: .\core\templates\categories\category_list.html:66
+#: .\core\templates\products\product_list.html:74
+#: .\core\templates\suppliers\supplier_list.html:70
+msgid "NO"
+msgstr ""
+
+#: .\core\templates\categories\category_update.html:5
+msgid "CATEGORY_UPDATE"
+msgstr ""
+
+#: .\core\templates\dashboard.html:5
+msgid "DASHBOARD"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:18
+msgid "SUPPLIER PROVIDE"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:19
+msgid "SUPPLIER QUOTE"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:21
+#: .\core\templates\products\product_list.html:22
+msgid "CATEGORY"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:22
+msgid "PRODUCT"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:23
+msgid "SUPPLIER"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:24
+#: .\core\templates\quotes\supplier_quote_list.html:52
+msgid "QUOTE"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:25
+#: .\core\templates\orders\order_view.html:5
+#: .\core\templates\quotes\quote_list.html:70
+msgid "ORDER"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:26
+msgid "SALE"
+msgstr ""
+
+#: .\core\templates\orders\grn.html:5
+msgid "GRN"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:5 .\core\templates\orders\issue.html:50
+#: .\core\templates\orders\order_list.html:68
+#: .\core\templates\quotes\supplier_quote_list.html:77
+msgid "ISSUE"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:11
+#: .\core\templates\orders\order_view.html:11
+msgid "ORDER ID: "
+msgstr ""
+
+#: .\core\templates\orders\issue.html:12
+#: .\core\templates\orders\order_view.html:12
+msgid "SUPPLIER: "
+msgstr ""
+
+#: .\core\templates\orders\issue.html:17
+#: .\core\templates\orders\order_view.html:17
+#: .\core\templates\quotes\quote_list.html:69
+msgid "CANCEL"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:19
+#: .\core\templates\orders\order_view.html:19
+msgid "ORDER NOW"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:22
+#: .\core\templates\orders\order_view.html:22
+msgid "ORDER ON"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:24
+msgid "REPORT"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:41
+msgid "ORDER:"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:42 .\core\templates\orders\issue.html:46
+msgid "QTY:"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:45
+msgid "ACTUAL:"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:49
+msgid "STATUS:"
+msgstr "Trạng thái"
+
+#: .\core\templates\orders\issue.html:50
+#: .\core\templates\orders\order_list.html:48
+#: .\core\templates\quotes\supplier_quote_list.html:47
+msgid "DONE"
+msgstr ""
+
+#: .\core\templates\orders\issue.html:58
+msgid "DELIVERY STATUS"
+msgstr "Trạng thái giao hàng"
+
+#: .\core\templates\orders\issue.html:65
+msgid "STAFF: "
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:5
+msgid "ORDER_LIST"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:10
+#: .\core\templates\quotes\quote_list.html:10
+#: .\core\templates\quotes\supplier_quote_list.html:10
+msgid "QUOTES"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:11
+#: .\core\templates\quotes\quote_list.html:11
+msgid "Create a new quote"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:18
+#: .\core\templates\quotes\quote_list.html:18
+#: .\core\templates\quotes\supplier_quote_list.html:17
+msgid "Label"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:19
+#: .\core\templates\quotes\quote_list.html:19
+#: .\core\templates\quotes\supplier_quote_list.html:18
+msgid "Supplier"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:20
+#: .\core\templates\quotes\quote_list.html:20
+#: .\core\templates\quotes\supplier_quote_list.html:19
+msgid "Total Product"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:21
+#: .\core\templates\quotes\quote_list.html:21
+#: .\core\templates\quotes\supplier_quote_list.html:20
+msgid "Total Item"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:22
+#: .\core\templates\quotes\quote_list.html:22
+#: .\core\templates\quotes\supplier_quote_list.html:21
+msgid "Create At"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:23
+#: .\core\templates\quotes\quote_list.html:23
+#: .\core\templates\quotes\supplier_quote_list.html:22
+#: .\core\templates\sales\order_list.html:21
+msgid "Status"
+msgstr "Trạng thái"
+
+#: .\core\templates\orders\order_list.html:51
+msgid "Pending Pay"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:58
+#: .\core\templates\quotes\quote_list.html:39
+#: .\core\templates\quotes\supplier_quote_list.html:50
+msgid "VIEW ORDER"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:60
+msgid "PAYMENT"
+msgstr ""
+
+#: .\core\templates\orders\order_list.html:63
+msgid "CREATE GRN"
+msgstr ""
+
+#: .\core\templates\orders\order_view.html:43
+msgid "PRICE:"
+msgstr "Giá"
+
+#: .\core\templates\orders\order_view.html:44
+msgid "QUANTITY:"
+msgstr ""
+
+#: .\core\templates\orders\order_view.html:52
+msgid "TOTAL"
+msgstr ""
+
+#: .\core\templates\products\product_add.html:5
+msgid "PRODUCT_ADD"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:5
+#: .\core\templates\sales\order_list.html:5
+msgid "PRODUCT_LIST"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:10
+#: .\core\templates\sales\order_list.html:10
+msgid "PRODUCTS"
+msgstr "Sản phẩm"
+
+#: .\core\templates\products\product_list.html:11
+msgid "CREATE A NEW PRODUCT"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:18
+msgid "NAME"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:19
+msgid "BRAND"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:20
+#: .\core\templates\sales\order_list.html:20
+msgid "PRICE"
+msgstr "Giá"
+
+#: .\core\templates\products\product_update.html:5
+msgid "PRODUCT_UPDATE"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:5
+#: .\core\templates\sales\order_add.html:5
+msgid "QUOTE_ADD"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:22
+#: .\core\templates\sales\order_add.html:33
+#: .\core\templates\sales\order_edit.html:33
+#: .\core\templates\suppliers\supplier_provide.html:12
+msgid "Products"
+msgstr "Sản phẩm"
+
+#: .\core\templates\quotes\quote_add.html:29
+#: .\core\templates\quotes\quote_add.html:65
+#: .\core\templates\sales\order_add.html:40
+#: .\core\templates\sales\order_add.html:78
+#: .\core\templates\sales\order_add.html:101
+#: .\core\templates\sales\order_edit.html:40
+#: .\core\templates\sales\order_edit.html:78
+#: .\core\templates\sales\order_edit.html:101
+#: .\core\templates\suppliers\supplier_list.html:18
+#: .\core\templates\suppliers\supplier_provide.html:19
+#: .\core\templates\suppliers\supplier_provide.html:55
+msgid "Name"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:30
+#: .\core\templates\quotes\quote_add.html:66
+#: .\core\templates\sales\order_add.html:41
+#: .\core\templates\sales\order_edit.html:41
+#: .\core\templates\suppliers\supplier_provide.html:20
+#: .\core\templates\suppliers\supplier_provide.html:56
+msgid "Image"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:42
+#: .\core\templates\quotes\quote_add.html:80
+#: .\core\templates\quotes\quote_update.html:17
+#: .\core\templates\quotes\quote_update.html:30
+#: .\core\templates\sales\order_add.html:57
+#: .\core\templates\sales\order_add.html:117
+#: .\core\templates\sales\order_edit.html:57
+#: .\core\templates\sales\order_edit.html:118
+#: .\core\templates\suppliers\supplier_provide.html:32
+#: .\core\templates\suppliers\supplier_provide.html:69
+msgid "ADD"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:43
+#: .\core\templates\quotes\quote_add.html:81
+#: .\core\templates\quotes\quote_update.html:18
+#: .\core\templates\quotes\quote_update.html:31
+#: .\core\templates\sales\order_add.html:58
+#: .\core\templates\sales\order_add.html:118
+#: .\core\templates\sales\order_edit.html:58
+#: .\core\templates\sales\order_edit.html:119
+#: .\core\templates\suppliers\supplier_provide.html:33
+#: .\core\templates\suppliers\supplier_provide.html:70
+msgid "REMOVE"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:57
+#: .\core\templates\suppliers\supplier_provide.html:47
+msgid "Product Registed"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:58
+#: .\core\templates\suppliers\supplier_provide.html:48
+msgid " SUBMIT"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:67
+#: .\core\templates\sales\order_add.html:103
+#: .\core\templates\sales\order_edit.html:103
+msgid "Quantity"
+msgstr ""
+
+#: .\core\templates\quotes\quote_list.html:5
+msgid "QUOTE_LIST"
+msgstr ""
+
+#: .\core\templates\quotes\quote_list.html:37
+msgid "ORDERED"
+msgstr ""
+
+#: .\core\templates\quotes\quote_list.html:64
+msgid "UPDATE"
+msgstr ""
+
+#: .\core\templates\quotes\quote_list.html:65
+msgid "REQUEST"
+msgstr ""
+
+#: .\core\templates\quotes\quote_update.html:5
+msgid "QUOTE_EDIT"
+msgstr ""
+
+#: .\core\templates\quotes\supplier_quote.html:5
+msgid "SUPPLIER_QUOTE"
+msgstr ""
+
+#: .\core\templates\quotes\supplier_quote_list.html:5
+msgid "SUPPLIER_QUOTE_LIST"
+msgstr ""
+
+#: .\core\templates\quotes\supplier_quote_list.html:53
+#: .\core\templates\quotes\supplier_quote_list.html:67
+msgid "REJECT"
+msgstr ""
+
+#: .\core\templates\quotes\supplier_quote_list.html:59
+msgid "ENTER YOUR CAUSE"
+msgstr ""
+
+#: .\core\templates\quotes\supplier_quote_list.html:74
+msgid "DELIVERY"
+msgstr ""
+
+#: .\core\templates\sales\order_add.html:15
+#: .\core\templates\sales\order_edit.html:15
+#: .\core\templates\suppliers\supplier_list.html:19
+msgid "Phone"
+msgstr "Số điện thoại"
+
+#: .\core\templates\sales\order_add.html:19
+#: .\core\templates\sales\order_edit.html:19
+msgid "Find"
+msgstr "Tìm"
+
+#: .\core\templates\sales\order_add.html:42
+#: .\core\templates\sales\order_add.html:102
+#: .\core\templates\sales\order_edit.html:42
+#: .\core\templates\sales\order_edit.html:102
+msgid "Price"
+msgstr "Giá"
+
+#: .\core\templates\sales\order_add.html:43
+#: .\core\templates\sales\order_edit.html:43
+msgid "Inventory"
+msgstr "Số lượng còn"
+
+#: .\core\templates\sales\order_add.html:72
+#: .\core\templates\sales\order_edit.html:72
+msgid "Order"
+msgstr "Đơn hàng"
+
+#: .\core\templates\sales\order_add.html:85
+#: .\core\templates\sales\order_edit.html:85
+msgid "Gender"
+msgstr "Giới tính"
+
+#: .\core\templates\sales\order_add.html:91
+#: .\core\templates\sales\order_edit.html:91
+msgid "Age"
+msgstr "Tuổi"
+
+#: .\core\templates\sales\order_add.html:128
+#: .\core\templates\sales\order_edit.html:129
+msgid "Total: "
+msgstr "Tổng: "
+
+#: .\core\templates\sales\order_edit.html:5
+msgid "ORDER_EDIT"
+msgstr "Sửa hoá đơn"
+
+#: .\core\templates\sales\order_list.html:11
+msgid "NEW"
+msgstr "Bán hàng"
+
+#: .\core\templates\sales\order_list.html:18
+msgid "Customer"
+msgstr "Khách hàng"
+
+#: .\core\templates\sales\order_list.html:19
+#: .\core\templates\sales\order_list.html:35
+msgid "Bill"
+msgstr "Hoá đơn"
+
+#: .\core\templates\sales\order_list.html:36
+#: .\core\templates\suppliers\supplier_list.html:39
+msgid "Edit"
+msgstr "Sửa"
+
+#: .\core\templates\sales\order_list.html:37
+msgid "Pay"
+msgstr "Thanh toán"
+
+#: .\core\templates\suppliers\supplier_add.html:5
+msgid "SUPPLIER_ADD"
+msgstr "Thêm nhà cung cấp"
+
+#: .\core\templates\suppliers\supplier_list.html:5
+msgid "SUPPLIER_LIST"
+msgstr "Danh sách nhà cung cấp"
+
+#: .\core\templates\suppliers\supplier_list.html:11
+msgid "Create a new supplier"
+msgstr "Tạo nhà cung cấp mới"
+
+#: .\core\templates\suppliers\supplier_list.html:20
+msgid "Email"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_list.html:21
+msgid "Fax"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_list.html:22
+msgid "Logo"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_list.html:23
+msgid "Address"
+msgstr "Địa chỉ"
+
+#: .\core\templates\suppliers\supplier_list.html:42
+msgid "Delete"
+msgstr "Xoá"
+
+#: .\core\templates\suppliers\supplier_provide.html:5
+msgid "SUPPLIER_PROVIDE"
+msgstr "Đăng kí bán sản phẩm"
+
+#: .\core\templates\suppliers\supplier_update.html:5
+msgid "SUPPLIER_UPDATE"
+msgstr "Sửa thông tin nhà cung cấp"
+
+#: .\core\views.py:85
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+
+#: .\core\views.py:86
+msgid "UR CUSTOM MESSAGE"
+msgstr ""
+
+#: .\core\views.py:92
+msgid "This account is inactive."
+msgstr ""
+
+#: .\core\views.py:94
+msgid "Sorry, accounts starting with 'b' aren't welcome here."
+msgstr ""
+
+#: .\core\views.py:421 .\core\views.py:448 .\core\views.py:475
+msgid " successfully."
+msgstr "Thành công"
+
+#: .\core\views.py:428 .\core\views.py:455 .\core\views.py:482
+msgid "Update successfully."
+msgstr "Cập nhật thành công"
+
+#: .\core\views.py:434 .\core\views.py:461 .\core\views.py:488
+#: .\core\views.py:496 .\core\views.py:743
+msgid "Delete successfully."
+msgstr "Xoá bỏ thành công"
+
+#: .\core\views.py:520
+msgid "Change has been saved"
+msgstr "Thay đổi đã được lưu"
+
+#: .\core\views.py:549
+msgid "Reject succesfully"
+msgstr "Từ chối thành công"
+
+#: .\core\views.py:576
+msgid "Must provide full price"
+msgstr "Cần cung cấp đầy đủ thông tin giá cả"
+
+#: .\core\views.py:585
+msgid "Quote sent"
+msgstr "Báo giá đã được gửi đi"
+
+#: .\core\views.py:600
+msgid "Delivery succesfully"
+msgstr "Giao hàng thành công"
+
+#: .\core\views.py:639 .\core\views.py:702
+msgid "Please choose a supplier"
+msgstr "Vui lòng chọn một nhà cung cấp"
+
+#: .\core\views.py:642 .\core\views.py:705
+msgid "The supplier has not registered the product"
+msgstr "Nhà cung cấp chưa đăng kí bán sản phẩm nào"
+
+#: .\core\views.py:651 .\core\views.py:724
+msgid "Please choose at least one product"
+msgstr "Vui lòng chọn ít nhất một sản phẩm"
+
+#: .\core\views.py:656 .\core\views.py:838
+msgid "Create successfully"
+msgstr "Thêm mới thành công"
+
+#: .\core\views.py:737
+msgid "Update successfully"
+msgstr "Cập nhật thành công"
+
+#: .\core\views.py:755
+msgid "Request succesfully"
+msgstr "Yêu cầu thành công"
+
+#: .\core\views.py:765
+msgid "Cancel succesfully"
+msgstr "Huỷ bỏ thành công"
+
+#: .\core\views.py:816
+msgid "Must at least one item"
+msgstr "Cần ít nhất một mục"
+
+#: .\core\views.py:874
+msgid "Report successfully"
+msgstr "Báo cáo vấn đề thành công"
+
+#: .\core\views.py:884
+msgid "Order paid successfully"
+msgstr "Thanh toán đơn hàng thành công."
+
+#: .\project\settings.py:84
+msgid "English"
+msgstr ""
+
+#: .\project\settings.py:85
+msgid "Vietnamese"
+msgstr ""
+
+#: .\project\settings.py:86
+msgid "Japanese"
+msgstr ""
