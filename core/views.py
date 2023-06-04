@@ -588,7 +588,7 @@ class SupplierQuote(View):
         porder.total = sum([x[1] * x[2] for x in full_data])
         porder.save()
 
-        return redirect('./')
+        return redirect('supplier_quote_list')
 
 class SupplierDelivery(GroupRequiredMixin, View):
     group_required = ['Supplier']
