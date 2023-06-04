@@ -13,22 +13,25 @@
 		<div class="sidebar-menu">
 			<ul id="accordion-menu">
 				{% comment %} <li><a href="{% url 'user_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "USER" %} </span></a></li> {% endcomment %}
-				<li><a href="{% url 'category_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "CATEGORY" %} </span></a></li>
-				<li><a href="{% url 'product_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PRODUCT" %} </span></a></li>
-				<li><a href="{% url 'supplier_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER" %} </span></a></li>
-				<li><a href="{% url 'supplier_provide' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER PROVIDE" %} </span></a></li>
-				<li><a href="{% url 'quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "QUOTE" %} </span></a></li>
-				<li><a href="{% url 'supplier_quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER QUOTE" %} </span></a></li>
-				<li><a href="{% url 'order_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "ORDER" %} </span></a></li>
-				<li><a href="{% url 'sale_order_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SALE" %} </span></a></li>
-				<li> <div class="dropdown-divider"></div> </li>
-				<li> <div class="sidebar-small-cap">Extra</div> </li>
-				<li>
-					<a href="#" class="dropdown-toggle no-arrow">
-						<span class="micon bi bi-layout-text-window-reverse"></span>
-						<span class="mtext">Landing Page <img src="vendors/images/coming-soon.png" alt="" width="25" /></span>
-					</a>
-				</li>
+				{% if request.user.supplier%}
+					<li><a href="{% url 'supplier_provide' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER PROVIDE" %} </span></a></li>
+					<li><a href="{% url 'supplier_quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER QUOTE" %} </span></a></li>
+				{% else %}
+					<li><a href="{% url 'category_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "CATEGORY" %} </span></a></li>
+					<li><a href="{% url 'product_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PRODUCT" %} </span></a></li>
+					<li><a href="{% url 'supplier_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER" %} </span></a></li>
+					<li><a href="{% url 'quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "QUOTE" %} </span></a></li>
+					<li><a href="{% url 'order_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "ORDER" %} </span></a></li>
+					<li><a href="{% url 'sale_order_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SALE" %} </span></a></li>
+					<li> <div class="dropdown-divider"></div> </li>
+					<li> <div class="sidebar-small-cap">Extra</div> </li>
+					<li>
+						<a href="#" class="dropdown-toggle no-arrow">
+							<span class="micon bi bi-layout-text-window-reverse"></span>
+							<span class="mtext">Landing Page <img src="vendors/images/coming-soon.png" alt="" width="25" /></span>
+						</a>
+					</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
