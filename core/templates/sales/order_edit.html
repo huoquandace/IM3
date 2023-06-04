@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "ORDER_EDIT" %} {% endblock title %}
+
+{% block content %}
+<div class="card-box mb-30">
+    <div class="pd-20 row">
+        <div class="col-6">
+            <div class="">
+                <form method="POST">
+                    <div class="form-group row">
+                        {% csrf_token %}
+                        <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Phone' %} </label>
+                        <div class="col-sm-12 col-md-8">
+                            <input type="text" name="phone" id="phone" class="form-control">
+                        </div>
+                        <div class="col-sm-12 col-md-2"><a id="find" class="btn btn-outline-success"> {% trans 'Find' %} </a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            
+        </div>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="card-box mb-30">
+        <div class="pd-20 d-flex justify-content-between">
+          <h4 class="text-blue h4"> {% trans "Products" %} </h4>
+        </div>
+        <div class="pb-20">
+          <table class="data-table table hover nowrap">
+            <thead>
+              <tr>
+                <th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+                <th> {% trans "Name" %} </th>
+                <th> {% trans "Image" %} </th>
+                <th> {% trans "Price" %} </th>
+                <th> {% trans "Inventory" %} </th>
+                <th class="datatable-nosort">Action</th>
+              </tr>
+            </thead>
+            <tbody id="products">
+              {% for product in products %}
+              <tr>
+                <td class="table-plus" id="prd_id"> {{ product.id_product }} </td>
+                <td> {{ product.name }} </td>
+                <td> <img src="{{ product.image.url }}" alt="product_logo" style="height: 50px" id="prd_img"> </td>
+                <td id="css_price"> {{ product.price }} </td>
+                <td id="inventory"> {{ product.inventory }} </td>
+                <td hidden> <input type="number" id="quantity"  class="form-control quantity" style="width:100px" name="{{ product.id }}" > </td>
+                <td>
+                  <span class="add_btn btn btn-outline-primary btn-sm ">{% trans "ADD" %}</span>
+                  <span class="del_btn btn btn-outline-danger btn-sm " hidden>{% trans "REMOVE" %}</span>
+                </td>
+            </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="card-box mb-30">
+            <form method="post" action="{% url 'sale_order_add' %}">
+                {% csrf_token %}
+                <div class="pd-20 d-flex justify-content-between ">
+                    <h4 class="text-blue h4"> {% trans "Order" %} </h4>
+                    <input type="submit" value="{% trans 'SUBMIT' %}" class="btn btn-success btn-sm">
+                </div>
+                    <div class="pd-20" style="margin: 0 5rem;" id="exist" hidden>
+                        <hr>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Name' %} </label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" id='cs_name' name='cs_name'/>
+                                <input class="form-control" type="text" id='cs_phone' name='cs_phone'/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Gender' %} </label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" id='cs_gender' name='cs_gender'/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Age' %} </label>
+                            <div class="col-sm-12 col-md-10">
+                                <input class="form-control" type="text" id='cs_age' name='cs_age'/>
+                            </div>
+                        </div>
+                    </div>
+                <div class="pb-20">
+                    <table class="data-table table hover nowrap">
+                        <thead>
+                            <tr>
+                                <th class="table-plus datatable-nosort"> {% trans "Name" %} </th>
+                                <th> {% trans "Price" %} </th>
+                                <th> {% trans "Quantity" %} </th>
+                                <th class="datatable-nosort">Action</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody id="selected_products">
+                            {% for sorder_detail in sorder.sorderdetail_set.all %}
+                            <tr>
+                                <td hidden class="table-plus" id="prd_id"> {{ sorder_detail.product.id_product }} </td>
+                                <td> {{ sorder_detail.product.name }} </td>
+                                <td hidden id="inventory"> {{ sorder_detail.product.inventory }} </td>
+                                <td id="css_price"> {{ sorder_detail.product.price }} </td>
+                                <td hidden> <img src="{{ sorder_detail.product.image.url }}" alt="product_logo" style="height: 50px" id="prd_img"> </td>
+                                <td> <input type="number" id="quantity"  class="form-control quantity" style="width:100px" name="{{ sorder_detail.product.id }}" > </td>
+                                <td>
+                    <span class="add_btn btn btn-outline-primary btn-sm" hidden>{% trans "ADD" %}</span>
+                    <span class="del_btn btn btn-outline-danger btn-sm">{% trans "REMOVE" %}</span>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </form>
+        <hr>
+
+        <div class="pd-20 clearfix">
+            <h4 class="text-blue h4 pull-right"> {% trans "Total: " %} <span id="total">0</span> <span>VND</span> </h4>
+          </div>
+
+    </div>
+    </div>
+  </div>
+
+{% comment %} <form method="get">
+    {{ form.supplier }}
+    <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
+</form> {% endcomment %}
+{% comment %} <div id="products">
+{% for product in products %}
+    <div>
+        {{ product.id }} - {{ product }}
+        <input type="number" id="quantity" name="{{ product.id }}" hidden>
+        <span class="add_btn">{% trans "ADD" %}</span> 
+        <span class="del_btn" hidden>{% trans "REMOVE" %}</span> 
+        <br>
+    </div>
+{% endfor %}
+</div> <hr> {% endcomment %}
+{% comment %} <form id="selected_products" method="post">
+    {% csrf_token %}
+    <input type="submit" value="{% trans "SUBMIT" %}">
+    {% for product in selected_products %}
+    <div>
+        {{ product.id }} - {{ product }}
+        <input type="number" id="quantity" name="{{ product.id }}">
+        <span class="add_btn" hidden>{% trans "ADD" %}</span> 
+        <span class="del_btn" >{% trans "REMOVE" %}</span> 
+        <br>
+    </div>
+{% endfor %}
+</form> {% endcomment %}
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+<script>
+    var total = 0;
+    $('.add_btn').click(function(){
+        selected_product = $(this).parent().parent()
+        $('#selected_products').append(selected_product)
+        selected_product.find('#quantity').parent().show()
+        selected_product.find('#quantity').parent().removeAttr('hidden')
+        selected_product.find('.add_btn').hide()
+        selected_product.find('.del_btn').show()
+        selected_product.find('.del_btn').removeAttr('hidden')
+        selected_product.find('#prd_img').parent().hide()
+        selected_product.find('#inventory').hide()
+        selected_product.find('#prd_id').hide()
+    })
+    $('.del_btn').click(function(){
+        selected_product = $(this).parent().parent()
+        $('#products').append(selected_product)
+        selected_product.find('#quantity').parent().hide()
+        selected_product.find('.add_btn').show()
+        selected_product.find('.add_btn').removeAttr('hidden')
+        selected_product.find('.del_btn').hide()
+        selected_product.find('#prd_img').parent().show()
+        selected_product.find('#inventory').show()
+        selected_product.find('#prd_id').show()
+    })
+    $('#id_supplier').change(function() {
+        $('#supplier_submit').click()
+    })
+
+    $('#find').on('click', function () {
+        phone = $('#phone').val()
+        $.ajax({
+            url: `{% url 'get_customer' %}`,
+            type: 'POST',
+            data: {
+                'phone': phone,
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+            },
+            success: function(response) {
+                if (response.is_exist) {
+                    $('#cs_name').attr('value', response.name)
+                    $('#cs_gender').attr('value', response.gender)
+                    $('#cs_age').attr('value', response.age)
+                    $('#cs_phone').attr('value', response.phone)
+                    $('#exist').removeAttr('hidden')
+                }
+            }
+        })
+    })
+
+    $('.quantity').on('change', function() {
+        total += parseInt($(this).val()) * parseInt($(this).parent().parent().find('#css_price').text())
+        $('#total').text(total)
+    })
+</script>
+{% endblock script %}

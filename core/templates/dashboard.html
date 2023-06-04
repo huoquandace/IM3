@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "DASHBOARD" %} {% endblock title %}
+
+{% block content %}
+
+tong san pham: {{ total_products }} <br>
+san pham ban chay nhat: {{ product_best_seller.0 }} - so luong: {{ product_best_seller.1 }}
+
+{% endblock content %}

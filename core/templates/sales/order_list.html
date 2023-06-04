@@ -33,6 +33,7 @@
 					<td>
 						{% if object.status == 'Order' %}
 							<a class="btn btn-sm btn-outline-success" target="_blank" href="{% url 'sale_order_bill' object.id %}"> {% trans "Bill" %} </a>
+							<a class="btn btn-sm btn-outline-success" href="{% url 'sale_order_edit' object.id %}"> {% trans "Edit" %} </a>
 						{% endif %}
 					</td>
 				</tr>

@@ -10,6 +10,7 @@
     {% for porder_detail in porder_details %}
         {{ forloop.counter }} - {{ porder_detail.product }} -- {{ porder_detail.quantity }}
         <input type="number" id="price" name="{{ porder_detail.product.id }}">
+        <input type="date" id="expiry" name="e{{ porder_detail.product.id }}">
         <br>
     {% endfor %}
     <input type="submit" value="{% trans "SUBMIT" %}">

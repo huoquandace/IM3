@@ -21,6 +21,7 @@ from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 from django.db.models import Q
 from django.http import JsonResponse
+from django.utils.dateparse import parse_date
 
 from .models import *
 from core.forms import UploadFileForm
@@ -30,8 +31,21 @@ from .mixins import *
 CSV_FILE_PATH = 'data/csv/'
 USER_CSV_FILE_TEMPLALTE = 'data/csv.csv'
 
-class Dashboard(StaffRequiredMixin, TemplateView):
-    template_name = 'dashboard.html'
+class Dashboard(StaffRequiredMixin, View):
+    def get(self, request):
+        products = Product.objects.all()
+        product_best_seller_couple = [None, 0]
+        for product in products:
+            sorder_details = product.sorderdetail_set.all()
+            qty = sum([sorder_detail.quantity for sorder_detail in sorder_details])
+            if qty > product_best_seller_couple[1]:
+                product_best_seller_couple = [product, qty]
+
+        total_products = Product.objects.count()
+        return render(request, 'dashboard.html', {
+            'total_products': total_products,
+            'product_best_seller': product_best_seller_couple,
+        })
 
 
 class AuthIndex(StaffRequiredMixin, TemplateView):
@@ -791,25 +805,34 @@ class GRN_add(GroupRequiredMixin, View):
         for porder_detail in porder.porderdetail_set.all():
             product = porder_detail.product
             if request.POST.get(str(porder_detail.product.id)) is None or request.POST.get(str(porder_detail.product.id)) == "":
-                data.append([product, 0])
+                data.append([product, 0, 0])
             else:
                 fact_quantity = int(request.POST.get(str(porder_detail.product.id)))
+                expiry = parse_date(request.POST.get('e'+ str(porder_detail.product.id)))
                 if fact_quantity < porder_detail.quantity:
-                    data.append([product, fact_quantity])
+                    data.append([product, fact_quantity, expiry])
                 else:
-                    data.append([product, fact_quantity])
+                    data.append([product, fact_quantity, expiry])
         if sum([x[1] for x in data]) == 0:
             messages.error(request, _('Must at least one item'))
             return redirect('./')
         
-        print(request.user)
+        print(data)
         grn = GRN.objects.create(porder=porder, date=timezone.now(), user=request.user)
         for item in data:
-            GRNDetail.objects.create(
-                grn = grn,
-                product = item[0],
-                quantity = item[1],
-            )
+            if item[2] == 0:
+                GRNDetail.objects.create(
+                    grn = grn,
+                    product = item[0],
+                    quantity = item[1],
+                )
+            else:
+                GRNDetail.objects.create(
+                    grn = grn,
+                    product = item[0],
+                    quantity = item[1],
+                    expiry = item[2]
+                )
 
         porder.status = 'Delivered'
         porder.save()
@@ -866,11 +889,56 @@ class PayOrder(GroupRequiredMixin, View):
 
 class SOrderAdd(View):
     
-
     def get(self, request):
+
+        grn_details = GRNDetail.objects.all()
+        for grn_detail in grn_details:
+            if grn_detail.expiry is not None:
+                if grn_detail.expiry < timezone.now().date():
+                    grn_detail.is_expiry = True
+                    grn_detail.save()
+                else:
+                    print('no')
+
         products = Product.objects.all()
         return render(request, 'sales/order_add.html', {
             'products': products,
+        })
+
+    def post(self, request):
+        phone = request.POST.get('cs_phone')
+
+        try:
+            Customer.objects.get(phone=phone)
+        except Customer.DoesNotExist:
+            pass
+            # Customer.objects.create(phone=phone)
+        
+        customer = Customer.objects.get(phone=phone)
+        products = []
+        for i in range(Product.objects.all().last().id):
+            if request.POST.get(str(i+1)) is not None:
+                quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 1
+                products.append([Product.objects.get(id=i+1), quantity])
+        
+        sorder = SOrder.objects.create(
+            customer = customer,
+            status = 'Order'
+        )
+
+        for couple in products:
+            SOrderDetail.objects.create(sorder=sorder, product=couple[0], quantity=couple[1])
+
+        return redirect('sale_order_list')
+
+class SOrderEdit(View):
+
+    def get(self, request, pk):
+        sorder = SOrder.objects.get(id=pk)
+        products = Product.objects.all()
+        return render(request, 'sales/order_edit.html', {
+            'products': products,
+            'sorder': sorder,
         })
 
     def post(self, request):

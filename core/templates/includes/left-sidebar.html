@@ -12,6 +12,7 @@
 	<div class="menu-block customscroll">
 		<div class="sidebar-menu">
 			<ul id="accordion-menu">
+				{% comment %} <li><a href="{% url 'user_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "USER" %} </span></a></li> {% endcomment %}
 				<li><a href="{% url 'category_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "CATEGORY" %} </span></a></li>
 				<li><a href="{% url 'product_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PRODUCT" %} </span></a></li>
 				<li><a href="{% url 'supplier_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "SUPPLIER" %} </span></a></li>

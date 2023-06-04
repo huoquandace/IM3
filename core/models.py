@@ -3,7 +3,7 @@ from django.contrib import auth
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
+from django.db.models import Q
 
 class User(auth.models.AbstractBaseUser, auth.models.PermissionsMixin):
     username = models.CharField(_("username"), max_length=100, unique=True, validators=[auth.validators.UnicodeUsernameValidator()], error_messages={"unique": _("A user with that username already exists."),})
@@ -83,8 +83,9 @@ class Product(models.Model):
         return f'{self.name} ({self.brand})'
     
     def inventory(self):
-        grn_details = self.grndetail_set.all()
-        return sum([grn_detail.quantity for grn_detail in grn_details])
+        grn_details = self.grndetail_set.filter(~Q(is_expiry=True))
+        sorder_details = self.sorderdetail_set.all()
+        return sum([grn_detail.quantity for grn_detail in grn_details]) - sum([sorder_detail.quantity for sorder_detail in sorder_details])
     
 class Supplier(models.Model):
     id_supplier = models.CharField(_("supplier id"), max_length=255)
@@ -118,7 +119,7 @@ class POrder(models.Model):
         return f'{ self.supplier } - { self.label }'
 
     def save(self, *args, **kwargs):
-        self.label = "PUR-" + str(POrder.objects.count()+1)
+        self.label = "PUR-" + str(POrder.objects.last().id+1)
         return super(POrder, self).save(*args, **kwargs)
 
     def total_product(self):
@@ -173,9 +174,11 @@ class GRNDetail(models.Model):
     grn = models.ForeignKey(GRN, verbose_name=_("grn"), on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name=_("product"), on_delete=models.CASCADE, null=True, blank=True)
     quantity = models.IntegerField(_("quantity"), default=1, null=True, blank=True)
-    is_done = models.BooleanField(_("is done"), null=True, blank=True)
+    is_expiry = models.BooleanField(_("is expiry"), null=True, blank=True)
+    expiry = models.DateField(_("expiry"), null=True, blank=True)
 
     # porder_detail = models.ForeignKey(POrderDetail, verbose_name=_("porder detail"), on_delete=models.CASCADE)
+
 
 class Customer(models.Model):
 

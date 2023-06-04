@@ -11,7 +11,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns (
-    path('', AuthIndex.as_view() ,name='dashboard'),
+    path('', Dashboard.as_view() ,name='dashboard'),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
     path('password_change/', PasswordChange.as_view(), name='password_change'),
@@ -75,6 +75,7 @@ urlpatterns += i18n_patterns (
 
     path('sale/get_customer/', get_customer, name='get_customer'),
     path('sale/order/add', SOrderAdd.as_view(), name='sale_order_add'),
+    path('sale/order/edit/<int:pk>', SOrderEdit.as_view(), name='sale_order_edit'),
     path('sale/order/list/', SOrderList.as_view(), name='sale_order_list'),
     path('sale/order/bill/<int:pk>/', SOrderToBill.as_view(), name='sale_order_bill'),
 
