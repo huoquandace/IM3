@@ -942,10 +942,17 @@ class SOrderAdd(View):
             messages.error(request, _('Must at least one item'))
             return redirect('sale_order_add')
 
-        sorder = SOrder.objects.create(
-            customer = customer,
-            status = 'Order'
-        )
+        if request.POST.get('discount') is not None and request.POST.get('discount') != "":
+            sorder = SOrder.objects.create(
+                customer = customer,
+                status = 'Order',
+                discount = int(request.POST.get('discount')),
+            )
+        else:
+            sorder = SOrder.objects.create(
+                customer = customer,
+                status = 'Order'
+            )
 
         for couple in products:
             SOrderDetail.objects.create(sorder=sorder, product=couple[0], quantity=couple[1])

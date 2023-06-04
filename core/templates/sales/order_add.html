@@ -112,8 +112,15 @@
         </form>
         <hr>
 
-        <div class="pd-20 clearfix">
-            <h4 class="text-blue h4 pull-right"> {% trans "Total: " %} <span id="total">0</span> <span>VND</span> </h4>
+        <div class="pd-20 d-flex justify-content-between">
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-3 col-form-label"> {% trans 'Discount' %} </label>
+                <div class="col-sm-12 col-md-4">
+                    <input type="number" name="discount" id="discount" class="form-control">
+                </div>
+                <div class="col-sm-12 col-md-1" style="margin-top: 10px; margin-left: -5px;">%</div>
+            </div>
+            <h4 class="text-blue h4"> {% trans "Total: " %} <span id="total">0</span> <span>VND</span> </h4>
           </div>
 
     </div>

@@ -205,16 +205,20 @@ class SOrder(models.Model):
     created_at = models.DateTimeField(auto_now=True, editable=False)
     status = models.CharField(_("status"), max_length=255)
     note = models.TextField(_("note"), null=True, blank=True)
+    discount = models.IntegerField(_("discount"), null=True, blank=True)
 
     class Meta:
         ordering = ["-id"]
 
     def bill(self):
         sum = 0
+        discount = 0
+        if self.discount is not None:
+            discount = self.discount
         for sorderdetail in self.sorderdetail_set.all():
             if sorderdetail.product.price is not None:
                 sum += sorderdetail.product.price * sorderdetail.quantity
-        return sum
+        return sum - int(discount*sum/100)
 
 class SOrderDetail(models.Model):
     sorder = models.ForeignKey(SOrder, verbose_name=_("sale order"), on_delete=models.CASCADE, null=True, blank=True)
