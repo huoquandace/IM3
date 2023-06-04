@@ -865,8 +865,7 @@ class Issue(GroupRequiredMixin, View):
             'grns': grns,
         })
 
-class Report(GroupRequiredMixin, View):
-    group_required = ['Manager']
+class Report(View):
 
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
