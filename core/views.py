@@ -518,7 +518,7 @@ class SupplierProvie(GroupRequiredMixin, View):
                 products.append(Product.objects.get(id=i+1))
         supplier.products.set(products)
         messages.success(request, _("Change has been saved"))
-        return redirect('./')
+        return redirect('supplier_quote_list')
 
 class SupplierQuoteList(GroupRequiredMixin, View):
     class NoteChoiceForm(forms.ModelForm):
@@ -771,7 +771,7 @@ class OrderList(ListView):
     template_name = 'orders/order_list.html'
 
 class Order(GroupRequiredMixin, View):
-    group_required = ['Manager']
+    group_required = ['Manager', 'Staff', 'Supplier']
     
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
@@ -788,7 +788,7 @@ class Order(GroupRequiredMixin, View):
         return redirect('./')
 
 class GRN_add(GroupRequiredMixin, View):
-    group_required = ['Manager', 'Staff', 'Supplier']
+    group_required = ['Manager', 'Staff']
 
     def get(self, request, pk):
         porder = POrder.objects.get(pk=pk)
@@ -910,9 +910,11 @@ class SOrderAdd(View):
 
         try:
             Customer.objects.get(phone=phone)
-        except Customer.DoesNotExist:
-            print(request.POST.get('cs_name'))
-            # Customer.objects.create(phone=phone)
+        except:
+            name = (request.POST.get('cs_name'))
+            age = (request.POST.get('cs_age'))
+            print('------------------------------------')
+            Customer.objects.create(phone=phone, name=name, age=age)
         
         customer = Customer.objects.get(phone=phone)
         products = []
