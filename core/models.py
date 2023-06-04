@@ -202,7 +202,7 @@ class Customer(models.Model):
 
 class SOrder(models.Model):
     customer = models.ForeignKey(Customer, verbose_name=_("customer"), on_delete=models.CASCADE, blank=True)
-    created_at = models.DateTimeField(auto_now=True, editable=False)
+    created_at = models.DateTimeField(null=True, blank=True)
     status = models.CharField(_("status"), max_length=255)
     note = models.TextField(_("note"), null=True, blank=True)
     discount = models.IntegerField(_("discount"), null=True, blank=True)

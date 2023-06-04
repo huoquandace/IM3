@@ -42,7 +42,65 @@ class Dashboard(View):
                 product_best_seller_couple = [product, qty]
 
         total_products = Product.objects.count()
+
+        ### Earning
+        pay_mn = sum([porder.estimated_bill() for porder in POrder.objects.filter(status='Paid')])
+        sale_mn = sum([sorder.bill() for sorder in SOrder.objects.filter(status='Paid')])
+        earning = sale_mn - pay_mn
+        ###
+        r_time = []
+        r_data = []
+        for i in range(int(timezone.now().today().day)): r_time.append(i+1)
+        for i in range(int(timezone.now().today().day)):
+            sorders = SOrder.objects.all()
+            r = 0
+            for sorder in sorders:
+                if i+1 == sorder.created_at.day:
+                    r += sorder.bill()
+            r_data.append(r)
+        revenue = [r_time, r_data]
+        ###
+        if request.GET.get('month') is not None and request.GET.get('month') != "":
+            get_data = request.GET.get('month')
+            year = int(get_data.split('-')[0])
+            month = int(get_data.split('-')[1])
+
+            if month == int(timezone.now().today().month) and year == int(timezone.now().today().year):
+                r_time = []
+                r_data = []
+                for i in range(int(timezone.now().today().day)): r_time.append(i+1)
+                for i in range(int(timezone.now().today().day)):
+                    sorders = SOrder.objects.all()
+                    r = 0
+                    for sorder in sorders:
+                        if i+1 == sorder.created_at.day:
+                            r += sorder.bill()
+                    r_data.append(r)
+                revenue = [r_time, r_data]
+            else:
+                import datetime
+                d0 = datetime.datetime(year=year, month=month, day=1)
+                if month == 12:
+                    d1 = datetime.datetime(year=year+1, month=1, day=1)
+                else:
+                    d1 = datetime.datetime(year=year, month=month+1, day=1)
+                d = (d1 - d0).days
+
+                r_time = []
+                r_data = []
+                for i in range(d): r_time.append(i+1)
+                for i in range(d):
+                    sorders = SOrder.objects.all()
+                    r = 0
+                    for sorder in sorders:
+                        if year == sorder.created_at.year and month == sorder.created_at.month:
+                            if i+1 == sorder.created_at.day:
+                                r += sorder.bill()
+                    r_data.append(r)
+                revenue = [r_time, r_data]
         return render(request, 'dashboard.html', {
+            'earning': earning,
+            'revenue': revenue,
             'total_products': total_products,
             'product_best_seller': product_best_seller_couple,
         })
@@ -947,11 +1005,13 @@ class SOrderAdd(View):
                 customer = customer,
                 status = 'Order',
                 discount = int(request.POST.get('discount')),
+                created_at = timezone.now()
             )
         else:
             sorder = SOrder.objects.create(
                 customer = customer,
-                status = 'Order'
+                status = 'Order',
+                created_at = timezone.now()
             )
 
         for couple in products:
