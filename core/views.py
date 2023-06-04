@@ -982,6 +982,13 @@ class SOrderToBill(View):
         pdf = html_to_pdf(temp_dir)
         return HttpResponse(pdf, content_type='application/pdf')
 
+class SOrderPay(View):
+    def get(self, request, pk, *args, **kwargs):
+        sorder = SOrder.objects.get(id=pk)
+        sorder.status = 'Paid'
+        sorder.save()
+        return redirect('sale_order_list')
+
 def get_customer(request):
     phone = request.POST.get('phone')
     if phone is None or phone == "":

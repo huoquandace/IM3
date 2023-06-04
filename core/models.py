@@ -119,7 +119,12 @@ class POrder(models.Model):
         return f'{ self.supplier } - { self.label }'
 
     def save(self, *args, **kwargs):
-        self.label = "PUR-" + str(POrder.objects.last().id+1)
+        id = None
+        try:
+            id = POrder.objects.last().id
+        except:
+            id = 0
+        self.label = "PUR-" + str(id+1)
         return super(POrder, self).save(*args, **kwargs)
 
     def total_product(self):
