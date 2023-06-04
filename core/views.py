@@ -788,7 +788,7 @@ class Order(GroupRequiredMixin, View):
         return redirect('./')
 
 class GRN_add(GroupRequiredMixin, View):
-    group_required = ['Manager', 'Staff']
+    group_required = ['Manager', 'Staff', 'Supplier']
 
     def get(self, request, pk):
         porder = POrder.objects.get(pk=pk)
@@ -911,7 +911,7 @@ class SOrderAdd(View):
         try:
             Customer.objects.get(phone=phone)
         except Customer.DoesNotExist:
-            pass
+            print(request.POST.get('cs_name'))
             # Customer.objects.create(phone=phone)
         
         customer = Customer.objects.get(phone=phone)
