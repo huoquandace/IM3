@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %} {% trans "GRN_LIST" %} {% endblock title %}
+
+{% block content %}
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "GRN" %} </h4>
+		<a href="{% url 'warehouse' %}" class="btn btn-outline-primary">{% trans "BACK" %}</a>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap">
+			<thead>
+				<tr>
+					<th> {% trans "DATE" %} </th>
+					<th> {% trans "STAFF" %} </th>
+					<th> {% trans "SUPPLIER" %} </th>
+					<th> {% trans "ORDER ID" %} </th>
+					<th> {% trans "DETAIL" %} </th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for object in object_list %}
+				<tr>
+					<td> {{ object.date|date:'d-m-Y' }} </td>
+					<td> {{ object.user }} </td>
+					<td> {{ object.porder.supplier }} </td>
+					<td> <a class="btn btn-outline-primary" href="{% url 'order' object.porder.id %}">{{ object.porder.label }}</a> </td>
+					<td> 
+                        {% for grn_detail in object.grndetail_set.all %}
+                            <div> {{ grn_detail.product.name }}: <span>Qty: {{ grn_detail.quantity }} </span> </div>
+                        {% endfor %}    
+                    </td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block script %}
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
+
+	<script type="text/javascript">
+		$('.show_confirm').click(function (event) {
+			var form =  $(this).closest("form");
+			var name = $(this).data("name");
+			event.preventDefault();
+            swal({
+                title: '{% trans "ARE YOU SURE DELETE IT" %}',
+                text: "{% trans "YOU WON'T BE ABLE TO REVERT THIS!" %}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{% trans "YES" %}',
+                cancelButtonText: '{% trans "NO" %}',
+                confirmButtonClass: 'btn btn-success margin-5',
+                cancelButtonClass: 'btn btn-danger margin-5',
+                buttonsStyling: false
+            }).then(function (res) {
+				if (res.value == true) {
+					form.submit();
+				}
+            })
+        });
+	</script>
+{% endblock script %}

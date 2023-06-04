@@ -78,19 +78,7 @@
                             <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Name' %} </label>
                             <div class="col-sm-12 col-md-10">
                                 <input class="form-control" type="text" id='cs_name' name='cs_name'/>
-                                <input class="form-control" type="text" id='cs_phone' name='cs_phone'/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Gender' %} </label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" id='cs_gender' name='cs_gender'/>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Age' %} </label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" id='cs_age' name='cs_age'/>
+                                <input class="form-control" type="text" id='cs_phone' name='cs_phone' hidden/>
                             </div>
                         </div>
                     </div>
@@ -205,8 +193,6 @@
             success: function(response) {
                 if (response.is_exist) {
                     $('#cs_name').attr('value', response.name)
-                    $('#cs_gender').attr('value', response.gender)
-                    $('#cs_age').attr('value', response.age)
                     $('#cs_phone').attr('value', response.phone)
                     $('#exist').removeAttr('hidden')
                 } else {

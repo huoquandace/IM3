@@ -68,10 +68,13 @@ urlpatterns += i18n_patterns (
 
     path('order/list/', OrderList.as_view(), name='order_list'),
     path('order/<int:pk>/', Order.as_view(), name='order'),
+    path('grn/list/', GRNList.as_view(), name='grn_list'),
+    path('expiry/list/', ExpiryList.as_view(), name='expiry_list'),
     path('grn/<int:pk>/', GRN_add.as_view(), name='grn'),
     path('issue/<int:pk>/', Issue.as_view(), name='issue'),
     path('report/<int:pk>/', Report.as_view(), name='report'),
     path('payment/<int:pk>/', PayOrder.as_view(), name='payment'),
+    path('warehouse/', Warehouse.as_view(), name='warehouse'),
 
     path('sale/get_customer/', get_customer, name='get_customer'),
     path('sale/order/add', SOrderAdd.as_view(), name='sale_order_add'),

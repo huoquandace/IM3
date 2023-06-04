@@ -786,6 +786,18 @@ class Order(View):
         porder.save()
         return redirect('./')
 
+class GRNList(ListView):
+    model = GRN
+    template_name = 'orders/grn_list.html'
+
+class ExpiryList(ListView):
+    model = GRNDetail
+    template_name = 'orders/expiry_list.html'
+
+class Warehouse(ListView):
+    model = Product
+    template_name = 'orders/warehouse.html'
+
 class GRN_add(GroupRequiredMixin, View):
     group_required = ['Manager', 'Staff']
 
@@ -996,14 +1008,12 @@ def get_customer(request):
     try:
         customer = Customer.objects.get(phone=phone)
     except Customer.DoesNotExist:
-        pass
+        return JsonResponse({'is_exist': False})
     is_exist = True if customer is not None else None
     data = {
         'is_exist': is_exist,
         'name': customer.name,
-        'gender': customer.gender,
         'phone': customer.phone,
-        'age': customer.age,
     }
     return JsonResponse(data)
 
