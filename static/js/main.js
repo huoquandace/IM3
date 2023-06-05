@@ -1,6 +1,6 @@
 
 // preview image before save
-const IMAGE_SIZE = 100
+const IMAGE_SIZE = 150
 $('#image').width(IMAGE_SIZE).height(IMAGE_SIZE)
 $('#id_image').on('change', function(e) {
     if (e.target.files.length) {

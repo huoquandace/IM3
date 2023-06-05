@@ -5,10 +5,87 @@
 {% block title %} {% trans "SUPPLIER_ADD" %} {% endblock title %}
 
 {% block content %}
-<form method="post" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <img id="image" src="#" hidden/>
-    <input type="submit" value="{% trans "SUBMIT" %}">
-</form>
+<div class="pd-20 card-box mb-30">
+	<div class="clearfix mb-30">
+		<div class="pull-left">
+			<h4 class="text-blue h4"> {% trans "CREATE A NEW SUPPLIER" %} </h4>
+		</div>
+		<div class="pull-right"></div>
+	</div>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Supplier ID" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.id_supplier }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Phone" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.phone }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Email" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.email }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Fax" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.fax }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Address" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.address }}
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Name" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.name }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"> {% trans "Logo" %} </label>
+					<div class="col-sm-12 col-md-10">
+						{{ form.logo }}
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-12 col-md-2 col-form-label"></label>
+					<div class="col-sm-12 col-md-10">
+						<img id="image" src="{% static 'vendors/images/category_logo.jpg' %}" style="height: 50px" alt="your image" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class="pull-right">
+				<a href="{% url 'supplier_list' %}" class="btn btn-outline-primary mr-3"> {% trans "Cancel" %} </a>
+				<input type="submit" class="btn btn-primary" value="{% trans 'Create' %}">
+			</div>
+		</div>
+	</form>
+</div>
 {% endblock content %}
+
+{% block script %}
+<script>
+    $('#image').width(IMAGE_SIZE).height(IMAGE_SIZE)
+    $('#id_logo').on('change', function(e) {
+        if (e.target.files.length) {
+            const src = URL.createObjectURL(e.target.files[0]);
+            $('#image').attr('src', src).width(IMAGE_SIZE).height(IMAGE_SIZE).show();
+        }
+    })
+</script>
+{% endblock script %}
