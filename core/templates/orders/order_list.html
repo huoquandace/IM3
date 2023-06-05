@@ -53,7 +53,7 @@
                             {% endif %}
                         {% endif %}
                     </td>
-					<td>
+					<td class="d-flex flex-column">
                         <a class="btn btn-sm btn-outline-success" href="{% url 'order' object.id%}">{% trans "VIEW ORDER" %}</a>
                         {% if object.status == 'Delivered' and object.get_issue == 0%}
                             <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'payment' object.id%}">{% trans "PAYMENT" %}</a>
