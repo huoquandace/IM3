@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load static %}
+{% load auth_extras %}
 
 <div class="left-side-bar">
 	<div class="brand-logo">
@@ -13,7 +14,7 @@
 		<div class="sidebar-menu">
 			<ul id="accordion-menu">
 				{% comment %} <li><a href="{% url 'user_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "USER" %} </span></a></li> {% endcomment %}
-				{% if request.user.supplier%}
+				{% if request.user|has_group:'Supplier' %}
 					<li><a href="{% url 'supplier_provide' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "PROVIDE PRODUCT" %} </span></a></li>
 					<li><a href="{% url 'supplier_quote_list' %}" class="dropdown-toggle no-arrow"><span class="micon bi bi-layout-text-window-reverse"></span><span class="mtext"> {% trans "QUOTE & ORDER" %} </span></a></li>
 				{% else %}

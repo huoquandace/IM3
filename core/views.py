@@ -667,7 +667,7 @@ class SupplierProvie(GroupRequiredMixin, View):
                 products.append(Product.objects.get(id=i+1))
         supplier.products.set(products)
         messages.success(request, _("Change has been saved"))
-        return redirect('supplier_quote_list')
+        return redirect('supplier_provide')
 
 class SupplierQuoteList(GroupRequiredMixin, View):
     class NoteChoiceForm(forms.ModelForm):
