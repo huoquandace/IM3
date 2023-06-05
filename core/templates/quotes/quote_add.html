@@ -7,12 +7,26 @@
 {% block content %}
 <div class="card-box mb-30">
     <div class="pd-20">
-        <div class="col-sm-12 col-md-6">
+        <div class="form-group row">
+          <label class="col-sm-12 form-label"> {% trans "Choose Supplier" %} </label>
+          <div class="col-sm-12 col-md-6">
+            <form method="get">
+              {{ form.supplier }}
+              <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-6 clearfix">
+            <div class="pull-right">
+              <a href="{% url 'quote_list' %}" class="btn btn-outline-primary"> {% trans "Cancel" %} </a>
+            </div>
+          </div>
+        </div>
+        {% comment %} <div class="col-sm-12 col-md-6">
             <form method="get">
                 {{ form.supplier }}
                 <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
             </form>
-        </div>
+        </div> {% endcomment %}
     </div>
   </div>
 <div class="row">
@@ -89,34 +103,7 @@
     </div>
   </div>
 
-{% comment %} <form method="get">
-    {{ form.supplier }}
-    <input type="submit" id="supplier_submit" value="{% trans "SUBMIT" %}" hidden>
-</form> {% endcomment %}
-{% comment %} <div id="products">
-{% for product in products %}
-    <div>
-        {{ product.id }} - {{ product }}
-        <input type="number" id="quantity" name="{{ product.id }}" hidden>
-        <span class="add_btn">{% trans "ADD" %}</span> 
-        <span class="del_btn" hidden>{% trans "REMOVE" %}</span> 
-        <br>
-    </div>
-{% endfor %}
-</div> <hr> {% endcomment %}
-{% comment %} <form id="selected_products" method="post">
-    {% csrf_token %}
-    <input type="submit" value="{% trans "SUBMIT" %}">
-    {% for product in selected_products %}
-    <div>
-        {{ product.id }} - {{ product }}
-        <input type="number" id="quantity" name="{{ product.id }}">
-        <span class="add_btn" hidden>{% trans "ADD" %}</span> 
-        <span class="del_btn" >{% trans "REMOVE" %}</span> 
-        <br>
-    </div>
-{% endfor %}
-</form> {% endcomment %}
+
 {% endblock content %}
 
 {% block script %}

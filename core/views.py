@@ -812,6 +812,10 @@ class QuoteUpdate(View):
         class Meta:
             model = POrder
             fields = ['supplier', ]
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
 
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
@@ -839,6 +843,7 @@ class QuoteUpdate(View):
         supplier_choice_form = self.SupplierChoiceForm(initial={'supplier': supplier}, instance=porder)
 
         return render(request, 'quotes/quote_update.html', {
+            'porder': porder,
             'form': supplier_choice_form,
             'products': products,
             'selected_products': selected_products,
