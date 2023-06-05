@@ -62,7 +62,10 @@
                         {% if object.status == 'Draft' %}
                             <a class="btn btn-sm btn-outline-success" href="{% url 'quote_update' object.id%}">{% trans "UPDATE" %}</a>
                             <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'quote_request' object.id%}">{% trans "REQUEST" %}</a>
-                            <form method="POST" action="{% url 'quote_delete' object.id %}">{% csrf_token %}<input class="btn btn-sm btn-outline-danger mt-1" type="submit" value="{% trans "DELETE" %}"></form>
+                            <form method="POST" action="{% url 'quote_delete' object.id %}">
+								{% csrf_token %}
+								<a href="#" type="submit" class="show_confirm btn btn-sm btn-outline-danger mt-1"> {% trans "DELETE" %}</a>
+							</form>
                         {% endif %}
                         {% if object.status == 'Quote' %}
                             <a class="btn btn-sm btn-outline-success" href="{% url 'quote_cancel' object.id%}">{% trans "CANCEL" %}</a>
@@ -82,5 +85,30 @@
 {% endblock content %}
 
 {% block script %}
-<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
+
+	<script type="text/javascript">
+		$('.show_confirm').click(function (event) {
+			var form =  $(this).closest("form");
+			var name = $(this).data("name");
+			event.preventDefault();
+            swal({
+                title: '{% trans "ARE YOU SURE DELETE IT" %}',
+                text: "{% trans "YOU WON'T BE ABLE TO REVERT THIS!" %}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{% trans "YES" %}',
+                cancelButtonText: '{% trans "NO" %}',
+                confirmButtonClass: 'btn btn-success margin-5',
+                cancelButtonClass: 'btn btn-danger margin-5',
+                buttonsStyling: false
+            }).then(function (res) {
+				if (res.value == true) {
+					form.submit();
+				}
+            })
+        });
+	</script>
 {% endblock script %}
