@@ -121,7 +121,7 @@ class POrder(models.Model):
     def save(self, *args, **kwargs):
         id = None
         try:
-            id = POrder.objects.last().id
+            id = POrder.objects.latest('id').id
         except:
             id = 0
         self.label = "PUR-" + str(id+1)

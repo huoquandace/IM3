@@ -28,15 +28,17 @@
 			</thead>
 			<tbody>
 				{% for object in object_list %}
-				<tr>
-					<td class="table-plus"> {{ object.id_product }} </td>
-					<td> {{ object.name }} </td>
-					<td> {{ object.brand }} </td>
-					<td> {{ object.price }} </td>
-					<td> <img src="{{ object.image.url }}" alt="product_logo" style="height: 50px"> </td>
-					<td> {{ object.category.title }} </td>
-					<td> {{ object.inventory }} </td>
-				</tr>
+					{% if object.inventory > 0 %}
+					<tr>
+						<td class="table-plus"> {{ object.id_product }} </td>
+						<td> {{ object.name }} </td>
+						<td> {{ object.brand }} </td>
+						<td> {{ object.price }} </td>
+						<td> <img src="{{ object.image.url }}" alt="product_logo" style="height: 50px"> </td>
+						<td> {{ object.category.title }} </td>
+						<td> {{ object.inventory }} </td>
+					</tr>
+					{% endif %}
 				{% endfor %}
 			</tbody>
 		</table>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{% load auth_extras %}
 
 {% block title %} {% trans "ORDER" %} {% endblock title %}
 
@@ -23,7 +24,7 @@
             <form method="post">{% csrf_token %}<input class="btn btn-primary" type="submit" value="{% trans "ORDER NOW" %}"></form>
         </div>
         {% else %}
-            {% if porder.status != 'Reject' and porder.status != 'Cancel' %}
+            {% if porder.status != 'Reject' and porder.status != 'Cancel' and porder.status != 'Request' %}
             <h5 class="text-green h5 ml-5"> {% trans "ORDER ON" %}: <span class="text-orange">{{ porder.order_date|date:'d-m-Y' }}</span> </h5>
             {% endif %}
         </div>
@@ -66,10 +67,17 @@
             <hr>
         {% endfor %}
 	</div>
-    {% if porder.status != 'Reject' %}
+    {% if porder.status != 'Reject' and porder.status != 'Request' %}
         <div class="pb-20 mt-1 clearfix">
             <div class="pull-right h3 mr-5 text-green">
                 {% trans "TOTAL" %}: {{ porder.total }}
+            </div>
+        </div>
+    {% endif %}
+    {% if porder.status == 'Request' and request.user|has_group:'Supplier' %}
+        <div class="pb-20 mt-1 clearfix">
+            <div class="pull-right mr-5">
+                <a href="{% url 'supplier_quote' porder.id %}" class="btn btn-success btn-lg" style="font-size: 25px; font-weight: 700;"> {% trans "QUOTE" %} </a>
             </div>
         </div>
     {% endif %}
