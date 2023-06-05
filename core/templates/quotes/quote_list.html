@@ -68,7 +68,7 @@
 							</form>
                         {% endif %}
                         {% if object.status == 'Quote' %}
-                            <a class="btn btn-sm btn-outline-success" href="{% url 'quote_cancel' object.id%}">{% trans "CANCEL" %}</a>
+                            <a class="btn btn-sm btn-outline-secondary" href="{% url 'quote_cancel' object.id%}">{% trans "CANCEL" %}</a>
                             <a class="btn btn-sm btn-outline-primary mt-1" href="{% url 'order' object.id%}">{% trans "ORDER" %}</a>
                         {% endif %}
 						{% if object.status == 'Reject' or object.status == 'Cancel' or object.status == 'Request' %}

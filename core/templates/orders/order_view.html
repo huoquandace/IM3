@@ -24,7 +24,7 @@
             <form method="post">{% csrf_token %}<input class="btn btn-primary" type="submit" value="{% trans "ORDER NOW" %}"></form>
         </div>
         {% else %}
-            {% if porder.status != 'Reject' and porder.status != 'Cancel' and porder.status != 'Request' %}
+            {% if porder.status != 'Reject' and porder.status != 'Cancel' and porder.status != 'Request' and porder.status != 'Quote' %}
             <h5 class="text-green h5 ml-5"> {% trans "ORDER ON" %}: <span class="text-orange">{{ porder.order_date|date:'d-m-Y' }}</span> </h5>
             {% endif %}
         </div>
@@ -78,6 +78,25 @@
         <div class="pb-20 mt-1 clearfix">
             <div class="pull-right mr-5">
                 <a href="{% url 'supplier_quote' porder.id %}" class="btn btn-success btn-lg" style="font-size: 25px; font-weight: 700;"> {% trans "QUOTE" %} </a>
+                <a href="#"class="btn btn-lg btn-danger mt-1"data-toggle="modal"data-target="#Medium-modal"type="button" style="font-size: 25px; font-weight: 700;" >{% trans "REJECT" %}</a>
+                    <div class="modal fade"id="Medium-modal"tabindex="-1"role="dialog"aria-labelledby="myLargeModalLabel"aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <form method="POST" action="{% url 'supplier_quote_reject' porder.id %}">{% csrf_token %}
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel"> {% trans "ENTER YOUR CAUSE" %}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                    {{ form.note }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Close</button>
+                                    <input type="submit" class="btn btn-danger" value="{% trans "REJECT" %}"></form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     {% endif %}

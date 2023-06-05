@@ -926,11 +926,20 @@ class OrderList(ListView):
     template_name = 'orders/order_list.html'
 
 class Order(View):
+    class NoteChoiceForm(forms.ModelForm):
+        class Meta:
+            model = POrder
+            fields = ['note', ]
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
     
     def get(self, request, pk):
         porder = POrder.objects.get(id=pk)
         return render(request, 'orders/order_view.html', {
             'porder': porder,
+            'form': self.NoteChoiceForm,
         })
     
     def post(self, request, pk):
