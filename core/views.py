@@ -653,6 +653,7 @@ class SupplierProvie(GroupRequiredMixin, View):
         supplier = Supplier.objects.get(account=request.user)
         selected_products = supplier.products.all()
         products = Product.objects.filter(supplier__isnull=True)
+        products = Product.objects.all()
 
         return render(request, 'suppliers/supplier_provide.html', {
             'products': products,
