@@ -218,6 +218,8 @@ class SOrder(models.Model):
         for sorderdetail in self.sorderdetail_set.all():
             if sorderdetail.product.price is not None:
                 sum += sorderdetail.product.price * sorderdetail.quantity
+        if self.customer.type == 'Membership':
+            return sum - int(discount*sum/100) - int(sum*5/100)
         return sum - int(discount*sum/100)
 
 class SOrderDetail(models.Model):

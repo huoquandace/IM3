@@ -122,9 +122,9 @@
 
         <div class="pd-20 d-flex justify-content-between">
             <div class="form-group row">
-                <label class="col-sm-12 col-md-3 col-form-label"> {% trans 'Discount' %} </label>
-                <div class="col-sm-12 col-md-4">
-                    <input type="number" name="discount" id="discount" class="form-control">
+                <label class="col-sm-12 col-md-4 col-form-label"> {% trans 'Discount' %} </label>
+                <div class="col-sm-12 col-md-5">
+                    <input type="number" name="discount" id="discount" class="form-control" min="0" max="95">
                 </div>
                 <div class="col-sm-12 col-md-1" style="margin-top: 10px; margin-left: -5px;">%</div>
             </div>
@@ -220,6 +220,27 @@
             total += parseInt(a[i].textContent) * parseInt(b[i].value)
         }
         $('#total').text(total)
+    })
+
+    $('#discount').change(function() {
+        total = 0
+        var a = $('#discount').parent().parent().parent().parent().find('table').find('.css_price')
+        var b = $('#discount').parent().parent().parent().parent().find('table').find('.quantity')
+        for (var i = 0; i < a.length ; i++) {
+            if (b[i].value == '') {
+                b[i].value = 0
+            }
+            total += parseInt(a[i].textContent) * parseInt(b[i].value)
+        }
+        
+        if($(this).val() == '' || $(this).val() == null) {
+            discount = 0
+        } else {
+            discount = parseInt($(this).val());
+        }
+        
+
+        $('#total').text(total - discount*total/100)
     })
 </script>
 {% endblock script %}
