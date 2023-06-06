@@ -43,6 +43,13 @@ class Dashboard(View):
 
         total_products = Product.objects.count()
 
+        ### Total sale order
+        total_sale_order = SOrder.objects.count()
+        ### Retail Customer
+        total_retail_customer = Customer.objects.filter(~Q(type='Wholesale Customer')).count()
+        ### Wholesale Customer
+        total_wholesale_customer = Customer.objects.filter(type='Wholesale Customer').count()
+
         ### Earning
         pay_mn = sum([porder.estimated_bill() for porder in POrder.objects.filter(status='Paid')])
         sale_mn = sum([sorder.bill() for sorder in SOrder.objects.filter(status='Paid')])
@@ -132,6 +139,9 @@ class Dashboard(View):
             'earning': earning,
             'revenue': revenue,
             'y_revenue': y_revenue,
+            'total_sale_order': total_sale_order,
+            'total_retail_customer': total_retail_customer,
+            'total_wholesale_customer': total_wholesale_customer,
             'total_products': total_products,
             'product_best_seller': product_best_seller_couple,
         })
@@ -1213,6 +1223,58 @@ class SOrderPay(View):
         sorder.status = 'Paid'
         sorder.save()
         return redirect('sale_order_list')
+
+
+class CustomerList(ListView):
+    model = Customer
+    template_name = 'customers/customer_list.html'
+
+class CustomerAdd(SuccessMessageMixin, CreateView):
+    class CustomerForm(forms.ModelForm):
+        class Meta:
+            model = Customer
+            fields = '__all__'
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['name'].widget.attrs.update({'placeholder': _('Product name')})
+            self.fields['address'].widget.attrs.update({'rows': '4'})
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
+
+    model = Customer
+    form_class = CustomerForm
+    # fields = '__all__'
+    success_url = reverse_lazy('customer_list')
+    success_message = _(' successfully.')
+    template_name = 'customers/customer_add.html'
+
+class CustomerUpdate(SuccessMessageMixin, UpdateView):
+    class CustomerForm(forms.ModelForm):
+        class Meta:
+            model = Customer
+            fields = '__all__'
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['name'].widget.attrs.update({'placeholder': _('Product name')})
+            self.fields['address'].widget.attrs.update({'rows': '4'})
+            for field in self.fields.values():
+                field.widget.attrs['class'] = 'form-control'
+
+    model = Customer
+    form_class = CustomerForm
+    # fields = '__all__'
+    success_url = reverse_lazy('customer_list')
+    success_message = _('Update successfully.')
+    template_name = 'customers/customer_update.html'
+
+class CustomerDelete(SuccessMessageMixin, DeleteView):
+    model = Customer
+    success_url = reverse_lazy('customer_list')
+    success_message = _('Delete successfully.')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
 
 def get_customer(request):
     phone = request.POST.get('phone')

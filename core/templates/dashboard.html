@@ -58,7 +58,7 @@
 {% block content %}
 <div class="xs-pd-20-10 pd-ltr-20">
 	<div class="title pb-20">
-		<h2 class="h3 mb-0">Hospital Overview</h2>
+		<h2 class="h3 mb-0"> {% trans "Overview" %} </h2>
 	</div>
 
 	<div class="row pb-10">
@@ -66,9 +66,9 @@
 			<div class="card-box height-100-p widget-style3">
 				<div class="d-flex flex-wrap">
 					<div class="widget-data">
-						<div class="weight-700 font-24 text-dark">75</div>
+						<div class="weight-700 font-24 text-dark"> {{ total_sale_order }} </div>
 						<div class="font-14 text-secondary weight-500">
-							Appointment
+							{% trans "Total Order" %}
 						</div>
 					</div>
 					<div class="widget-icon">
@@ -83,9 +83,9 @@
 			<div class="card-box height-100-p widget-style3">
 				<div class="d-flex flex-wrap">
 					<div class="widget-data">
-						<div class="weight-700 font-24 text-dark">124,551</div>
+						<div class="weight-700 font-24 text-dark"> {{ total_retail_customer }} </div>
 						<div class="font-14 text-secondary weight-500">
-							Total Patient
+							{% trans "Retail Customer" %}
 						</div>
 					</div>
 					<div class="widget-icon">
@@ -100,9 +100,9 @@
 			<div class="card-box height-100-p widget-style3">
 				<div class="d-flex flex-wrap">
 					<div class="widget-data">
-						<div class="weight-700 font-24 text-dark">400+</div>
+						<div class="weight-700 font-24 text-dark"> {{ total_wholesale_customer }} </div>
 						<div class="font-14 text-secondary weight-500">
-							Total Doctor
+							{% trans "Wholesale Customer" %}
 						</div>
 					</div>
 					<div class="widget-icon">
@@ -195,8 +195,7 @@
 	
 	
 	<div class="footer-wrap pd-20 mb-20 card-box">
-		DeskApp - Bootstrap 4 Admin Template By
-		<a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+		DeskApp - Bootstrap 4 Admin 
 	</div>
 </div>
 {% endblock content %}

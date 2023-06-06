@@ -74,11 +74,11 @@
     </div>
     <div class="col-sm-12 col-md-6">
         <div class="card-box mb-30">
-            <form method="post" action="{% url 'sale_order_add' %}">
+            <form method="post" action="{% url 'sale_order_add' %}" id="sale_add_form">
                 {% csrf_token %}
                 <div class="pd-20 d-flex justify-content-between ">
                     <h4 class="text-blue h4"> {% trans "Order" %} </h4>
-                    <input type="submit" value="{% trans 'SUBMIT' %}" class="btn btn-success btn-sm">
+                    <input type="submit" value="{% trans 'SUBMIT' %}" class="btn btn-success btn-sm" id="sale_submit_btn">
                 </div>
                     <div class="pd-20" style="margin: 0 5rem;" id="exist" hidden>
                         <hr>
@@ -182,6 +182,9 @@
                     timer: 2000
                 }
             )
+            $('#membership_img').hide()
+            $('#cs_name').attr('value', "")
+            $('#cs_phone').attr('value', "")
         } else {
             $.ajax({
                 url: `{% url 'get_customer' %}`,
@@ -197,6 +200,7 @@
                         $('#cs_type').attr('value', response.type)
                         if (response.type == 'Membership') {
                             $('#membership_img').removeAttr('hidden')
+                            $('#membership_img').show()
                         }
                         $('#exist').removeAttr('hidden')
                     } else {
@@ -241,6 +245,50 @@
         
 
         $('#total').text(total - discount*total/100)
+    })
+
+    $('#sale_submit_btn').click(function(even) {
+        event.preventDefault()
+        if ( $('#cs_phone').val() != null && $('#cs_phone').val() != "" ) {
+            if ( $('#cs_name').val() == null || $('#cs_name').val() == "" ) {
+                event.preventDefault()
+                swal(
+                    {
+                        position: 'top-end',
+                        type: 'warning',
+                        title: 'Please enter customer name',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }
+                )
+            } else {
+                $('#sale_add_form').submit();
+            }
+        } else {
+            if ( $('#cs_phone').val() == null || $('#cs_phone').val() == "" ) {
+                swal(
+                    {
+                        position: 'top-end',
+                        type: 'warning',
+                        title: 'Please enter a valid phone number',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }
+                )
+            } 
+            if ( $('#cs_name').val() == null || $('#cs_name').val() == "" ) {
+                swal(
+                    {
+                        position: 'top-end',
+                        type: 'warning',
+                        title: 'Please enter customer name',
+                        showConfirmButton: false,
+                        timer: 2000
+                    }
+                )
+            }
+            
+        }
     })
 </script>
 {% endblock script %}

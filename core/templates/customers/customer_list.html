@@ -2,16 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans "PRODUCT_LIST" %} {% endblock title %}
+{% block title %} {% trans "CUSTOMER_LIST" %} {% endblock title %}
 
 {% block content %}
 <div class="card-box mb-30">
 	<div class="pd-20 d-flex justify-content-between">
-		<h4 class="text-blue h4"> {% trans "INVENTORY" %} </h4>
-		<div>
-			<a href="{% url 'grn_list' %}" class="btn btn-primary">{% trans "GRN DETAIL" %}</a>
-			<a href="{% url 'expiry_list' %}" class="btn btn-primary">{% trans "EXPIRY" %}</a>
-		</div>
+		<h4 class="text-blue h4"> {% trans "CUSTOMER" %} </h4>
+		<a href="{% url 'customer_add' %}" class="btn btn-primary">{% trans "NEW" %}</a>
 	</div>
 	<div class="pb-20">
 		<table class="data-table table hover nowrap">
@@ -19,24 +16,28 @@
 				<tr>
 					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
 					<th> {% trans "NAME" %} </th>
-					<th> {% trans "BRAND" %} </th>
-					<th> {% trans "IMAGE" %} </th>
-					<th> {% trans "CATEGORY" %} </th>
-					<th class="datatable-nosort">{% trans "INVENTORY" %}</th>
+					<th> {% trans "PHONE" %} </th>
+					<th> {% trans "TYPE" %} </th>
+					<th class="datatable-nosort">{% trans "ACTION" %}</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for object in object_list %}
-					{% if object.inventory > 0 %}
-					<tr>
-						<td class="table-plus"> {{ object.id_product }} </td>
-						<td> {{ object.name }} </td>
-						<td> {{ object.brand }} </td>
-						<td> <img src="{{ object.image.url }}" alt="product_logo" style="height: 50px"> </td>
-						<td> {{ object.category.title }} </td>
-						<td> {{ object.inventory }} </td>
-					</tr>
-					{% endif %}
+				<tr>
+					<td class="table-plus"> {{ object.id }} </td>
+					<td> {{ object.name }} </td>
+					<td> {{ object.phone }} </td>
+					<td> {{ object.type }} </td>
+					<td>
+						<div class="d-flex flex-column">
+							<a href="{% url 'customer_update' object.id %}" class="mb-3"><i class="dw dw-edit2"></i> {% trans "EDIT" %}</a>
+							<form method="POST" action="{% url 'customer_delete' object.id %}">
+								{% csrf_token %}
+								<a href="#" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i> {% trans "DELETE" %}</a>
+							</form>
+						</div>
+					</td>
+				</tr>
 				{% endfor %}
 			</tbody>
 		</table>

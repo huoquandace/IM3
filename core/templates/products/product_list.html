@@ -18,6 +18,7 @@
 					<th> {% trans "NAME" %} </th>
 					<th> {% trans "BRAND" %} </th>
 					<th> {% trans "PRICE" %} </th>
+					{% comment %} <th> {% trans "BULK PRICE" %} </th> {% endcomment %}
 					<th> {% trans "IMAGE" %} </th>
 					<th> {% trans "CATEGORY" %} </th>
 					<th class="datatable-nosort">{% trans "ACTION" %}</th>
@@ -30,6 +31,7 @@
 					<td> {{ object.name }} </td>
 					<td> {{ object.brand }} </td>
 					<td> {{ object.price }} </td>
+					{% comment %} <td> {{ object.bulk_price }} </td> {% endcomment %}
 					<td> <img src="{{ object.image.url }}" alt="product_logo" style="height: 50px"> </td>
 					<td> {{ object.category.title }} </td>
 					<td>

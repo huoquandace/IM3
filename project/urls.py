@@ -83,6 +83,11 @@ urlpatterns += i18n_patterns (
     path('sale/order/bill/<int:pk>/', SOrderToBill.as_view(), name='sale_order_bill'),
     path('sale/order/payment/<int:pk>', SOrderPay.as_view(), name='sale_order_payment'),
 
+    path('customer/list/', CustomerList.as_view(), name='customer_list'),
+    path('customer/add/', CustomerAdd.as_view(), name='customer_add'),
+    path('customer/update/<int:pk>', CustomerUpdate.as_view(), name='customer_update'),
+    path('customer/delete/<int:pk>', CustomerDelete.as_view(), name='customer_delete'),
+
     # prefix_default_language=False
 )
 

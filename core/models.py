@@ -75,6 +75,7 @@ class Product(models.Model):
     brand = models.CharField(_("brand"), max_length=255)
     image = models.ImageField(_("image"), upload_to="product")
     price = models.IntegerField(_("price"))
+    bulk_price = models.IntegerField(_("bulk_price"))
     description = models.TextField(_("description"))
     category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.CASCADE)
     class Meta:
@@ -192,13 +193,18 @@ class Customer(models.Model):
         FEMALE = 'F', _('Female')
         UNKNOWN = 'U', _('Unknown')
 
+    class Type(models.TextChoices):
+        Normal = 'Normal', _('Normal')
+        Membership = 'Membership', _('Membership')
+        WholesaleCustomer = 'Wholesale Customer', _('Wholesale Customer')
+
     name = models.CharField(_("name"), max_length=50)
     gender = models.CharField(_("gender"), max_length=100, blank=True, choices=Gender.choices)
     phone = models.CharField(_("phone"), max_length=100, blank=True, null=True, unique=True)
     age = models.IntegerField(_("age"), blank=True, null=True)
     address = models.TextField(_("address"), blank=True, null=True)
     birthday = models.DateField(_("birthday"), max_length=10, blank=True, null=True)
-    type = models.CharField(_("type"), max_length=50, default='Normal', blank=True, null=True)
+    type = models.CharField(_("type"), max_length=50, default='Normal', blank=True, null=True, choices=Type.choices)
 
 class SOrder(models.Model):
     customer = models.ForeignKey(Customer, verbose_name=_("customer"), on_delete=models.CASCADE, blank=True)
