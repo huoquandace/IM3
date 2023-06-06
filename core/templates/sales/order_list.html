@@ -30,13 +30,14 @@
 					<td> {{ object.bill }} </td>
 					<td> {{ object.created_at|date:'d-m-Y' }} </td>
 					<td> {{ object.status }} </td>
-					<td>
+					<td class="" style="width: 10%">
 						{% if object.status == 'Order' %}
 						<a class="btn btn-sm btn-outline-success" href="{% url 'sale_order_edit' object.id %}"> {% trans "Edit" %} </a>
-						<a class="btn btn-sm btn-outline-success" href="{% url 'sale_order_payment' object.id %}"> {% trans "Pay" %} </a>
+						<a class="btn btn-sm btn-outline-danger" href="{% url 'sale_order_delete' object.id %}"> {% trans "Delete" %} </a>
+						<a class="btn btn-sm btn-outline-primary" href="{% url 'sale_order_payment' object.id %}"> {% trans "Pay" %} </a>
 						{% endif %}
 						{% if object.status == 'Order' or object.status ==  'Paid' %}
-						<a class="btn btn-sm btn-outline-success" target="_blank" href="{% url 'sale_order_bill' object.id %}"> {% trans "Bill" %} </a>
+						<a class="btn btn-sm btn-outline-dark" target="_blank" href="{% url 'sale_order_bill' object.id %}"> {% trans "Bill" %} </a>
 						{% endif %}
 					</td>
 				</tr>

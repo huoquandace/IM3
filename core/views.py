@@ -1170,41 +1170,72 @@ class SOrderEdit(View):
 
     def get(self, request, pk):
         sorder = SOrder.objects.get(id=pk)
-        products = Product.objects.all()
+        
+        products = []
+        for product in Product.objects.all():
+            if product.inventory() > 0 and product not in [sorder_detail.product for sorder_detail in sorder.sorderdetail_set.all()]:
+                products.append(product)
+
+        selected_products = [ [sorder_detail.product, sorder_detail.quantity] for sorder_detail in sorder.sorderdetail_set.all() ]
         return render(request, 'sales/order_edit.html', {
             'products': products,
+            'selected_products': selected_products,
             'sorder': sorder,
         })
 
-    def post(self, request):
-        phone = request.POST.get('cs_phone')
-
-        try:
-            Customer.objects.get(phone=phone)
-        except Customer.DoesNotExist:
-            pass
-            # Customer.objects.create(phone=phone)
+    def post(self, request, pk):
+        sorder = SOrder.objects.get(id=pk)
         
-        customer = Customer.objects.get(phone=phone)
-        products = []
+        new_products = []
+        del_products = []
+        upd_products = []
+
         for i in range(Product.objects.all().last().id):
             if request.POST.get(str(i+1)) is not None:
                 quantity = request.POST.get(str(i+1)) if request.POST.get(str(i+1)) != '' else 1
-                products.append([Product.objects.get(id=i+1), quantity])
-        
-        sorder = SOrder.objects.create(
-            customer = customer,
-            status = 'Order'
-        )
+                # new_products.append([Product.objects.get(id=i+1), quantity])
+                product = Product.objects.get(id=i+1)
+                if product not in [sorder_detail.product for sorder_detail in sorder.sorderdetail_set.all()]:
+                    new_products.append([product, quantity])
+                else:
+                    upd_products.append([product, quantity])
+            else:
+                try:
+                    del_products.append(Product.objects.get(id=i+1))
+                except Product.DoesNotExist:
+                    pass
 
-        for couple in products:
-            SOrderDetail.objects.create(sorder=sorder, product=couple[0], quantity=couple[1])
+        if len(new_products) + len(upd_products) == 0:
+            messages.error(request, _('Please choose at least one product'))
+            return redirect('sale_order_edit', sorder.id)
+        for del_product in del_products:
+            try:
+                SOrderDetail.objects.get(sorder=sorder, product=del_product).delete()
+            except SOrderDetail.DoesNotExist:
+                pass
+        for new_product in new_products:
+            SOrderDetail.objects.create(sorder=sorder, product=new_product[0], quantity=new_product[1])
+        for upd_product in upd_products:
+            sorder_detail = SOrderDetail.objects.get(sorder=sorder, product=upd_product[0])
+            sorder_detail.quantity = upd_product[1]
+            sorder_detail.save()
+        messages.success(request, _('Update successfully'))
 
         return redirect('sale_order_list')
 
 class SOrderList(ListView):
     model = SOrder
     template_name = 'sales/order_list.html'
+
+
+class SOrderDelete(SuccessMessageMixin, DeleteView):
+    model = SOrder
+    success_url = reverse_lazy('sale_order_list')
+    success_message = _('Delete successfully.')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
+
 
 class SOrderToBill(View):
     

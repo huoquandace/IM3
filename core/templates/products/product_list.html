@@ -36,12 +36,9 @@
 					<td> {{ object.category.title }} </td>
 					<td>
 						<div class="d-flex flex-column">
-							{% comment %} <a href="#"><i class="dw dw-eye"></i> View</a> {% endcomment %}
 							<a href="{% url 'product_update' object.id %}" class="mb-3"><i class="dw dw-edit2"></i> {% trans "EDIT" %}</a>
 							<form method="POST" action="{% url 'product_delete' object.id %}">
 								{% csrf_token %}
-								{% comment %} <input name="_method" type="hidden" value="DELETE">
-								<button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button> {% endcomment %}
 								<a href="#" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i> {% trans "DELETE" %}</a>
 							</form>
 						</div>
