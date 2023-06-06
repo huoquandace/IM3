@@ -47,6 +47,10 @@ class Dashboard(View):
         pay_mn = sum([porder.estimated_bill() for porder in POrder.objects.filter(status='Paid')])
         sale_mn = sum([sorder.bill() for sorder in SOrder.objects.filter(status='Paid')])
         earning = sale_mn - pay_mn
+
+        ###
+        current_year = timezone.now().year
+        current_month = timezone.now().month
         ###
         r_time = []
         r_data = []
@@ -58,7 +62,7 @@ class Dashboard(View):
                 if i+1 == sorder.created_at.day:
                     r += sorder.bill()
             r_data.append(r)
-        revenue = [r_time, r_data]
+        revenue = [r_time, r_data, current_year, current_month]
         ###
         if request.GET.get('month') is not None and request.GET.get('month') != "":
             get_data = request.GET.get('month')
@@ -76,7 +80,7 @@ class Dashboard(View):
                         if i+1 == sorder.created_at.day:
                             r += sorder.bill()
                     r_data.append(r)
-                revenue = [r_time, r_data]
+                revenue = [r_time, r_data, current_year, current_month]
             else:
                 import datetime
                 d0 = datetime.datetime(year=year, month=month, day=1)
@@ -97,15 +101,13 @@ class Dashboard(View):
                             if i+1 == sorder.created_at.day:
                                 r += sorder.bill()
                     r_data.append(r)
-                revenue = [r_time, r_data]
+                revenue = [r_time, r_data, year, month]
         ###
-        current_year = timezone.now().year
-        current_month = timezone.now().month
+        
         yr_time = [ i+1 for i in range(12) ]
 
         if request.GET.get('year') is not None and request.GET.get('year') != "":
             yr_year = int(request.GET.get('year'))
-            print(yr_year)
         else:
             yr_year = current_year
 
@@ -119,7 +121,14 @@ class Dashboard(View):
             yr_data.append(yr)
         y_revenue = [yr_time, yr_data, yr_year]
 
+        ###
+        if request.GET.get('tab_active') is None or request.GET.get('tab_active') == "":
+            tab_active = 1
+        else:
+            tab_active = int(request.GET.get('tab_active'))
+        print(tab_active)
         return render(request, 'dashboard.html', {
+            'tab_active': tab_active,
             'earning': earning,
             'revenue': revenue,
             'y_revenue': y_revenue,

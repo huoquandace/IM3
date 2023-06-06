@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load auth_extras %}
+
 {% block title %} {% trans "USER_LIST_TITLE" %} {% endblock title %}
 {% block content %}
 
@@ -22,16 +24,18 @@
   </thead>
   <tbody>
     {% for user in users %}
-    <tr>
-      <th> {{ forloop.counter }} </th>
-      <td> {{ user.id }} </td>
-      <td> {{ user.username }} </td>
-      <td><img src="{{ user.profile.avatar.url }}"]></td>
-      <td>
-        <a href="#"><button> {% trans "RESET_PASSWORD" %} </button></a>
-        <a href="{% url 'user_delete' user.id %}"><button> {% trans "DELETE" %} </button></a>
-      </td>
-    </tr>
+      {% if user|has_group:'Manager' or user|has_group:'Staff' %}
+      <tr>
+        <th> {{ forloop.counter }} </th>
+        <td> {{ user.id }} </td>
+        <td> {{ user.username }} </td>
+        <td><img src="{{ user.profile.avatar.url }}" style="height: 100px;" ></td>
+        <td>
+          <a href="#"><button> {% trans "RESET_PASSWORD" %} </button></a>
+          <a href="{% url 'user_delete' user.id %}"><button> {% trans "DELETE" %} </button></a>
+        </td>
+      </tr>
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>

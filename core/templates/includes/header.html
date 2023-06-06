@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load static %}
-
+{% load auth_extras %}
 
 
 <div class="header">
@@ -45,8 +45,10 @@
           <span class="user-name"> {{ request.user.username }} </span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-          <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-          <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+          {% if request.user|has_group:'Manager' or request.user|has_group:'Staff' %}
+          <a class="dropdown-item" href="{% url 'profile' %}"><i class="dw dw-user1"></i> Profile</a>
+          {% endif %}
+          {% comment %} <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a> {% endcomment %}
           <a class="dropdown-item" href="{% url 'logout' %}"><i class="dw dw-logout"></i> Log Out</a>
         </div>
       </div>
