@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %} {% trans "QUOTE_ADD" %} {% endblock title %}
+{% block title %} {% trans "ORDER NEW" %} {% endblock title %}
 
 {% block content %}
 <div class="card-box mb-30">
@@ -21,8 +21,15 @@
                 </form>
             </div>
         </div>
-        <div class="col-6">
-            
+        <div class="col-6"  id="membership_img" hidden>
+            <div class="d-flex justify-content-around" >
+                {% comment %} <input class="form-control" type="text" id='cs_type' name='cs_type'/> {% endcomment %}
+                <img src="{% static 'membership.png' %}" style="height: 100px;" >
+                <div class="">
+                    <h2 class="h2"> MEMBERSHIP </h2>
+                    <h3 class="h3"> Loyal customers 5% discount </h3>
+                </div>
+            </div>
         </div>
     </div>
   </div>
@@ -37,7 +44,7 @@
             <thead>
               <tr>
                 <th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
-                <th> {% trans "Name" %} </th>
+                <th> {% trans "Product" %} </th>
                 <th> {% trans "Image" %} </th>
                 <th> {% trans "Price" %} </th>
                 <th> {% trans "Inventory" %} </th>
@@ -76,9 +83,9 @@
                     <div class="pd-20" style="margin: 0 5rem;" id="exist" hidden>
                         <hr>
                         <div class="form-group row">
-                            <label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Name' %} </label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control" type="text" id='cs_name' name='cs_name'/>
+                            <label class="col-sm-12 col-md-3 col-form-label" style="font-weight: 700; font-size: 25px;"> {% trans 'Customer' %} </label>
+                            <div class="col-sm-12 col-md-9">
+                                <input class="form-control" type="text" id='cs_name' name='cs_name' style="font-weight: 900; font-size: 25px;"/>
                                 <input class="form-control" type="text" id='cs_phone' name='cs_phone' hidden/>
                             </div>
                         </div>
@@ -87,7 +94,7 @@
                     <table class=" table hover nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort"> {% trans "Name" %} </th>
+                                <th class="table-plus datatable-nosort"> {% trans "Product" %} </th>
                                 <th> {% trans "Price" %} </th>
                                 <th> {% trans "Quantity" %} </th>
                                 <th class="datatable-nosort">Action</th>
@@ -132,6 +139,8 @@
 
 {% block script %}
 <script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
 <script>
     var total = 0;
     $('.add_btn').click(function(){
@@ -163,25 +172,41 @@
 
     $('#find').on('click', function () {
         phone = $('#phone').val()
-        $.ajax({
-            url: `{% url 'get_customer' %}`,
-            type: 'POST',
-            data: {
-                'phone': phone,
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
-            },
-            success: function(response) {
-                if (response.is_exist) {
-                    $('#cs_name').attr('value', response.name)
-                    $('#cs_phone').attr('value', response.phone)
-                    $('#exist').removeAttr('hidden')
-                } else {
-                    $('#cs_name').attr('value', "")
-                    $('#cs_phone').attr('value', phone)
-                    $('#exist').removeAttr('hidden')
+        if (phone == null || phone == '') {
+            swal(
+                {
+                    position: 'top-end',
+                    type: 'error',
+                    title: 'Phone is empty',
+                    showConfirmButton: false,
+                    timer: 2000
                 }
-            }
-        })
+            )
+        } else {
+            $.ajax({
+                url: `{% url 'get_customer' %}`,
+                type: 'POST',
+                data: {
+                    'phone': phone,
+                    'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+                },
+                success: function(response) {
+                    if (response.is_exist) {
+                        $('#cs_name').attr('value', response.name)
+                        $('#cs_phone').attr('value', response.phone)
+                        $('#cs_type').attr('value', response.type)
+                        if (response.type == 'Membership') {
+                            $('#membership_img').removeAttr('hidden')
+                        }
+                        $('#exist').removeAttr('hidden')
+                    } else {
+                        $('#cs_name').attr('value', "")
+                        $('#cs_phone').attr('value', phone)
+                        $('#exist').removeAttr('hidden')
+                    }
+                }
+            })
+        }
     })
 
     $('.quantity').on('change', function() {

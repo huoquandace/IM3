@@ -1227,6 +1227,7 @@ def get_customer(request):
         'is_exist': is_exist,
         'name': customer.name,
         'phone': customer.phone,
+        'type': customer.type,
     }
     return JsonResponse(data)
 
