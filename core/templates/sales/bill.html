@@ -72,6 +72,12 @@
                 <div>--- </div>
             </td>
             <td style="text-align: right;">
+                {% if sorder.customer.type == 'Membership' %}
+                <div>Membership: -5%</div>
+                {% endif %}
+                {% if sorder.discount is not None or sorder.discount == 0 %}
+                <div>Discount: -{{ sorder.discount }}%</div>
+                {% endif %}
                 <div>Total: {{ sorder.bill }} VND</div>
                 <div>Confirmed </div>
             </td>
