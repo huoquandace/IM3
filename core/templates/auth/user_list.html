@@ -1,49 +1,83 @@
 {% extends "base.html" %}
+{% load static %}
 {% load i18n %}
 {% load auth_extras %}
 
 {% block title %} {% trans "USER_LIST_TITLE" %} {% endblock title %}
 {% block content %}
-
-<style> table, th, td { border: solid 1px #333; border-collapse: collapse; } </style>
-
-<form method='GET'>
-  <input type='text' name='q' value='{{ request.GET.q }}'>
-  <input class="button" type='submit' value="Search">
-</form>
-
-<table>
-  <thead>
-    <tr>
-      <th> # </th>
-      <th> ID </th>
-      <th> Username </th>
-      <th> Avatar </th>
-      <th> - </th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for user in users %}
-      {% if user|has_group:'Manager' or user|has_group:'Staff' %}
-      <tr>
-        <th> {{ forloop.counter }} </th>
-        <td> {{ user.id }} </td>
-        <td> {{ user.username }} </td>
-        <td><img src="{{ user.profile.avatar.url }}" style="height: 100px;" ></td>
-        <td>
-          <a href="#"><button> {% trans "RESET_PASSWORD" %} </button></a>
-          <a href="{% url 'user_delete' user.id %}"><button> {% trans "DELETE" %} </button></a>
-        </td>
-      </tr>
-      {% endif %}
-    {% endfor %}
-  </tbody>
-</table>
-
-{% if is_paginated %}
-  {% if page_obj.has_previous %} <a href="./?page={{ page_obj.previous_page_number }}"> {% trans "PREVIOUS" %} </a> {% endif %}
-  <span> {% trans "PAGE" %} {{ page_obj.number }}/{{ page_obj.paginator.num_pages }} </span>
-  {% if page_obj.has_next %} <a href="./?page={{ page_obj.next_page_number }}"> {% trans "NEXT" %} </a> {% endif %}
-{% endif %}
-
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "STAFF" %} </h4>
+		<a href="{% url 'user_add_by_info' %}" class="btn btn-primary">{% trans "NEW" %}</a>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap">
+			<thead>
+				<tr>
+					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+					<th> {% trans "NAME" %} </th>
+					<th> {% trans "USERNAME" %} </th>
+					<th> {% trans "PRICE" %} </th>
+					<th> {% trans "IMAGE" %} </th>
+					<th> {% trans "CATEGORY" %} </th>
+					<th class="datatable-nosort">{% trans "ACTION" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+        {% if user|has_group:'Manager' or user|has_group:'Staff' %}
+				<tr>
+					<td class="table-plus"> {{ user.id }} </td>
+					<td> {{ user.first_name }} {{ user.last_name }} </td>
+					<td> {{ user.username }} </td>
+					<td> <img src="{{ user.profile.avatar.url }}" alt="avatar" style="height: 50px"> </td>
+					<td> {{ user.email }} </td>
+					<td> {{ user.profile.phone }} </td>
+					<td>
+						<div class="d-flex flex-column">
+							<a href="#" class="mb-3"><i class="dw dw-edit2"></i> {% trans "RESET_PASSWORD" %}</a>
+							<form method="POST" action="{% url 'user_delete' user.id %}">
+								{% csrf_token %}
+								<a href="#" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i> {% trans "DELETE" %}</a>
+							</form>
+						</div>
+					</td>
+				</tr>
+        {% endif %}
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
 {% endblock content %}
+
+
+
+{% block script %}
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
+
+	<script type="text/javascript">
+		$('.show_confirm').click(function (event) {
+			var form =  $(this).closest("form");
+			var name = $(this).data("name");
+			event.preventDefault();
+            swal({
+                title: '{% trans "ARE YOU SURE DELETE IT" %}',
+                text: "{% trans "YOU WON'T BE ABLE TO REVERT THIS!" %}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{% trans "YES" %}',
+                cancelButtonText: '{% trans "NO" %}',
+                confirmButtonClass: 'btn btn-success margin-5',
+                cancelButtonClass: 'btn btn-danger margin-5',
+                buttonsStyling: false
+            }).then(function (res) {
+				if (res.value == true) {
+					form.submit();
+				}
+            })
+        });
+	</script>
+{% endblock script %}
