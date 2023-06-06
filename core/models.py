@@ -168,6 +168,19 @@ class POrderDetail(models.Model):
             return 0
         return self.price * self.quantity
     
+    def get_issue_detail(self):
+        porder = self.porder
+        product = self.product
+        grns = porder.grn_set.all()
+        fact_quantity = 0
+
+        for grn in grns:
+            for grn_detail in grn.grndetail_set.all():
+                if grn_detail.product == product:
+                    fact_quantity += grn_detail.quantity
+
+        return fact_quantity
+    
 class GRN(models.Model):
     porder = models.ForeignKey(POrder, verbose_name=_("purchare order"), on_delete=models.CASCADE)
     date = models.DateField(_("date"), null=True, blank=True)

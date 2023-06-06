@@ -1012,6 +1012,7 @@ class GRN_add(GroupRequiredMixin, View):
 
         return render(request, 'orders/grn.html', {
             'porder_details': porder_details,
+            'porder': porder,
         })
 
     def post(self, request, pk):
