@@ -40,14 +40,14 @@
 			stroke: { show: true, width: 2, colors: ['transparent'] },
 			series: [{
 				name: 'Revenue',
-				data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+				data: {{ y_revenue.1 }}
 			}],
 			xaxis: {
-				categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+				categories: {{ y_revenue.0 }}
 			},
-			yaxis: { title: { text: '$(thousands)' } },
+			yaxis: { title: { text: "{% trans 'Year Revenue' %}" } },
 			fill: { opacity: 1 },
-			tooltip: { y: { formatter: function (val) { return "$" + val + "thousands" } } }
+			tooltip: { y: { formatter: function (val) { return val + " VND" } } }
 		};
 		var chart = new ApexCharts(document.querySelector("#chart3"), options3);
 		chart.render();
@@ -166,10 +166,12 @@
 										<div class="form-group row">
 											<label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Choose time' %} </label>
 											<div class="col-sm-12 col-md-4">
-												<input type="number" min="2000" max="2050" step="1" name="year" id="year" class="form-control" />
+												<input type="number" min="2000" max="2050" step="1" name="year" id="year" class="form-control" value="{{ y_revenue.2 }}"/>
+											</div>
+											<div class="col-sm-12 col-md-1">
+												<input type="submit" id="load_yr" value="{% trans "Load" %}" class="form-control">
 											</div>
 										</div>
-										<input type="submit" id="go" hidden value="Go">
 									</form>
 									<div id="chart3"></div>
 								</div>

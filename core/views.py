@@ -98,9 +98,31 @@ class Dashboard(View):
                                 r += sorder.bill()
                     r_data.append(r)
                 revenue = [r_time, r_data]
+        ###
+        current_year = timezone.now().year
+        current_month = timezone.now().month
+        yr_time = [ i+1 for i in range(12) ]
+
+        if request.GET.get('year') is not None and request.GET.get('year') != "":
+            yr_year = int(request.GET.get('year'))
+            print(yr_year)
+        else:
+            yr_year = current_year
+
+        yr_data = []
+        sorders = SOrder.objects.all()
+        for i in range(12):
+            yr = 0
+            for sorder in sorders:
+                if sorder.created_at.year == yr_year and sorder.created_at.month == i+1:
+                    yr += sorder.bill()
+            yr_data.append(yr)
+        y_revenue = [yr_time, yr_data, yr_year]
+
         return render(request, 'dashboard.html', {
             'earning': earning,
             'revenue': revenue,
+            'y_revenue': y_revenue,
             'total_products': total_products,
             'product_best_seller': product_best_seller_couple,
         })

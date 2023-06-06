@@ -14,6 +14,9 @@
 - GRN ADD
 - SUPPLIER QUOTE
 
+- sale order list action
+- 
+
 thống kê:
 	ngày, tháng: biểu đồ đường. và bảng gồm 2 hàng 2 cột
 	tháng, năm: 
