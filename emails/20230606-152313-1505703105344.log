@@ -1,0 +1,37 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: system@sys.com
+To: admin@admin.com
+Date: Tue, 06 Jun 2023 08:23:13 -0000
+Message-ID: <168603979364.10564.17223437533785635488@7454-ThanhDV-DT>
+
+
+
+Greetings min ad,
+
+
+You are receiving this email because you (or someone pretending to be you)
+requested that your password be reset on the 127.0.0.1:8000 site. If you do not
+wish to reset your password, please ignore this message.
+
+
+
+To reset your password, please click the following link, or copy and paste it
+into your web browser:
+
+
+<a rel="noreferrer" href="http://127.0.0.1:8000/en/reset/Mg/bpdpep-b67e8959528877ce0b9401b4a6259160/">
+  http://127.0.0.1:8000/en/reset/Mg/bpdpep-b67e8959528877ce0b9401b4a6259160/
+</a>
+
+Your username, in case you've forgotten: admin
+
+
+Best,
+127.0.0.1:8000 Management
+
+
+
+-------------------------------------------------------------------------------
