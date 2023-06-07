@@ -28,8 +28,27 @@
         var chart = new ApexCharts(document.querySelector("#chart1"), options);
         chart.render();
 		
+
+		var label3 = "{{ cs_statitics.0 }}".replaceAll('&#x27;','"')
+
+		var options8 = {
+			series: {{ cs_statitics.1 }},
+			labels: JSON.parse(label3),
+			chart: { type: 'donut', height: 350 },
+			responsive: [{
+				breakpoint: 480,
+				options: { chart: { width: 200 }, legend: { position: 'bottom' } }
+			}],
+			plotOptions: { pie: { donut: { size: '5%' } } }
+		};
+		var chart = new ApexCharts(document.querySelector("#chart8"), options8);
+		chart.render();
+
         $('#month').change(function(){
 			$('#go').click()
+        })
+        $('#month2').change(function(){
+			$('#go2').click()
         })
     </script>
 	<script>
@@ -60,7 +79,7 @@
 	<div class="title pb-20">
 		<h2 class="h3 mb-0"> {% trans "Overview" %} </h2>
 	</div>
-
+	{{ cs_stat }}
 	<div class="row pb-10">
 		<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 			<div class="card-box height-100-p widget-style3">
@@ -182,9 +201,43 @@
 								</div>
 							</div>
 						</div>
-						<div class="tab-pane fade" id="contact" role="tabpanel">
+						<div class="tab-pane fade {% if tab_active == 3 %}show active{% endif %}" id="contact" role="tabpanel">
 							<div class="pd-20">
-								Lorem ipsum dolor sit amet, consectetur adipisicing
+								<div class="bg-white pd-20 card-box mb-30">
+									<form action="" method="get">
+										<div class="form-group row">
+											<label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Choose time' %} </label>
+											<div class="col-sm-12 col-md-4">
+												<input type="month" name="month2" id="month2" class="form-control" value="{{revenue.2}}-{% if revenue.3 < 10 %}0{% endif %}{{revenue.3}}">
+												<input type="text" hidden name="tab_active" value="3">
+											</div>
+										</div>
+										<input type="submit" id="go2" hidden value="Go">
+									</form>
+									<div class="d-flex justify-space">
+										<div class="pb-20 w-50">
+											<table class="data-table table hover nowrap">
+												<thead>
+													<tr>
+														<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+														<th> {% trans "CUSTOMER" %} </th>
+														<th> {% trans "TOTAL" %} </th>
+													</tr>
+												</thead>
+												<tbody>
+													{% for item in cs_stat %}
+													<tr>
+														<td class="table-plus"> {{ forloop.counter }} </td>
+														<td> {{ item.0.name }} </td>
+														<td> {{ item.1 }} </td>
+													</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</div>
+										<div id="chart8" class="pull-right" style="width: 50%;"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

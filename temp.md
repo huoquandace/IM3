@@ -24,6 +24,7 @@ thống kê:
 
 - Tổng bao nhiêu, chiết khấu bao nhiêu và thành tiền bao nhiêu, thành tiền của tiwnfg sản phẩm nữa
 - sale order delete
-
-
 - discount 100%
+- 100 củ -> membership
+- cảnh báo sản phẩm hết hạn
+- nhận thấy có 1 sản phẩm đã 1 tháng ko bán dc hoăc doanh thu ít ý thì đưa ra cảnh báo là gì gì đó

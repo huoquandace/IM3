@@ -129,6 +129,41 @@ class Dashboard(View):
         y_revenue = [yr_time, yr_data, yr_year]
 
         ###
+        number = 10
+        cs_stat = []
+        customers = Customer.objects.all()
+        print(customers)
+        for customer in customers:
+            cs_bills = 0
+            cs_sorders = customer.sorder_set.all()
+            for cs_sorder in cs_sorders:
+                cs_bills += cs_sorder.bill()
+            cs_stat.append([customer, cs_bills])
+        for i in range(len(cs_stat)):
+            for j in range(len(cs_stat)):
+                if cs_stat[j][1] < cs_stat[i][1]:
+                    temp = cs_stat[i]
+                    cs_stat[i] = cs_stat[j]
+                    cs_stat[j] = temp
+        cs_stat_data = []
+        cs_stat_label = []
+        cs_statitics = []
+        counter = 0
+        for item in cs_stat:
+            cs_stat_label.append(item[0].name)
+            cs_stat_data.append(item[1])
+            counter += 1
+            if counter == number:
+                break
+        
+        cs_stat = cs_stat[:number]
+
+        cs_statitics.append(cs_stat_label)
+        cs_statitics.append(cs_stat_data)
+        print(cs_statitics)
+
+
+        ###
         if request.GET.get('tab_active') is None or request.GET.get('tab_active') == "":
             tab_active = 1
         else:
@@ -139,6 +174,8 @@ class Dashboard(View):
             'earning': earning,
             'revenue': revenue,
             'y_revenue': y_revenue,
+            'cs_stat': cs_stat,
+            'cs_statitics': cs_statitics,
             'total_sale_order': total_sale_order,
             'total_retail_customer': total_retail_customer,
             'total_wholesale_customer': total_wholesale_customer,
