@@ -75,7 +75,7 @@ class Product(models.Model):
     brand = models.CharField(_("brand"), max_length=255)
     image = models.ImageField(_("image"), upload_to="product")
     price = models.IntegerField(_("price"))
-    bulk_price = models.IntegerField(_("bulk_price"))
+    bulk_price = models.IntegerField(_("bulk_price"), null=True, blank=True)
     description = models.TextField(_("description"))
     category = models.ForeignKey(Category, verbose_name=_("category"), on_delete=models.CASCADE)
     class Meta:

@@ -12,8 +12,6 @@
 
 - SUPPLIER QUOTE
 
-- Sale add edit
-
 thống kê:
 	ngày, tháng: biểu đồ đường. và bảng gồm 2 hàng 2 cột
 	tháng, năm: \/
@@ -22,3 +20,10 @@ thống kê:
 	5 Khách hàng mua nhiều nhất trong tháng  Cột đơn ngang
 
 	nhà cung cấp. Tiền
+
+
+- Tổng bao nhiêu, chiết khấu bao nhiêu và thành tiền bao nhiêu, thành tiền của tiwnfg sản phẩm nữa
+- sale order delete
+
+
+- discount 100%

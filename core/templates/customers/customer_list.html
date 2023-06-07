@@ -29,11 +29,11 @@
 					<td> {{ object.phone }} </td>
 					<td> {{ object.type }} </td>
 					<td>
-						<div class="d-flex flex-column">
-							<a href="{% url 'customer_update' object.id %}" class="mb-3"><i class="dw dw-edit2"></i> {% trans "EDIT" %}</a>
+						<div class="d-flex">
+							<a style="font-size: 22px; margin-right: 1rem" href="{% url 'customer_update' object.id %}" class="mb-3"><i class="dw dw-edit2"></i></a>
 							<form method="POST" action="{% url 'customer_delete' object.id %}">
 								{% csrf_token %}
-								<a href="#" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i> {% trans "DELETE" %}</a>
+								<a href="#" style="font-size: 22px;" type="submit" class="show_confirm"><i class="dw dw-delete-3"></i></a>
 							</form>
 						</div>
 					</td>
