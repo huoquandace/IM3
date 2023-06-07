@@ -1294,6 +1294,23 @@ class SOrderDelete(SuccessMessageMixin, DeleteView):
         return self.post(*args, **kwargs)
 
 
+def no_accent_vietnamese(s):
+    import re
+    s = re.sub('[áàảãạăắằẳẵặâấầẩẫậ]', 'a', s)
+    s = re.sub('[ÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬ]', 'A', s)
+    s = re.sub('[éèẻẽẹêếềểễệ]', 'e', s)
+    s = re.sub('[ÉÈẺẼẸÊẾỀỂỄỆ]', 'E', s)
+    s = re.sub('[óòỏõọôốồổỗộơớờởỡợ]', 'o', s)
+    s = re.sub('[ÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢ]', 'O', s)
+    s = re.sub('[íìỉĩị]', 'i', s)
+    s = re.sub('[ÍÌỈĨỊ]', 'I', s)
+    s = re.sub('[úùủũụưứừửữự]', 'u', s)
+    s = re.sub('[ÚÙỦŨỤƯỨỪỬỮỰ]', 'U', s)
+    s = re.sub('[ýỳỷỹỵ]', 'y', s)
+    s = re.sub('[ÝỲỶỸỴ]', 'Y', s)
+    s = re.sub('đ', 'd', s)
+    s = re.sub('Đ', 'D', s)
+    return s
 class SOrderToBill(View):
     
     def get(self, request, pk, *args, **kwargs):
@@ -1301,7 +1318,7 @@ class SOrderToBill(View):
         app_dir = os.path.dirname(core.__file__)
         temp_dir = os.path.join(app_dir, "templates/reports/temp.html")
         sorder = SOrder.objects.get(id=pk)
-        open(temp_dir, "w").write(render_to_string('sales/bill.html', {'sorder': sorder}))
+        open(temp_dir, "w").write(no_accent_vietnamese(render_to_string('sales/bill.html', {'sorder': sorder})))
         pdf = html_to_pdf(temp_dir)
         return HttpResponse(pdf, content_type='application/pdf')
 
