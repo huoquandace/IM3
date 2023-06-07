@@ -130,37 +130,56 @@ class Dashboard(View):
 
         ###
         number = 10
-        cs_stat = []
-        customers = Customer.objects.all()
-        print(customers)
-        for customer in customers:
-            cs_bills = 0
-            cs_sorders = customer.sorder_set.all()
-            for cs_sorder in cs_sorders:
-                cs_bills += cs_sorder.bill()
-            cs_stat.append([customer, cs_bills])
-        for i in range(len(cs_stat)):
-            for j in range(len(cs_stat)):
-                if cs_stat[j][1] < cs_stat[i][1]:
-                    temp = cs_stat[i]
-                    cs_stat[i] = cs_stat[j]
-                    cs_stat[j] = temp
+        year2 = current_year
+        month2 = current_month
+        cs_data = []
+        if request.GET.get('month2') is not None and request.GET.get('month2') != "":
+            get_data2 = request.GET.get('month2')
+            year2 = int(get_data2.split('-')[0])
+            month2 = int(get_data2.split('-')[1])
+            
+            for customer in Customer.objects.all():
+                temp = 0
+                for sorder in customer.sorder_set.all():
+                    print(sorder.created_at.year, sorder.created_at.month)
+                    if year2 == sorder.created_at.year and month2 == sorder.created_at.month:
+                        temp += sorder.bill()
+                if temp != 0:
+                    cs_data.append( [customer, temp] )
+        else:
+            for customer in Customer.objects.all():
+                temp = 0
+                for sorder in customer.sorder_set.all():
+                    print(sorder.created_at.year, sorder.created_at.month)
+                    if year2 == sorder.created_at.year and month2 == sorder.created_at.month:
+                        temp += sorder.bill()
+                if temp != 0:
+                    cs_data.append( [customer, temp] )
+
+        for i in range(len(cs_data)):
+            for j in range(len(cs_data)):
+                if cs_data[j][1] < cs_data[i][1]:
+                    temp = cs_data[i]
+                    cs_data[i] = cs_data[j]
+                    cs_data[j] = temp
+        print(cs_data)
         cs_stat_data = []
         cs_stat_label = []
         cs_statitics = []
         counter = 0
-        for item in cs_stat:
+        for item in cs_data:
             cs_stat_label.append(item[0].name)
             cs_stat_data.append(item[1])
             counter += 1
             if counter == number:
                 break
         
-        cs_stat = cs_stat[:number]
+        cs_data = cs_data[:number]
 
         cs_statitics.append(cs_stat_label)
         cs_statitics.append(cs_stat_data)
-        print(cs_statitics)
+        cs_statitics.append(year2)
+        cs_statitics.append(month2)
 
 
         ###
@@ -174,7 +193,7 @@ class Dashboard(View):
             'earning': earning,
             'revenue': revenue,
             'y_revenue': y_revenue,
-            'cs_stat': cs_stat,
+            'cs_data': cs_data,
             'cs_statitics': cs_statitics,
             'total_sale_order': total_sale_order,
             'total_retail_customer': total_retail_customer,
