@@ -837,7 +837,7 @@ msgstr "Khách hàng"
 
 #: .\core\templates\dashboard.html:5
 msgid "Dashboard"
-msgstr "Bảng thống kê"
+msgstr "Thống kê"
 
 #: .\core\templates\dashboard.html:12
 msgid "Revenue Report"
@@ -952,7 +952,7 @@ msgstr "Báo giá & đặt hàng"
 
 #: .\core\templates\includes\left-sidebar.html:20
 msgid "DASHBOARD"
-msgstr "Bảng điều khiển"
+msgstr "Thống kê"
 
 #: .\core\templates\includes\left-sidebar.html:22
 msgid "USER"
