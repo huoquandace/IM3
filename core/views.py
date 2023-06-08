@@ -31,7 +31,7 @@ from .mixins import *
 CSV_FILE_PATH = 'data/csv/'
 USER_CSV_FILE_TEMPLALTE = 'data/csv.csv'
 
-class Dashboard(StaffRequiredMixin, View):
+class Dashboard(View):
     def get(self, request):
 
         # user_groups = ['Manager', 'Staff']
