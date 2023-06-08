@@ -125,7 +125,8 @@ class POrder(models.Model):
             id = POrder.objects.latest('id').id
         except:
             id = 0
-        self.label = "PUR-" + str(id+1)
+        if self.id is None:
+            self.label = "PUR-" + str(id+1)
         return super(POrder, self).save(*args, **kwargs)
 
     def total_product(self):
@@ -163,6 +164,7 @@ class POrder(models.Model):
             if item[1] < porder_detail.quantity:
                 issue += 1
         return issue
+    
 
 class POrderDetail(models.Model):
     porder = models.ForeignKey(POrder, verbose_name=_("purchare order"), on_delete=models.CASCADE, null=True, blank=True)
