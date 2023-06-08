@@ -6,6 +6,46 @@
 
 {% block content %}
 <form method="post">
+{% csrf_token %}
+<div class="card-box mb-30">
+	<div class="pd-20 d-flex justify-content-between">
+		<h4 class="text-blue h4"> {% trans "PRODUCTS" %} </h4>
+		<div class="">
+            <a href="{% url 'supplier_quote_list' %}" class="btn btn-outline-primary">{% trans "CANCEL" %}</a>
+            <input type="submit" class="btn btn-success" value="{% trans "SUBMIT" %}">
+        </div>
+	</div>
+	<div class="pb-20">
+		<table class="data-table table hover nowrap">
+			<thead>
+				<tr>
+					<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+					<th> {% trans "NAME" %} </th>
+					<th> {% trans "BRAND" %} </th>
+					<th> {% trans "IMAGE" %} </th>
+					<th> {% trans "ORDER" %} </th>
+					<th class="datatable-nosort">{% trans "PRICE" %}</th>
+				</tr>
+			</thead>
+			<tbody>
+                {% for product in products %}
+                <tr>
+                    <td class="table-plus"> {{ product.0.id_product }} </td>
+                    <td> {{ product.0.name }} </td>
+                    <td> {{ product.0.brand }} </td>
+                    <td> <img src="{{ product.0.image.url }}" alt="product_logo" style="height: 50px"> </td>
+                    <td style="width: 10%"> {{ product.1 }} </td>
+                    <td style="width: 15%">
+                        <input type="number" id="price" name="{{ product.0.id }}" class="form-control">
+                    </td>
+                </tr>
+                {% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+</form>
+{% comment %} <form method="post">
     {% csrf_token %}
     {% for product in products %}
         {{ product.id }} - {{ product }}
@@ -13,5 +53,34 @@
         <br>
     {% endfor %}
     <input type="submit" value="{% trans "SUBMIT" %}">
-</form>
+</form> {% endcomment %}
 {% endblock content %}
+
+{% block script %}
+	<script src="{% static 'vendors/scripts/datatable-setting.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweetalert2.all.js' %}"></script>
+	<script src="{% static 'plugins/sweetalert2/sweet-alert.init.js' %}"></script>
+
+	<script type="text/javascript">
+		$('.show_confirm').click(function (event) {
+			var form =  $(this).closest("form");
+			var name = $(this).data("name");
+			event.preventDefault();
+            swal({
+                title: '{% trans "ARE YOU SURE DELETE IT" %}',
+                text: "{% trans "YOU WON'T BE ABLE TO REVERT THIS!" %}",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{% trans "YES" %}',
+                cancelButtonText: '{% trans "NO" %}',
+                confirmButtonClass: 'btn btn-success margin-5',
+                cancelButtonClass: 'btn btn-danger margin-5',
+                buttonsStyling: false
+            }).then(function (res) {
+				if (res.value == true) {
+					form.submit();
+				}
+            })
+        });
+	</script>
+{% endblock script %}
