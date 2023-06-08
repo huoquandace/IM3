@@ -74,7 +74,7 @@ EMAIL_FILE_PATH = BASE_DIR / 'emails'
 
 USE_TZ = True
 USE_L10N = True
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Ho_Chi_Minh'
 
 USE_I18N = True
 LANGUAGE_CODE = 'en'
