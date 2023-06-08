@@ -44,18 +44,44 @@
 		var chart = new ApexCharts(document.querySelector("#chart8"), options8);
 		chart.render();
 
-
+		var label4 = "{{ sup_statitics.0 }}".replaceAll('&#x27;','"')
 		var options9 = {
-			series: {{ cs_statitics.1 }},
-			labels: JSON.parse(label3),
-			chart: { type: 'donut', height: 350 },
-			responsive: [{
-				breakpoint: 480,
-				options: { chart: { width: 200 }, legend: { position: 'bottom' } }
+			chart: { type: 'bar', height: 350, toolbar: { show: false, } },
+			plotOptions: { bar: { horizontal: false, columnWidth: '25%', endingShape: 'rounded' }, },
+			dataLabels: { enabled: false },
+			stroke: { show: true, width: 2, colors: ['transparent'] },
+			series: [{
+				name: 'Revenue',
+				data: {{ sup_statitics.1 }}
 			}],
-			plotOptions: { pie: { donut: { size: '5%' } } }
+			xaxis: {
+				categories: JSON.parse(label4)
+			},
+			yaxis: { title: { text: "{% trans 'Revenue' %}" } },
+			fill: { opacity: 1 },
+			tooltip: { y: { formatter: function (val) { return val + " VND" } } }
 		};
 		var chart = new ApexCharts(document.querySelector("#chart9"), options9);
+		chart.render();
+
+		var label5 = "{{ prod_statitics.0 }}".replaceAll('&#x27;','"')
+		var options10 = {
+			chart: { type: 'bar', height: 350, toolbar: { show: false, } },
+			plotOptions: { bar: { horizontal: false, columnWidth: '25%', endingShape: 'rounded' }, },
+			dataLabels: { enabled: false },
+			stroke: { show: true, width: 2, colors: ['transparent'] },
+			series: [{
+				name: 'Revenue',
+				data: {{ prod_statitics.1 }}
+			}],
+			xaxis: {
+				categories: JSON.parse(label5)
+			},
+			yaxis: { title: { text: "{% trans 'Revenue' %}" } },
+			fill: { opacity: 1 },
+			tooltip: { y: { formatter: function (val) { return val + " VND" } } }
+		};
+		var chart = new ApexCharts(document.querySelector("#chart10"), options10);
 		chart.render();
 
         $('#month').change(function(){
@@ -66,6 +92,9 @@
         })
         $('#month3').change(function(){
 			$('#go3').click()
+        })
+        $('#month4').change(function(){
+			$('#go4').click()
         })
     </script>
 	<script>
@@ -96,7 +125,6 @@
 	<div class="title pb-20">
 		<h2 class="h3 mb-0"> {% trans "Overview" %} </h2>
 	</div>
-	{{ cs_stat }}
 	<div class="row pb-10">
 		<div class="col-xl-3 col-lg-3 col-md-6 mb-20">
 			<div class="card-box height-100-p widget-style3">
@@ -153,12 +181,12 @@
 			<div class="card-box height-100-p widget-style3">
 				<div class="d-flex flex-wrap">
 					<div class="widget-data">
-						<div class="weight-700 font-24 text-dark"> {{ earning }} </div>
-						<div class="font-14 text-secondary weight-500">Earning</div>
+						<div class="weight-700 font-24 text-dark"> {{ total_products }} </div>
+						<div class="font-14 text-secondary weight-500">Total product</div>
 					</div>
 					<div class="widget-icon">
 						<div class="icon" data-color="#09cc06">
-							<i class="icon-copy fa fa-money" aria-hidden="true"></i>
+							<i class="icon-copy fa fa-suitcase" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
@@ -181,6 +209,7 @@
 						<li class="nav-item"> <a class="nav-link text-blue {% if tab_active == 2 %}active{% endif %}" data-toggle="tab" href="#profile" role="tab" aria-selected="false" > {% trans "Yearly Revenue" %} </a> </li>
 						<li class="nav-item"> <a class="nav-link text-blue {% if tab_active == 3 %}active{% endif %}" data-toggle="tab" href="#contact" role="tab" aria-selected="false" > {% trans "Top 10 customer" %} </a> </li>
 						<li class="nav-item"> <a class="nav-link text-blue {% if tab_active == 4 %}active{% endif %}" data-toggle="tab" href="#supp" role="tab" aria-selected="false" > {% trans "Top 10 supplier" %} </a> </li>
+						<li class="nav-item"> <a class="nav-link text-blue {% if tab_active == 5 %}active{% endif %}" data-toggle="tab" href="#prod" role="tab" aria-selected="false" > {% trans "Top 10 product" %} </a> </li>
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane fade {% if tab_active == 1 %}show active{% endif %}" id="home" role="tabpanel" >
@@ -265,24 +294,24 @@
 										<div class="form-group row">
 											<label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Choose time' %} </label>
 											<div class="col-sm-12 col-md-4">
-												<input type="month" name="month3" id="month3" class="form-control" value="{{revenue.2}}-{% if revenue.3 < 10 %}0{% endif %}{{revenue.3}}">
+												<input type="month" name="month3" id="month3" class="form-control" value="{{sup_statitics.2}}-{% if sup_statitics.3 < 10 %}0{% endif %}{{sup_statitics.3}}">
 												<input type="text" hidden name="tab_active" value="4">
 											</div>
 										</div>
 										<input type="submit" id="go3" hidden value="Go">
 									</form>
-									<div class="d-flex justify-space">
-										<div class="pb-20 w-50">
+									<div class="d-flex justify-space-between">
+										<div class="pb-20" style="width: 40%; margin-right: 5rem;">
 											<table class="data-table table hover nowrap">
 												<thead>
 													<tr>
 														<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
-														<th> {% trans "CUSTOMER" %} </th>
+														<th> {% trans "SUPPLIER" %} </th>
 														<th> {% trans "TOTAL" %} </th>
 													</tr>
 												</thead>
 												<tbody>
-													{% for item in cs_stat %}
+													{% for item in sup_data %}
 													<tr>
 														<td class="table-plus"> {{ forloop.counter }} </td>
 														<td> {{ item.0.name }} </td>
@@ -292,7 +321,46 @@
 												</tbody>
 											</table>
 										</div>
-										<div id="chart9" class="pull-right" style="width: 50%;"></div>
+										<div id="chart9" class="" style="width: 50%;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade {% if tab_active == 5 %}show active{% endif %}" id="prod" role="tabpanel">
+							<div class="pd-20">
+								<div class="bg-white pd-20 card-box mb-30">
+									<form action="" method="get">
+										<div class="form-group row">
+											<label class="col-sm-12 col-md-2 col-form-label"> {% trans 'Choose time' %} </label>
+											<div class="col-sm-12 col-md-4">
+												<input type="month" name="month4" id="month4" class="form-control" value="{{prod_statitics.2}}-{% if prod_statitics.3 < 10 %}0{% endif %}{{prod_statitics.3}}">
+												<input type="text" hidden name="tab_active" value="5">
+											</div>
+										</div>
+										<input type="submit" id="go4" hidden value="Go">
+									</form>
+									<div class="d-flex justify-space">
+										<div class="pb-20 w-50">
+											<table class="data-table table hover nowrap">
+												<thead>
+													<tr>
+														<th class="table-plus datatable-nosort"> {% trans "ID" %} </th>
+														<th> {% trans "PRODUCT" %} </th>
+														<th> {% trans "TOTAL" %} </th>
+													</tr>
+												</thead>
+												<tbody>
+													{% for item in prod_data %}
+													<tr>
+														<td class="table-plus"> {{ forloop.counter }} </td>
+														<td> {{ item.0.name }} </td>
+														<td> {{ item.1 }} </td>
+													</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</div>
+										<div id="chart10" class="pull-right" style="width: 50%;"></div>
 									</div>
 								</div>
 							</div>

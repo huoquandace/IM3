@@ -138,6 +138,14 @@ class POrder(models.Model):
             if porderdetail.price is not None:
                 sum += porderdetail.price * porderdetail.quantity
         return sum
+    def bill(self):
+        if not self.is_ordered:
+            return 0
+        sum = 0
+        for porderdetail in self.porderdetail_set.all():
+            if porderdetail.price is not None:
+                sum += porderdetail.price * porderdetail.quantity
+        return sum
     def get_issue(self):
         state = []
         grns = self.grn_set.all()

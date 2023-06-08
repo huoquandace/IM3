@@ -66,7 +66,7 @@ class Dashboard(View):
         ###
         current_year = timezone.now().year
         current_month = timezone.now().month
-        ###
+        ### RR
         r_time = []
         r_data = []
         for i in range(int(timezone.now().today().day)): r_time.append(i+1)
@@ -74,11 +74,11 @@ class Dashboard(View):
             sorders = SOrder.objects.all()
             r = 0
             for sorder in sorders:
-                if i+1 == sorder.created_at.day:
+                if i+1 == sorder.created_at.day and sorder.status == "Paid":
                     r += sorder.bill()
             r_data.append(r)
         revenue = [r_time, r_data, current_year, current_month]
-        ###
+        ### YR
         if request.GET.get('month') is not None and request.GET.get('month') != "":
             get_data = request.GET.get('month')
             year = int(get_data.split('-')[0])
@@ -136,7 +136,7 @@ class Dashboard(View):
             yr_data.append(yr)
         y_revenue = [yr_time, yr_data, yr_year]
 
-        ###
+        ### CS
         number = 10
         year2 = current_year
         month2 = current_month
@@ -190,6 +190,113 @@ class Dashboard(View):
         cs_statitics.append(month2)
 
 
+        ### SUP
+        number_sup = 10
+        year3 = current_year
+        month3 = current_month
+        sup_data = []
+        sup_data = []
+        if request.GET.get('month3') is not None and request.GET.get('month3') != "":
+            get_data3 = request.GET.get('month3')
+            year3 = int(get_data3.split('-')[0])
+            month3 = int(get_data3.split('-')[1])
+
+            for supplier in Supplier.objects.all():
+                temp = 0
+                for sorder in supplier.porder_set.all():
+                    if year3 == sorder.created_at.year and month3 == sorder.created_at.month:
+                        temp += sorder.bill()
+                if temp != 0:
+                    sup_data.append( [supplier, temp] )
+        else:
+            for supplier in Supplier.objects.all():
+                temp = 0
+                for sorder in supplier.porder_set.all():
+                    if year3 == sorder.created_at.year and month3 == sorder.created_at.month:
+                        temp += sorder.bill()
+                if temp != 0:
+                    sup_data.append( [supplier, temp] )
+
+        for i in range(len(sup_data)):
+            for j in range(len(sup_data)):
+                if sup_data[j][1] < sup_data[i][1]:
+                    temp = sup_data[i]
+                    sup_data[i] = sup_data[j]
+                    sup_data[j] = temp
+
+        sup_stat_data = []
+        sup_stat_label = []
+        sup_statitics = []
+        counter = 0
+        for item in sup_data:
+            sup_stat_label.append(item[0].name)
+            sup_stat_data.append(item[1])
+            counter += 1
+            if counter == number_sup:
+                break
+        
+        sup_data = sup_data[:number_sup]
+
+        sup_statitics.append(sup_stat_label)
+        sup_statitics.append(sup_stat_data)
+        sup_statitics.append(year3)
+        sup_statitics.append(month3)
+
+        ### PROD
+        number_prod = 10
+        year4 = current_year
+        month4 = current_month
+        prod_data = []
+        if request.GET.get('month4') is not None and request.GET.get('month4') != "":
+            get_data4 = request.GET.get('month4')
+            year4 = int(get_data4.split('-')[0])
+            month4 = int(get_data4.split('-')[1])
+            
+            for product in Product.objects.all():
+                temp = 0
+                for sorder in SOrder.objects.filter(status="Paid"):
+                    for sorder_detail in sorder.sorderdetail_set.all():
+                        if year4 == sorder.created_at.year and month4 == sorder.created_at.month and sorder_detail.product == product:
+                            temp += sorder.bill()
+                if temp != 0:
+                    prod_data.append( [product, temp] )
+        else:
+            for product in Product.objects.all():
+                temp = 0
+                for sorder in SOrder.objects.filter(status="Paid"):
+                    for sorder_detail in sorder.sorderdetail_set.all():
+                        if year4 == sorder.created_at.year and month4 == sorder.created_at.month and sorder_detail.product == product:
+                            temp += sorder.bill()
+                if temp != 0:
+                    prod_data.append( [product, temp] )
+
+        for i in range(len(prod_data)):
+            for j in range(len(prod_data)):
+                if prod_data[j][1] < prod_data[i][1]:
+                    temp = prod_data[i]
+                    prod_data[i] = prod_data[j]
+                    prod_data[j] = temp
+        print(prod_data)
+        prod_stat_data = []
+        prod_stat_label = []
+        prod_statitics = []
+        counter = 0
+        for item in prod_data:
+            prod_stat_label.append(item[0].name)
+            prod_stat_data.append(item[1])
+            counter += 1
+            if counter == number_prod:
+                break
+        
+        prod_data = prod_data[:number_prod]
+
+        prod_statitics.append(prod_stat_label)
+        prod_statitics.append(prod_stat_data)
+        prod_statitics.append(year4)
+        prod_statitics.append(month4)
+
+
+
         ###
         if request.GET.get('tab_active') is None or request.GET.get('tab_active') == "":
             tab_active = 1
@@ -203,6 +310,10 @@ class Dashboard(View):
             'y_revenue': y_revenue,
             'cs_data': cs_data,
             'cs_statitics': cs_statitics,
+            'sup_data': sup_data,
+            'sup_statitics': sup_statitics,
+            'prod_data': prod_data,
+            'prod_statitics': prod_statitics,
             'total_sale_order': total_sale_order,
             'total_retail_customer': total_retail_customer,
             'total_wholesale_customer': total_wholesale_customer,
