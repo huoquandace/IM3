@@ -36,6 +36,34 @@
           <input type="submit" id="submit_btn" hidden value="Go">
       </form> 
     </div>
+    <div class="user-notification">
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle no-arrow"
+          href="#"
+          role="button"
+          data-toggle="dropdown"
+        >
+          <i class="icon-copy dw dw-notification"></i>
+          <span class="badge notification-active"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="notification-list mx-h-350 customscroll">
+            <ul>
+              <li>
+                <a href="{% url 'near_expiry_list' %}">
+                  <img src="{% static 'warning.png' %}" alt="" />
+                  <h3>Warning: </h3>
+                  <p>
+                    {% trans "There are products that are about to expire" %}
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="user-info-dropdown">
       <div class="dropdown">
         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">

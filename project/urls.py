@@ -70,6 +70,7 @@ urlpatterns += i18n_patterns (
     path('order/<int:pk>/', Order.as_view(), name='order'),
     path('grn/list/', GRNList.as_view(), name='grn_list'),
     path('expiry/list/', ExpiryList.as_view(), name='expiry_list'),
+    path('expiry/near/list/', NearExpiryList.as_view(), name='near_expiry_list'),
     path('grn/<int:pk>/', GRN_add.as_view(), name='grn'),
     path('issue/<int:pk>/', Issue.as_view(), name='issue'),
     path('report/<int:pk>/', Report.as_view(), name='report'),

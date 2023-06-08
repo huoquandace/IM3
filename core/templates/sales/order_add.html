@@ -211,7 +211,7 @@
                             $('#membership_img').removeAttr('hidden')
                             $('#membership_img').show()
                             if ( parseInt($('#total').text()) != 0 ) {
-                                
+
                             }
                         }
                         $('#exist').removeAttr('hidden')
@@ -232,18 +232,19 @@
         var b = $(this).parent().parent().parent().find('.quantity')
         for (var i = 0; i < a.length ; i++) {
             if (b[i].value == '') {
-                b[i].value = 0
+                b[i].value = 1
             }
             total += parseInt(a[i].textContent) * parseInt(b[i].value)
         }
-        $('#total').text(total)
         $('#fix_preview').removeAttr('hidden').children().first().text(total)
         if (mbs) {
             $('#mbs_preview').removeAttr('hidden').children().first().text(total*5/100)
+            total -= total*5/100
         }
         if ($('#discount').val() > 0) {
             $('#dc_preview').removeAttr('hidden').children().first().text(discount*total/100)
         }
+        $('#total').text(total)
     })
 
     $('#discount').change(function() {

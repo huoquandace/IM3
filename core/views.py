@@ -1174,6 +1174,19 @@ class ExpiryList(ListView):
     model = GRNDetail
     template_name = 'orders/expiry_list.html'
 
+class NearExpiryList(View):
+    def get(self, request, *args, **kwargs):
+        from datetime import datetime, timedelta
+        object_list = []
+        grn_details = GRNDetail.objects.all()
+        for grn_detail in grn_details:
+            if grn_detail.expiry is not None:
+                if timezone.now().date() < grn_detail.expiry and grn_detail.expiry < (timezone.now() + timedelta(days=1+3)).date():
+                    object_list.append(grn_detail)
+                else:
+                    print('no')
+        return render(request, 'orders/near_expiry_list.html', {'object_list': object_list})
+
 class Warehouse(ListView):
     model = Product
     template_name = 'orders/warehouse.html'
