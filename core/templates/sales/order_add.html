@@ -120,6 +120,7 @@
         </form>
         <hr>
 
+
         <div class="pd-20 d-flex justify-content-between">
             <div class="form-group row">
                 <label class="col-sm-12 col-md-4 col-form-label"> {% trans 'Discount' %} </label>
@@ -128,7 +129,12 @@
                 </div>
                 <div class="col-sm-12 col-md-1" style="margin-top: 10px; margin-left: -5px;">%</div>
             </div>
-            <h4 class="text-blue h4"> {% trans "Total: " %} <span id="total">0</span> <span>VND</span> </h4>
+            <div class="">
+                <h6 id="fix_preview" hidden class="text-dark h6 pull-right"> {% trans "Total: " %} <span >0</span> <span>VND</span> </h6> <br>
+                <h6 id="dc_preview" hidden class="text-dark h6 pull-right"> {% trans "Discount: " %} -<span >0</span> <span>VND</span> </h6> <br>
+                <h6 id="mbs_preview" hidden class="text-dark h6 pull-right"> {% trans "Membership: " %} -<span >0</span> <span>VND</span> </h6> <br>
+                <h4 class="text-blue h4 pull-right"> {% trans "Total: " %} <span id="total">0</span> <span>VND</span> </h4>
+            </div>
           </div>
 
     </div>
@@ -170,6 +176,7 @@
         $('#supplier_submit').click()
     })
 
+    mbs = false
     $('#find').on('click', function () {
         phone = $('#phone').val()
         if (phone == null || phone == '') {
@@ -182,6 +189,7 @@
                     timer: 2000
                 }
             )
+            mbs = false
             $('#membership_img').hide()
             $('#cs_name').attr('value', "")
             $('#cs_phone').attr('value', "")
@@ -199,11 +207,16 @@
                         $('#cs_phone').attr('value', response.phone)
                         $('#cs_type').attr('value', response.type)
                         if (response.type == 'Membership') {
+                            mbs = true
                             $('#membership_img').removeAttr('hidden')
                             $('#membership_img').show()
+                            if ( parseInt($('#total').text()) != 0 ) {
+                                
+                            }
                         }
                         $('#exist').removeAttr('hidden')
                     } else {
+                        mbs = false
                         $('#cs_name').attr('value', "")
                         $('#cs_phone').attr('value', phone)
                         $('#exist').removeAttr('hidden')
@@ -224,17 +237,24 @@
             total += parseInt(a[i].textContent) * parseInt(b[i].value)
         }
         $('#total').text(total)
+        $('#fix_preview').removeAttr('hidden').children().first().text(total)
+        if (mbs) {
+            $('#mbs_preview').removeAttr('hidden').children().first().text(total*5/100)
+        }
+        if ($('#discount').val() > 0) {
+            $('#dc_preview').removeAttr('hidden').children().first().text(discount*total/100)
+        }
     })
 
     $('#discount').change(function() {
-        total = 0
+        dc_total = 0
         var a = $('#discount').parent().parent().parent().parent().find('table').find('.css_price')
         var b = $('#discount').parent().parent().parent().parent().find('table').find('.quantity')
         for (var i = 0; i < a.length ; i++) {
             if (b[i].value == '') {
                 b[i].value = 0
             }
-            total += parseInt(a[i].textContent) * parseInt(b[i].value)
+            dc_total += parseInt(a[i].textContent) * parseInt(b[i].value)
         }
         
         if($(this).val() == '' || $(this).val() == null) {
@@ -244,7 +264,8 @@
         }
         
 
-        $('#total').text(total - discount*total/100)
+        $('#total').text(dc_total - discount*dc_total/100)
+        $('#dc_preview').removeAttr('hidden').children().first().text(discount*dc_total/100)
     })
 
     $('#sale_submit_btn').click(function(even) {
