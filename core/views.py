@@ -484,7 +484,6 @@ class UserList(ListView):
     template_name = 'auth/user_list.html'
     model = get_user_model()
     context_object_name = 'users'
-    paginate_by = 5
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -612,6 +611,9 @@ class UserAddByInfo(LoginRequiredMixin, View):
                 user = get_user_model()(username=username)
                 user.set_password("123")
                 user.save()
+                from django.contrib.auth.models import Group
+                my_group = Group.objects.get(name='Staff') 
+                my_group.user_set.add(user)
                 return redirect('user_list')
             else:
                 messages.error(request, form.errors)
