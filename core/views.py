@@ -38,7 +38,11 @@ class Dashboard(View):
         if 'Manager' in request.user.groups.values_list('name', flat=True) or 'Staff' in request.user.groups.values_list('name', flat=True):
             pass
         else:
-            return redirect('supplier_quote_list')
+            if request.user.is_authenticated:
+                return redirect('supplier_quote_list')
+            else:
+                return redirect('dashboard')
+            
 
 
         products = Product.objects.all()
