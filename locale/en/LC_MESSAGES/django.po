@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-04 20:54+0700\n"
+"POT-Creation-Date: 2023-06-08 19:25+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\core\includes\header.html:16 .\core\templates\includes\header.html:16
-msgid "Search Here"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:17
-msgid "Category"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:22
-msgid "Product"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:27
-#: .\core\templates\suppliers\supplier_list.html:10
-msgid "Suppliers"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:32
-msgid "Quote"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:37
-msgid "Supplier / Register Product"
-msgstr ""
-
-#: .\core\includes\left-sidebar.html:42
-msgid "Supplier / View Quote"
-msgstr ""
-
-#: .\core\includes\pre-loader.html:13
-#: .\core\templates\includes\pre-loader.html:13
-msgid "Loading..."
-msgstr ""
 
 #: .\core\models.py:9
 msgid "username"
@@ -91,35 +58,35 @@ msgstr ""
 msgid "users"
 msgstr ""
 
-#: .\core\models.py:40 .\core\models.py:191
+#: .\core\models.py:40 .\core\models.py:215
 msgid "Male"
 msgstr ""
 
-#: .\core\models.py:41 .\core\models.py:192
+#: .\core\models.py:41 .\core\models.py:216
 msgid "Female"
 msgstr ""
 
-#: .\core\models.py:42 .\core\models.py:193
+#: .\core\models.py:42 .\core\models.py:217
 msgid "Unknown"
 msgstr ""
 
-#: .\core\models.py:46 .\core\models.py:196
+#: .\core\models.py:46 .\core\models.py:225
 msgid "gender"
 msgstr ""
 
-#: .\core\models.py:47 .\core\models.py:94 .\core\models.py:197
+#: .\core\models.py:47 .\core\models.py:95 .\core\models.py:226
 msgid "phone"
 msgstr ""
 
-#: .\core\models.py:48 .\core\models.py:198
+#: .\core\models.py:48 .\core\models.py:227
 msgid "age"
 msgstr ""
 
-#: .\core\models.py:49 .\core\models.py:95 .\core\models.py:199
+#: .\core\models.py:49 .\core\models.py:96 .\core\models.py:228
 msgid "address"
 msgstr ""
 
-#: .\core\models.py:50 .\core\models.py:200
+#: .\core\models.py:50 .\core\models.py:229
 msgid "birthday"
 msgstr ""
 
@@ -127,7 +94,7 @@ msgstr ""
 msgid "title"
 msgstr ""
 
-#: .\core\models.py:64 .\core\models.py:106
+#: .\core\models.py:64 .\core\models.py:107
 msgid "label"
 msgstr ""
 
@@ -135,7 +102,7 @@ msgstr ""
 msgid "image"
 msgstr ""
 
-#: .\core\models.py:66 .\core\models.py:78
+#: .\core\models.py:66 .\core\models.py:79
 msgid "description"
 msgstr ""
 
@@ -147,7 +114,7 @@ msgstr ""
 msgid "product id"
 msgstr ""
 
-#: .\core\models.py:74 .\core\models.py:92 .\core\models.py:195
+#: .\core\models.py:74 .\core\models.py:93 .\core\models.py:224
 msgid "name"
 msgstr ""
 
@@ -155,99 +122,119 @@ msgstr ""
 msgid "brand"
 msgstr ""
 
-#: .\core\models.py:77 .\core\models.py:162
+#: .\core\models.py:77 .\core\models.py:173
 msgid "price"
 msgstr ""
 
-#: .\core\models.py:79
+#: .\core\models.py:78
+msgid "bulk_price"
+msgstr ""
+
+#: .\core\models.py:80
 msgid "category"
 msgstr ""
 
-#: .\core\models.py:81 .\core\models.py:98
+#: .\core\models.py:82 .\core\models.py:99
 msgid "products"
 msgstr ""
 
-#: .\core\models.py:91
+#: .\core\models.py:92
 msgid "supplier id"
 msgstr ""
 
-#: .\core\models.py:93
+#: .\core\models.py:94
 msgid "logo"
 msgstr ""
 
-#: .\core\models.py:96
+#: .\core\models.py:97
 msgid "fax"
 msgstr ""
 
-#: .\core\models.py:97
+#: .\core\models.py:98
 msgid "email"
 msgstr ""
 
-#: .\core\models.py:99 .\core\models.py:173
+#: .\core\models.py:100 .\core\models.py:197
 msgid "account"
 msgstr ""
 
-#: .\core\models.py:107
+#: .\core\models.py:108
 msgid "supplier"
 msgstr ""
 
-#: .\core\models.py:108
+#: .\core\models.py:109
 msgid "is ordered"
 msgstr ""
 
-#: .\core\models.py:109
+#: .\core\models.py:110
 msgid "order date"
 msgstr ""
 
-#: .\core\models.py:110 .\core\models.py:163 .\core\models.py:206
+#: .\core\models.py:111 .\core\models.py:174 .\core\models.py:235
 msgid "status"
 msgstr ""
 
-#: .\core\models.py:112
+#: .\core\models.py:113
 msgid "total"
 msgstr ""
 
-#: .\core\models.py:113 .\core\models.py:207
+#: .\core\models.py:114 .\core\models.py:236
 msgid "note"
 msgstr ""
 
-#: .\core\models.py:159 .\core\models.py:171
+#: .\core\models.py:170 .\core\models.py:195
 msgid "purchare order"
 msgstr ""
 
-#: .\core\models.py:160 .\core\models.py:180 .\core\models.py:221
+#: .\core\models.py:171 .\core\models.py:204 .\core\models.py:256
 msgid "product"
 msgstr ""
 
-#: .\core\models.py:161 .\core\models.py:181 .\core\models.py:222
+#: .\core\models.py:172 .\core\models.py:205 .\core\models.py:257
 msgid "quantity"
 msgstr ""
 
-#: .\core\models.py:172
+#: .\core\models.py:196
 msgid "date"
 msgstr ""
 
-#: .\core\models.py:179
+#: .\core\models.py:203
 msgid "grn"
 msgstr ""
 
-#: .\core\models.py:182
+#: .\core\models.py:206
 msgid "is expiry"
 msgstr ""
 
-#: .\core\models.py:183
+#: .\core\models.py:207
 msgid "expiry"
 msgstr ""
 
-#: .\core\models.py:201
+#: .\core\models.py:220
+msgid "Normal"
+msgstr ""
+
+#: .\core\models.py:221
+msgid "Membership"
+msgstr ""
+
+#: .\core\models.py:222 .\core\templates\dashboard.html:169
+msgid "Wholesale Customer"
+msgstr ""
+
+#: .\core\models.py:230
 msgid "type"
 msgstr ""
 
-#: .\core\models.py:204
+#: .\core\models.py:233
 msgid "customer"
 msgstr ""
 
-#: .\core\models.py:220
+#: .\core\models.py:237
+msgid "discount"
+msgstr ""
+
+#: .\core\models.py:255
 msgid "sale order"
 msgstr ""
 
@@ -260,6 +247,7 @@ msgid "LOGGED_OUT"
 msgstr ""
 
 #: .\core\templates\auth\login.html:9 .\core\templates\auth\login.html:46
+#: .\core\templates\auth\password_reset_form.html:9
 msgid "LOGIN"
 msgstr ""
 
@@ -316,7 +304,7 @@ msgid "PASSWORD_RESET_CONFIRM_TITLE"
 msgstr ""
 
 #: .\core\templates\auth\password_reset_confirm.html:9
-#: .\core\templates\auth\password_reset_form.html:9
+#: .\core\templates\auth\password_reset_form.html:61
 msgid "RESET"
 msgstr ""
 
@@ -361,10 +349,6 @@ msgstr ""
 msgid "Management"
 msgstr ""
 
-#: .\core\templates\auth\password_reset_form.html:3
-msgid "PASSWORD_RESET_FORM_TITLE"
-msgstr ""
-
 #: .\core\templates\auth\password_reset_subject.txt:2
 #, python-format
 msgid "Password reset on %(site_name)s"
@@ -374,37 +358,13 @@ msgstr ""
 msgid "PROFILE_TITLE"
 msgstr ""
 
-#: .\core\templates\auth\profile.html:6
-msgid "PROFILE"
+#: .\core\templates\auth\profile.html:79
+#: .\core\templates\quotes\quote_list.html:64
+msgid "UPDATE"
 msgstr ""
 
-#: .\core\templates\auth\profile.html:7
-#: .\core\templates\auth\user_detail.html:7
-msgid "USERNAME"
-msgstr ""
-
-#: .\core\templates\auth\profile.html:8
-#: .\core\templates\auth\user_detail.html:8
-msgid "EMAIL"
-msgstr ""
-
-#: .\core\templates\auth\profile.html:9
-#: .\core\templates\auth\user_detail.html:9
-msgid "DATE_JOINED"
-msgstr ""
-
-#: .\core\templates\auth\profile.html:10
-msgid "LOGOUT"
-msgstr ""
-
-#: .\core\templates\auth\profile.html:11
-#: .\core\templates\auth\user_detail.html:10
-msgid "PROFILE_UPDATE"
-msgstr ""
-
-#: .\core\templates\auth\profile.html:12
-#: .\core\templates\auth\user_detail.html:11
-msgid "PASSWORD_CHANGE"
+#: .\core\templates\auth\profile.html:80
+msgid "CHANGE PASSWORD"
 msgstr ""
 
 #: .\core\templates\auth\profile_update.html:3
@@ -418,19 +378,12 @@ msgstr ""
 #: .\core\templates\auth\user_delete.html:9
 #: .\core\templates\auth\user_edit.html:10
 #: .\core\templates\auth\user_group_add.html:9
-#: .\core\templates\categories\category_add.html:12
-#: .\core\templates\categories\category_update.html:12
-#: .\core\templates\orders\grn.html:16
-#: .\core\templates\products\product_add.html:12
-#: .\core\templates\products\product_update.html:12
-#: .\core\templates\quotes\quote_add.html:13
-#: .\core\templates\quotes\quote_update.html:10
-#: .\core\templates\quotes\quote_update.html:25
+#: .\core\templates\orders\grn.html:51
+#: .\core\templates\quotes\quote_add.html:15
+#: .\core\templates\quotes\quote_update.html:16
 #: .\core\templates\quotes\supplier_quote.html:15
-#: .\core\templates\sales\order_add.html:73
-#: .\core\templates\sales\order_edit.html:73
-#: .\core\templates\suppliers\supplier_add.html:12
-#: .\core\templates\suppliers\supplier_update.html:12
+#: .\core\templates\sales\order_add.html:82
+#: .\core\templates\sales\order_edit.html:78
 msgid "SUBMIT"
 msgstr ""
 
@@ -464,10 +417,11 @@ msgstr ""
 
 #: .\core\templates\auth\user_delete.html:8
 #: .\core\templates\auth\user_group_list.html:29
-#: .\core\templates\auth\user_list.html:32
+#: .\core\templates\auth\user_list.html:41
 #: .\core\templates\categories\category_list.html:38
-#: .\core\templates\products\product_list.html:45
-#: .\core\templates\quotes\quote_list.html:66
+#: .\core\templates\products\product_list.html:44
+#: .\core\templates\quotes\quote_list.html:68
+#: .\core\templates\sales\order_edit.html:127
 msgid "DELETE"
 msgstr ""
 
@@ -477,6 +431,27 @@ msgstr ""
 
 #: .\core\templates\auth\user_detail.html:6
 msgid "USER_DETAIL"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:7
+#: .\core\templates\auth\user_list.html:19
+msgid "USERNAME"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:8
+msgid "EMAIL"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:9
+msgid "DATE_JOINED"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:10
+msgid "PROFILE_UPDATE"
+msgstr ""
+
+#: .\core\templates\auth\user_detail.html:11
+msgid "PASSWORD_CHANGE"
 msgstr ""
 
 #: .\core\templates\auth\user_edit.html:3
@@ -493,28 +468,151 @@ msgstr ""
 
 #: .\core\templates\auth\user_group_list.html:28
 #: .\core\templates\categories\category_list.html:35
-#: .\core\templates\products\product_list.html:39
+#: .\core\templates\products\product_list.html:41
 msgid "EDIT"
 msgstr ""
 
-#: .\core\templates\auth\user_list.html:3
+#: .\core\templates\auth\user_list.html:6
 msgid "USER_LIST_TITLE"
 msgstr ""
 
-#: .\core\templates\auth\user_list.html:31
+#: .\core\templates\auth\user_list.html:10
+#: .\core\templates\orders\grn_list.html:18
+msgid "STAFF"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:11
+#: .\core\templates\customers\customer_list.html:11
+#: .\core\templates\sales\order_list.html:11
+msgid "NEW"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:17
+#: .\core\templates\categories\category_list.html:17
+#: .\core\templates\customers\customer_list.html:17
+#: .\core\templates\dashboard.html:269 .\core\templates\dashboard.html:308
+#: .\core\templates\dashboard.html:347 .\core\templates\orders\grn.html:20
+#: .\core\templates\orders\order_list.html:17
+#: .\core\templates\orders\warehouse.html:20
+#: .\core\templates\products\product_list.html:17
+#: .\core\templates\quotes\quote_add.html:43
+#: .\core\templates\quotes\quote_add.html:79
+#: .\core\templates\quotes\quote_list.html:17
+#: .\core\templates\quotes\quote_update.html:38
+#: .\core\templates\quotes\quote_update.html:74
+#: .\core\templates\quotes\supplier_quote.html:22
+#: .\core\templates\quotes\supplier_quote_list.html:16
+#: .\core\templates\sales\order_add.html:47
+#: .\core\templates\sales\order_edit.html:43
+#: .\core\templates\sales\order_list.html:17
+#: .\core\templates\suppliers\supplier_list.html:17
+#: .\core\templates\suppliers\supplier_provide.html:18
+#: .\core\templates\suppliers\supplier_provide.html:54
+msgid "ID"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:18
+#: .\core\templates\customers\customer_list.html:18
+#: .\core\templates\orders\grn.html:21
+#: .\core\templates\orders\warehouse.html:21
+#: .\core\templates\products\product_list.html:18
+#: .\core\templates\quotes\supplier_quote.html:23
+msgid "NAME"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:20
+#: .\core\templates\products\product_list.html:20
+#: .\core\templates\quotes\supplier_quote.html:27
+msgid "PRICE"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:21
+#: .\core\templates\categories\category_list.html:20
+#: .\core\templates\orders\grn.html:23
+#: .\core\templates\orders\warehouse.html:23
+#: .\core\templates\products\product_list.html:23
+#: .\core\templates\quotes\supplier_quote.html:25
+msgid "IMAGE"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:22
+#: .\core\templates\includes\left-sidebar.html:23
+#: .\core\templates\orders\grn.html:22
+#: .\core\templates\orders\warehouse.html:24
+#: .\core\templates\products\product_list.html:24
+msgid "CATEGORY"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:23
+#: .\core\templates\categories\category_list.html:22
+#: .\core\templates\customers\customer_list.html:21
+#: .\core\templates\products\product_list.html:25
+#: .\core\templates\sales\order_list.html:22
+msgid "ACTION"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:38
 msgid "RESET_PASSWORD"
 msgstr ""
 
-#: .\core\templates\auth\user_list.html:40
-msgid "PREVIOUS"
+#: .\core\templates\auth\user_list.html:67
+#: .\core\templates\categories\category_list.html:61
+#: .\core\templates\customers\customer_list.html:60
+#: .\core\templates\orders\expiry_list.html:59
+#: .\core\templates\orders\grn.html:68 .\core\templates\orders\grn_list.html:56
+#: .\core\templates\orders\near_expiry_list.html:61
+#: .\core\templates\orders\warehouse.html:59
+#: .\core\templates\products\product_list.html:68
+#: .\core\templates\quotes\quote_list.html:99
+#: .\core\templates\quotes\supplier_quote.html:71
+#: .\core\templates\sales\order_edit.html:148
+#: .\core\templates\suppliers\supplier_list.html:65
+msgid "ARE YOU SURE DELETE IT"
 msgstr ""
 
-#: .\core\templates\auth\user_list.html:41
-msgid "PAGE"
+#: .\core\templates\auth\user_list.html:68
+#: .\core\templates\categories\category_list.html:62
+#: .\core\templates\customers\customer_list.html:61
+#: .\core\templates\orders\expiry_list.html:60
+#: .\core\templates\orders\grn.html:69 .\core\templates\orders\grn_list.html:57
+#: .\core\templates\orders\near_expiry_list.html:62
+#: .\core\templates\orders\warehouse.html:60
+#: .\core\templates\products\product_list.html:69
+#: .\core\templates\quotes\quote_list.html:100
+#: .\core\templates\quotes\supplier_quote.html:72
+#: .\core\templates\sales\order_edit.html:149
+#: .\core\templates\suppliers\supplier_list.html:66
+msgid "YOU WON'T BE ABLE TO REVERT THIS!"
 msgstr ""
 
-#: .\core\templates\auth\user_list.html:42
-msgid "NEXT"
+#: .\core\templates\auth\user_list.html:71
+#: .\core\templates\categories\category_list.html:65
+#: .\core\templates\customers\customer_list.html:64
+#: .\core\templates\orders\expiry_list.html:63
+#: .\core\templates\orders\grn.html:72 .\core\templates\orders\grn_list.html:60
+#: .\core\templates\orders\near_expiry_list.html:65
+#: .\core\templates\orders\warehouse.html:63
+#: .\core\templates\products\product_list.html:72
+#: .\core\templates\quotes\quote_list.html:103
+#: .\core\templates\quotes\supplier_quote.html:75
+#: .\core\templates\sales\order_edit.html:152
+#: .\core\templates\suppliers\supplier_list.html:69
+msgid "YES"
+msgstr ""
+
+#: .\core\templates\auth\user_list.html:72
+#: .\core\templates\categories\category_list.html:66
+#: .\core\templates\customers\customer_list.html:65
+#: .\core\templates\orders\expiry_list.html:64
+#: .\core\templates\orders\grn.html:73 .\core\templates\orders\grn_list.html:61
+#: .\core\templates\orders\near_expiry_list.html:66
+#: .\core\templates\orders\warehouse.html:64
+#: .\core\templates\products\product_list.html:73
+#: .\core\templates\quotes\quote_list.html:104
+#: .\core\templates\quotes\supplier_quote.html:76
+#: .\core\templates\sales\order_edit.html:153
+#: .\core\templates\suppliers\supplier_list.html:70
+msgid "NO"
 msgstr ""
 
 #: .\core\templates\auth_index.html:3
@@ -529,32 +627,74 @@ msgstr ""
 msgid "CATEGORY_ADD"
 msgstr ""
 
+#: .\core\templates\categories\category_add.html:11
+#: .\core\templates\categories\category_list.html:11
+msgid "Create a new category"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:20
+#: .\core\templates\categories\category_update.html:20
+msgid "Title"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:26
+#: .\core\templates\categories\category_update.html:26
+#: .\core\templates\orders\order_list.html:18
+#: .\core\templates\quotes\quote_list.html:18
+#: .\core\templates\quotes\supplier_quote_list.html:17
+msgid "Label"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:32
+#: .\core\templates\categories\category_update.html:32
+#: .\core\templates\products\product_add.html:44
+#: .\core\templates\products\product_update.html:44
+msgid "Description"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:40
+#: .\core\templates\categories\category_update.html:40
+#: .\core\templates\products\product_add.html:58
+#: .\core\templates\products\product_update.html:58
+#: .\core\templates\quotes\quote_add.html:45
+#: .\core\templates\quotes\quote_add.html:81
+#: .\core\templates\quotes\quote_update.html:40
+#: .\core\templates\quotes\quote_update.html:76
+#: .\core\templates\sales\order_add.html:49
+#: .\core\templates\sales\order_edit.html:45
+#: .\core\templates\suppliers\supplier_provide.html:20
+#: .\core\templates\suppliers\supplier_provide.html:56
+msgid "Image"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:55
+#: .\core\templates\categories\category_update.html:55
+#: .\core\templates\customers\customer_add.html:57
+#: .\core\templates\customers\customer_update.html:55
+#: .\core\templates\orders\grn.html:12
+#: .\core\templates\products\product_add.html:73
+#: .\core\templates\products\product_update.html:73
+#: .\core\templates\quotes\quote_add.html:20
+#: .\core\templates\quotes\quote_update.html:22
+#: .\core\templates\sales\order_edit.html:126
+#: .\core\templates\suppliers\supplier_add.html:73
+#: .\core\templates\suppliers\supplier_update.html:75
+msgid "Cancel"
+msgstr ""
+
+#: .\core\templates\categories\category_add.html:56
+#: .\core\templates\customers\customer_add.html:58
+#: .\core\templates\products\product_add.html:74
+#: .\core\templates\suppliers\supplier_add.html:74
+msgid "Create"
+msgstr ""
+
 #: .\core\templates\categories\category_list.html:5
 msgid "CATEGORY_LIST"
 msgstr ""
 
 #: .\core\templates\categories\category_list.html:10
 msgid "Categories"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:11
-msgid "Create a new category"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:17
-#: .\core\templates\orders\order_list.html:17
-#: .\core\templates\products\product_list.html:17
-#: .\core\templates\quotes\quote_add.html:28
-#: .\core\templates\quotes\quote_add.html:64
-#: .\core\templates\quotes\quote_list.html:17
-#: .\core\templates\quotes\supplier_quote_list.html:16
-#: .\core\templates\sales\order_add.html:39
-#: .\core\templates\sales\order_edit.html:39
-#: .\core\templates\sales\order_list.html:17
-#: .\core\templates\suppliers\supplier_list.html:17
-#: .\core\templates\suppliers\supplier_provide.html:18
-#: .\core\templates\suppliers\supplier_provide.html:54
-msgid "ID"
 msgstr ""
 
 #: .\core\templates\categories\category_list.html:18
@@ -565,122 +705,368 @@ msgstr ""
 msgid "LABEL"
 msgstr ""
 
-#: .\core\templates\categories\category_list.html:20
-#: .\core\templates\products\product_list.html:21
-msgid "IMAGE"
-msgstr ""
-
 #: .\core\templates\categories\category_list.html:21
 msgid "DESCRIPTION"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:22
-#: .\core\templates\products\product_list.html:23
-#: .\core\templates\sales\order_list.html:22
-msgid "ACTION"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:61
-#: .\core\templates\products\product_list.html:69
-#: .\core\templates\suppliers\supplier_list.html:65
-msgid "ARE YOU SURE DELETE IT"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:62
-#: .\core\templates\products\product_list.html:70
-#: .\core\templates\suppliers\supplier_list.html:66
-msgid "YOU WON'T BE ABLE TO REVERT THIS!"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:65
-#: .\core\templates\products\product_list.html:73
-#: .\core\templates\suppliers\supplier_list.html:69
-msgid "YES"
-msgstr ""
-
-#: .\core\templates\categories\category_list.html:66
-#: .\core\templates\products\product_list.html:74
-#: .\core\templates\suppliers\supplier_list.html:70
-msgid "NO"
 msgstr ""
 
 #: .\core\templates\categories\category_update.html:5
 msgid "CATEGORY_UPDATE"
 msgstr ""
 
-#: .\core\templates\dashboard.html:5
-msgid "DASHBOARD"
+#: .\core\templates\categories\category_update.html:11
+msgid "Edit category"
 msgstr ""
 
-#: .\core\templates\includes\left-sidebar.html:18
-msgid "SUPPLIER PROVIDE"
+#: .\core\templates\categories\category_update.html:56
+#: .\core\templates\customers\customer_update.html:56
+#: .\core\templates\products\product_update.html:74
+#: .\core\templates\suppliers\supplier_update.html:76
+msgid "Save"
 msgstr ""
 
-#: .\core\templates\includes\left-sidebar.html:19
-msgid "SUPPLIER QUOTE"
+#: .\core\templates\customers\customer_add.html:5
+msgid "CUSTOMER_ADD"
 msgstr ""
 
+#: .\core\templates\customers\customer_add.html:11
+msgid "CREATE A NEW CUSTOMER"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:20
+#: .\core\templates\customers\customer_update.html:20
+#: .\core\templates\products\product_add.html:26
+#: .\core\templates\products\product_update.html:26
+#: .\core\templates\quotes\quote_add.html:44
+#: .\core\templates\quotes\quote_add.html:80
+#: .\core\templates\quotes\quote_update.html:39
+#: .\core\templates\quotes\quote_update.html:75
+#: .\core\templates\suppliers\supplier_add.html:52
+#: .\core\templates\suppliers\supplier_list.html:18
+#: .\core\templates\suppliers\supplier_provide.html:19
+#: .\core\templates\suppliers\supplier_provide.html:55
+#: .\core\templates\suppliers\supplier_update.html:52
+msgid "Name"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:26
+#: .\core\templates\customers\customer_update.html:26
+#: .\core\templates\sales\order_add.html:15
+#: .\core\templates\suppliers\supplier_add.html:26
+#: .\core\templates\suppliers\supplier_list.html:19
+#: .\core\templates\suppliers\supplier_update.html:26
+msgid "Phone"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:32
+#: .\core\templates\customers\customer_update.html:32
+#: .\core\templates\suppliers\supplier_add.html:44
+#: .\core\templates\suppliers\supplier_list.html:23
+#: .\core\templates\suppliers\supplier_update.html:44
+msgid "Address"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:40
+#: .\core\templates\customers\customer_update.html:40
+msgid "Type"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:46
+#: .\core\templates\customers\customer_update.html:46
+msgid "Detail"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:48
+msgid "Normal:"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:48
+msgid " Normal customer"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:49
+msgid "Membership:"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:49
+#, python-format
+msgid " Loyal customers 5%% discount."
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:50
+msgid "Wholesale Customer:"
+msgstr ""
+
+#: .\core\templates\customers\customer_add.html:50
+msgid " Customer with bulk products "
+msgstr ""
+
+#: .\core\templates\customers\customer_list.html:5
+msgid "CUSTOMER_LIST"
+msgstr ""
+
+#: .\core\templates\customers\customer_list.html:10
+#: .\core\templates\dashboard.html:270
 #: .\core\templates\includes\left-sidebar.html:21
-#: .\core\templates\products\product_list.html:22
-msgid "CATEGORY"
+msgid "CUSTOMER"
 msgstr ""
 
-#: .\core\templates\includes\left-sidebar.html:22
-msgid "PRODUCT"
+#: .\core\templates\customers\customer_list.html:19
+msgid "PHONE"
 msgstr ""
 
-#: .\core\templates\includes\left-sidebar.html:23
+#: .\core\templates\customers\customer_list.html:20
+msgid "TYPE"
+msgstr ""
+
+#: .\core\templates\customers\customer_update.html:5
+msgid "CUSTOMER_UPDATE"
+msgstr ""
+
+#: .\core\templates\customers\customer_update.html:11
+msgid "Edit customer"
+msgstr ""
+
+#: .\core\templates\dashboard.html:5
+msgid "Dashboard"
+msgstr ""
+
+#: .\core\templates\dashboard.html:12
+msgid "Revenue Report"
+msgstr ""
+
+#: .\core\templates\dashboard.html:13 .\core\templates\dashboard.html:20
+#: .\core\templates\dashboard.html:60 .\core\templates\dashboard.html:80
+msgid "Revenue"
+msgstr ""
+
+#: .\core\templates\dashboard.html:113
+msgid "Year Revenue"
+msgstr ""
+
+#: .\core\templates\dashboard.html:126
+msgid "Overview"
+msgstr ""
+
+#: .\core\templates\dashboard.html:135
+msgid "Total Order"
+msgstr ""
+
+#: .\core\templates\dashboard.html:152
+msgid "Retail Customer"
+msgstr ""
+
+#: .\core\templates\dashboard.html:203
+msgid "Statistic"
+msgstr ""
+
+#: .\core\templates\dashboard.html:204
+#: .\core\templates\quotes\quote_update.html:21
+msgid "Reset"
+msgstr ""
+
+#: .\core\templates\dashboard.html:208
+msgid "Monthly Revenue"
+msgstr ""
+
+#: .\core\templates\dashboard.html:209
+msgid "Yearly Revenue"
+msgstr ""
+
+#: .\core\templates\dashboard.html:210
+msgid "Top 10 customer"
+msgstr ""
+
+#: .\core\templates\dashboard.html:211
+msgid "Top 10 supplier"
+msgstr ""
+
+#: .\core\templates\dashboard.html:212
+msgid "Top 10 product"
+msgstr ""
+
+#: .\core\templates\dashboard.html:220 .\core\templates\dashboard.html:237
+#: .\core\templates\dashboard.html:256 .\core\templates\dashboard.html:295
+#: .\core\templates\dashboard.html:334
+msgid "Choose time"
+msgstr ""
+
+#: .\core\templates\dashboard.html:243
+msgid "Load"
+msgstr ""
+
+#: .\core\templates\dashboard.html:271 .\core\templates\dashboard.html:310
+#: .\core\templates\dashboard.html:349
+#: .\core\templates\orders\order_view.html:91
+msgid "TOTAL"
+msgstr ""
+
+#: .\core\templates\dashboard.html:309
+#: .\core\templates\includes\left-sidebar.html:25
+#: .\core\templates\orders\grn_list.html:19
 msgid "SUPPLIER"
 msgstr ""
 
+#: .\core\templates\dashboard.html:348
 #: .\core\templates\includes\left-sidebar.html:24
-#: .\core\templates\quotes\supplier_quote_list.html:52
-msgid "QUOTE"
+#: .\core\templates\orders\expiry_list.html:18
+#: .\core\templates\orders\near_expiry_list.html:18
+msgid "PRODUCT"
 msgstr ""
 
-#: .\core\templates\includes\left-sidebar.html:25
-#: .\core\templates\orders\order_view.html:5
-#: .\core\templates\quotes\quote_list.html:70
-msgid "ORDER"
+#: .\core\templates\includes\header.html:16
+msgid "Search Here"
+msgstr ""
+
+#: .\core\templates\includes\header.html:58
+msgid "There are products that are about to expire"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:17
+msgid "PROVIDE PRODUCT"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:18
+msgid "QUOTE & ORDER"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:20
+msgid "DASHBOARD"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:22
+msgid "USER"
 msgstr ""
 
 #: .\core\templates\includes\left-sidebar.html:26
+#: .\core\templates\orders\order_view.html:98
+#: .\core\templates\quotes\supplier_quote_list.html:56
+msgid "QUOTE"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:27
+#: .\core\templates\orders\grn.html:25
+#: .\core\templates\orders\order_view.html:6
+#: .\core\templates\quotes\quote_list.html:73
+#: .\core\templates\quotes\supplier_quote.html:26
+msgid "ORDER"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:28
+msgid "WAREHOUSE"
+msgstr ""
+
+#: .\core\templates\includes\left-sidebar.html:31
 msgid "SALE"
 msgstr ""
 
-#: .\core\templates\orders\grn.html:5
+#: .\core\templates\includes\left-sidebar.html:32
+#: .\core\templates\sales\order_list.html:10
+msgid "ORDER LIST"
+msgstr ""
+
+#: .\core\templates\includes\pre-loader.html:13
+msgid "Loading..."
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:5
+#: .\core\templates\orders\near_expiry_list.html:5
+msgid "EPIRY_LIST"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:10
+#: .\core\templates\orders\grn.html:5 .\core\templates\orders\grn_list.html:10
+#: .\core\templates\orders\near_expiry_list.html:10
 msgid "GRN"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:11
+#: .\core\templates\orders\grn_list.html:11
+#: .\core\templates\orders\near_expiry_list.html:11
+#: .\core\templates\orders\order_view.html:24
+msgid "BACK"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:17
+#: .\core\templates\orders\near_expiry_list.html:17
+msgid "EPIRY"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:19
+#: .\core\templates\orders\near_expiry_list.html:19
+msgid "GRN DATE"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:20
+#: .\core\templates\orders\grn_list.html:20
+#: .\core\templates\orders\near_expiry_list.html:20
+msgid "ORDER ID"
+msgstr ""
+
+#: .\core\templates\orders\expiry_list.html:21
+#: .\core\templates\orders\grn.html:27
+#: .\core\templates\orders\near_expiry_list.html:21
+msgid "QUANTITY"
+msgstr ""
+
+#: .\core\templates\orders\grn.html:11
+msgid "Goods delivery note"
+msgstr ""
+
+#: .\core\templates\orders\grn.html:24
+msgid "COST"
+msgstr ""
+
+#: .\core\templates\orders\grn.html:26
+msgid "IVT"
+msgstr ""
+
+#: .\core\templates\orders\grn.html:28
+#: .\core\templates\orders\warehouse.html:13
+msgid "EXPIRY"
+msgstr ""
+
+#: .\core\templates\orders\grn_list.html:5
+msgid "GRN_LIST"
+msgstr ""
+
+#: .\core\templates\orders\grn_list.html:17
+msgid "DATE"
+msgstr ""
+
+#: .\core\templates\orders\grn_list.html:21
+msgid "DETAIL"
 msgstr ""
 
 #: .\core\templates\orders\issue.html:5 .\core\templates\orders\issue.html:50
 #: .\core\templates\orders\order_list.html:68
-#: .\core\templates\quotes\supplier_quote_list.html:77
+#: .\core\templates\quotes\supplier_quote_list.html:81
 msgid "ISSUE"
 msgstr ""
 
 #: .\core\templates\orders\issue.html:11
-#: .\core\templates\orders\order_view.html:11
+#: .\core\templates\orders\order_view.html:31
 msgid "ORDER ID: "
 msgstr ""
 
 #: .\core\templates\orders\issue.html:12
-#: .\core\templates\orders\order_view.html:12
+#: .\core\templates\orders\order_view.html:35
 msgid "SUPPLIER: "
 msgstr ""
 
 #: .\core\templates\orders\issue.html:17
-#: .\core\templates\orders\order_view.html:17
-#: .\core\templates\quotes\quote_list.html:69
+#: .\core\templates\orders\order_view.html:40
+#: .\core\templates\quotes\quote_list.html:72
+#: .\core\templates\quotes\supplier_quote.html:14
 msgid "CANCEL"
 msgstr ""
 
 #: .\core\templates\orders\issue.html:19
-#: .\core\templates\orders\order_view.html:19
+#: .\core\templates\orders\order_view.html:42
 msgid "ORDER NOW"
 msgstr ""
 
 #: .\core\templates\orders\issue.html:22
-#: .\core\templates\orders\order_view.html:22
+#: .\core\templates\orders\order_view.html:46
 msgid "ORDER ON"
 msgstr ""
 
@@ -733,12 +1119,6 @@ msgstr ""
 msgid "Create a new quote"
 msgstr ""
 
-#: .\core\templates\orders\order_list.html:18
-#: .\core\templates\quotes\quote_list.html:18
-#: .\core\templates\quotes\supplier_quote_list.html:17
-msgid "Label"
-msgstr ""
-
 #: .\core\templates\orders\order_list.html:19
 #: .\core\templates\quotes\quote_list.html:19
 #: .\core\templates\quotes\supplier_quote_list.html:18
@@ -776,7 +1156,7 @@ msgstr ""
 
 #: .\core\templates\orders\order_list.html:58
 #: .\core\templates\quotes\quote_list.html:39
-#: .\core\templates\quotes\supplier_quote_list.html:50
+#: .\core\templates\quotes\supplier_quote_list.html:51
 msgid "VIEW ORDER"
 msgstr ""
 
@@ -788,127 +1168,160 @@ msgstr ""
 msgid "CREATE GRN"
 msgstr ""
 
-#: .\core\templates\orders\order_view.html:43
+#: .\core\templates\orders\order_view.html:33
+msgid "QUOTE ID: "
+msgstr ""
+
+#: .\core\templates\orders\order_view.html:56
+msgid "REJECT CAUSE"
+msgstr ""
+
+#: .\core\templates\orders\order_view.html:76
 msgid "PRICE:"
 msgstr ""
 
-#: .\core\templates\orders\order_view.html:44
+#: .\core\templates\orders\order_view.html:82
 msgid "QUANTITY:"
 msgstr ""
 
-#: .\core\templates\orders\order_view.html:52
-msgid "TOTAL"
+#: .\core\templates\orders\order_view.html:99
+#: .\core\templates\orders\order_view.html:113
+#: .\core\templates\quotes\supplier_quote_list.html:57
+#: .\core\templates\quotes\supplier_quote_list.html:71
+msgid "REJECT"
+msgstr ""
+
+#: .\core\templates\orders\order_view.html:105
+#: .\core\templates\quotes\supplier_quote_list.html:63
+msgid "ENTER YOUR CAUSE"
+msgstr ""
+
+#: .\core\templates\orders\warehouse.html:5
+#: .\core\templates\products\product_list.html:5
+#: .\core\templates\sales\order_list.html:5
+msgid "PRODUCT_LIST"
+msgstr ""
+
+#: .\core\templates\orders\warehouse.html:10
+#: .\core\templates\orders\warehouse.html:25
+msgid "INVENTORY"
+msgstr ""
+
+#: .\core\templates\orders\warehouse.html:12
+msgid "GRN DETAIL"
+msgstr ""
+
+#: .\core\templates\orders\warehouse.html:22
+#: .\core\templates\products\product_list.html:19
+#: .\core\templates\quotes\supplier_quote.html:24
+msgid "BRAND"
 msgstr ""
 
 #: .\core\templates\products\product_add.html:5
 msgid "PRODUCT_ADD"
 msgstr ""
 
-#: .\core\templates\products\product_list.html:5
-#: .\core\templates\sales\order_list.html:5
-msgid "PRODUCT_LIST"
-msgstr ""
-
-#: .\core\templates\products\product_list.html:10
-#: .\core\templates\sales\order_list.html:10
-msgid "PRODUCTS"
-msgstr ""
-
+#: .\core\templates\products\product_add.html:11
 #: .\core\templates\products\product_list.html:11
 msgid "CREATE A NEW PRODUCT"
 msgstr ""
 
-#: .\core\templates\products\product_list.html:18
-msgid "NAME"
+#: .\core\templates\products\product_add.html:20
+#: .\core\templates\products\product_update.html:20 .\core\views.py:755
+#: .\core\views.py:778
+msgid "Product ID"
 msgstr ""
 
-#: .\core\templates\products\product_list.html:19
-msgid "BRAND"
+#: .\core\templates\products\product_add.html:32
+#: .\core\templates\products\product_update.html:32
+msgid "Brand"
 msgstr ""
 
-#: .\core\templates\products\product_list.html:20
-#: .\core\templates\sales\order_list.html:20
-msgid "PRICE"
+#: .\core\templates\products\product_add.html:38
+#: .\core\templates\products\product_update.html:38
+#: .\core\templates\sales\order_add.html:50
+#: .\core\templates\sales\order_add.html:99
+#: .\core\templates\sales\order_edit.html:46
+#: .\core\templates\sales\order_edit.html:85
+msgid "Price"
+msgstr ""
+
+#: .\core\templates\products\product_add.html:52
+#: .\core\templates\products\product_update.html:52
+msgid "Category"
+msgstr ""
+
+#: .\core\templates\products\product_list.html:10
+#: .\core\templates\quotes\supplier_quote.html:12
+msgid "PRODUCTS"
 msgstr ""
 
 #: .\core\templates\products\product_update.html:5
 msgid "PRODUCT_UPDATE"
 msgstr ""
 
+#: .\core\templates\products\product_update.html:11
+msgid "Edit product"
+msgstr ""
+
 #: .\core\templates\quotes\quote_add.html:5
-#: .\core\templates\sales\order_add.html:5
 msgid "QUOTE_ADD"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:22
-#: .\core\templates\sales\order_add.html:33
-#: .\core\templates\sales\order_edit.html:33
+#: .\core\templates\quotes\quote_add.html:11
+#: .\core\templates\quotes\quote_update.html:12
+msgid "Choose Supplier"
+msgstr ""
+
+#: .\core\templates\quotes\quote_add.html:37
+#: .\core\templates\quotes\quote_update.html:32
+#: .\core\templates\sales\order_add.html:41
+#: .\core\templates\sales\order_edit.html:37
 #: .\core\templates\suppliers\supplier_provide.html:12
 msgid "Products"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:29
-#: .\core\templates\quotes\quote_add.html:65
-#: .\core\templates\sales\order_add.html:40
-#: .\core\templates\sales\order_add.html:78
-#: .\core\templates\sales\order_add.html:101
-#: .\core\templates\sales\order_edit.html:40
-#: .\core\templates\sales\order_edit.html:78
+#: .\core\templates\quotes\quote_add.html:57
+#: .\core\templates\quotes\quote_add.html:95
+#: .\core\templates\quotes\quote_update.html:52
+#: .\core\templates\quotes\quote_update.html:90
+#: .\core\templates\sales\order_add.html:66
+#: .\core\templates\sales\order_add.html:114
+#: .\core\templates\sales\order_edit.html:62
 #: .\core\templates\sales\order_edit.html:101
-#: .\core\templates\suppliers\supplier_list.html:18
-#: .\core\templates\suppliers\supplier_provide.html:19
-#: .\core\templates\suppliers\supplier_provide.html:55
-msgid "Name"
-msgstr ""
-
-#: .\core\templates\quotes\quote_add.html:30
-#: .\core\templates\quotes\quote_add.html:66
-#: .\core\templates\sales\order_add.html:41
-#: .\core\templates\sales\order_edit.html:41
-#: .\core\templates\suppliers\supplier_provide.html:20
-#: .\core\templates\suppliers\supplier_provide.html:56
-msgid "Image"
-msgstr ""
-
-#: .\core\templates\quotes\quote_add.html:42
-#: .\core\templates\quotes\quote_add.html:80
-#: .\core\templates\quotes\quote_update.html:17
-#: .\core\templates\quotes\quote_update.html:30
-#: .\core\templates\sales\order_add.html:57
-#: .\core\templates\sales\order_add.html:117
-#: .\core\templates\sales\order_edit.html:57
-#: .\core\templates\sales\order_edit.html:118
 #: .\core\templates\suppliers\supplier_provide.html:32
 #: .\core\templates\suppliers\supplier_provide.html:69
 msgid "ADD"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:43
-#: .\core\templates\quotes\quote_add.html:81
-#: .\core\templates\quotes\quote_update.html:18
-#: .\core\templates\quotes\quote_update.html:31
-#: .\core\templates\sales\order_add.html:58
-#: .\core\templates\sales\order_add.html:118
-#: .\core\templates\sales\order_edit.html:58
-#: .\core\templates\sales\order_edit.html:119
+#: .\core\templates\quotes\quote_add.html:58
+#: .\core\templates\quotes\quote_add.html:96
+#: .\core\templates\quotes\quote_update.html:53
+#: .\core\templates\quotes\quote_update.html:91
+#: .\core\templates\sales\order_add.html:67
+#: .\core\templates\sales\order_add.html:115
+#: .\core\templates\sales\order_edit.html:63
+#: .\core\templates\sales\order_edit.html:102
 #: .\core\templates\suppliers\supplier_provide.html:33
 #: .\core\templates\suppliers\supplier_provide.html:70
 msgid "REMOVE"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:57
+#: .\core\templates\quotes\quote_add.html:72
+#: .\core\templates\quotes\quote_update.html:67
 #: .\core\templates\suppliers\supplier_provide.html:47
 msgid "Product Registed"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:58
+#: .\core\templates\quotes\quote_add.html:73
 #: .\core\templates\suppliers\supplier_provide.html:48
 msgid " SUBMIT"
 msgstr ""
 
-#: .\core\templates\quotes\quote_add.html:67
-#: .\core\templates\sales\order_add.html:103
-#: .\core\templates\sales\order_edit.html:103
+#: .\core\templates\quotes\quote_add.html:82
+#: .\core\templates\quotes\quote_update.html:77
+#: .\core\templates\sales\order_add.html:100
+#: .\core\templates\sales\order_edit.html:86
 msgid "Quantity"
 msgstr ""
 
@@ -920,16 +1333,21 @@ msgstr ""
 msgid "ORDERED"
 msgstr ""
 
-#: .\core\templates\quotes\quote_list.html:64
-msgid "UPDATE"
-msgstr ""
-
 #: .\core\templates\quotes\quote_list.html:65
 msgid "REQUEST"
 msgstr ""
 
+#: .\core\templates\quotes\quote_list.html:76
+#: .\core\templates\quotes\supplier_quote_list.html:53
+msgid "VIEW QUOTE"
+msgstr ""
+
 #: .\core\templates\quotes\quote_update.html:5
 msgid "QUOTE_EDIT"
+msgstr ""
+
+#: .\core\templates\quotes\quote_update.html:68
+msgid "SAVE"
 msgstr ""
 
 #: .\core\templates\quotes\supplier_quote.html:5
@@ -940,85 +1358,86 @@ msgstr ""
 msgid "SUPPLIER_QUOTE_LIST"
 msgstr ""
 
-#: .\core\templates\quotes\supplier_quote_list.html:53
-#: .\core\templates\quotes\supplier_quote_list.html:67
-msgid "REJECT"
-msgstr ""
-
-#: .\core\templates\quotes\supplier_quote_list.html:59
-msgid "ENTER YOUR CAUSE"
-msgstr ""
-
-#: .\core\templates\quotes\supplier_quote_list.html:74
+#: .\core\templates\quotes\supplier_quote_list.html:78
 msgid "DELIVERY"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:15
-#: .\core\templates\sales\order_edit.html:15
-#: .\core\templates\suppliers\supplier_list.html:19
-msgid "Phone"
+#: .\core\templates\sales\order_add.html:5
+msgid "ORDER NEW"
 msgstr ""
 
 #: .\core\templates\sales\order_add.html:19
-#: .\core\templates\sales\order_edit.html:19
 msgid "Find"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:42
-#: .\core\templates\sales\order_add.html:102
-#: .\core\templates\sales\order_edit.html:42
-#: .\core\templates\sales\order_edit.html:102
-msgid "Price"
+#: .\core\templates\sales\order_add.html:48
+#: .\core\templates\sales\order_add.html:98
+#: .\core\templates\sales\order_edit.html:44
+#: .\core\templates\sales\order_edit.html:84
+msgid "Product"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:43
-#: .\core\templates\sales\order_edit.html:43
+#: .\core\templates\sales\order_add.html:51
+#: .\core\templates\sales\order_edit.html:47
 msgid "Inventory"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:72
-#: .\core\templates\sales\order_edit.html:72
+#: .\core\templates\sales\order_add.html:81
+#: .\core\templates\sales\order_edit.html:77
 msgid "Order"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:85
-#: .\core\templates\sales\order_edit.html:85
-msgid "Gender"
+#: .\core\templates\sales\order_add.html:87
+#: .\core\templates\sales\order_list.html:18
+msgid "Customer"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:91
-#: .\core\templates\sales\order_edit.html:91
-msgid "Age"
+#: .\core\templates\sales\order_add.html:127
+#: .\core\templates\sales\order_edit.html:113
+msgid "Discount"
 msgstr ""
 
-#: .\core\templates\sales\order_add.html:128
-#: .\core\templates\sales\order_edit.html:129
+#: .\core\templates\sales\order_add.html:134
+#: .\core\templates\sales\order_add.html:137
+#: .\core\templates\sales\order_edit.html:119
 msgid "Total: "
+msgstr ""
+
+#: .\core\templates\sales\order_add.html:135
+msgid "Discount: "
+msgstr ""
+
+#: .\core\templates\sales\order_add.html:136
+msgid "Membership: "
 msgstr ""
 
 #: .\core\templates\sales\order_edit.html:5
 msgid "ORDER_EDIT"
 msgstr ""
 
-#: .\core\templates\sales\order_list.html:11
-msgid "NEW"
+#: .\core\templates\sales\order_edit.html:12
+msgid "Customer Name"
 msgstr ""
 
-#: .\core\templates\sales\order_list.html:18
-msgid "Customer"
+#: .\core\templates\sales\order_edit.html:16
+msgid "Customer Phone"
 msgstr ""
 
 #: .\core\templates\sales\order_list.html:19
-#: .\core\templates\sales\order_list.html:35
+#: .\core\templates\sales\order_list.html:41
 msgid "Bill"
 msgstr ""
 
-#: .\core\templates\sales\order_list.html:36
+#: .\core\templates\sales\order_list.html:20
+msgid "Time"
+msgstr ""
+
+#: .\core\templates\sales\order_list.html:35
 #: .\core\templates\suppliers\supplier_list.html:39
 msgid "Edit"
 msgstr ""
 
-#: .\core\templates\sales\order_list.html:37
+#: .\core\templates\sales\order_list.html:38
 msgid "Pay"
 msgstr ""
 
@@ -1026,28 +1445,44 @@ msgstr ""
 msgid "SUPPLIER_ADD"
 msgstr ""
 
+#: .\core\templates\suppliers\supplier_add.html:11
+msgid "CREATE A NEW SUPPLIER"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_add.html:20
+#: .\core\templates\suppliers\supplier_update.html:20 .\core\views.py:814
+#: .\core\views.py:836
+msgid "Supplier ID"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_add.html:32
+#: .\core\templates\suppliers\supplier_list.html:20
+#: .\core\templates\suppliers\supplier_update.html:32
+msgid "Email"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_add.html:38
+#: .\core\templates\suppliers\supplier_list.html:21
+#: .\core\templates\suppliers\supplier_update.html:38
+msgid "Fax"
+msgstr ""
+
+#: .\core\templates\suppliers\supplier_add.html:58
+#: .\core\templates\suppliers\supplier_list.html:22
+#: .\core\templates\suppliers\supplier_update.html:58
+msgid "Logo"
+msgstr ""
+
 #: .\core\templates\suppliers\supplier_list.html:5
 msgid "SUPPLIER_LIST"
 msgstr ""
 
+#: .\core\templates\suppliers\supplier_list.html:10
+msgid "Suppliers"
+msgstr ""
+
 #: .\core\templates\suppliers\supplier_list.html:11
 msgid "Create a new supplier"
-msgstr ""
-
-#: .\core\templates\suppliers\supplier_list.html:20
-msgid "Email"
-msgstr ""
-
-#: .\core\templates\suppliers\supplier_list.html:21
-msgid "Fax"
-msgstr ""
-
-#: .\core\templates\suppliers\supplier_list.html:22
-msgid "Logo"
-msgstr ""
-
-#: .\core\templates\suppliers\supplier_list.html:23
-msgid "Address"
 msgstr ""
 
 #: .\core\templates\suppliers\supplier_list.html:42
@@ -1062,95 +1497,143 @@ msgstr ""
 msgid "SUPPLIER_UPDATE"
 msgstr ""
 
-#: .\core\views.py:85
+#: .\core\templates\suppliers\supplier_update.html:11
+msgid "Edit Supplier"
+msgstr ""
+
+#: .\core\views.py:359
 #, python-format
 msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
 "be case-sensitive."
 msgstr ""
 
-#: .\core\views.py:86
+#: .\core\views.py:360
 msgid "UR CUSTOM MESSAGE"
 msgstr ""
 
-#: .\core\views.py:92
+#: .\core\views.py:366
 msgid "This account is inactive."
 msgstr ""
 
-#: .\core\views.py:94
+#: .\core\views.py:368
 msgid "Sorry, accounts starting with 'b' aren't welcome here."
 msgstr ""
 
-#: .\core\views.py:421 .\core\views.py:448 .\core\views.py:475
+#: .\core\views.py:701 .\core\views.py:722
+msgid "Category title"
+msgstr ""
+
+#: .\core\views.py:702 .\core\views.py:723
+msgid "Category label"
+msgstr ""
+
+#: .\core\views.py:712 .\core\views.py:768 .\core\views.py:826
+#: .\core\views.py:1487
 msgid " successfully."
 msgstr ""
 
-#: .\core\views.py:428 .\core\views.py:455 .\core\views.py:482
+#: .\core\views.py:732 .\core\views.py:791 .\core\views.py:849
+#: .\core\views.py:1506
 msgid "Update successfully."
 msgstr ""
 
-#: .\core\views.py:434 .\core\views.py:461 .\core\views.py:488
-#: .\core\views.py:496 .\core\views.py:743
+#: .\core\views.py:738 .\core\views.py:797 .\core\views.py:855
+#: .\core\views.py:863 .\core\views.py:1116 .\core\views.py:1425
+#: .\core\views.py:1512
 msgid "Delete successfully."
 msgstr ""
 
-#: .\core\views.py:520
+#: .\core\views.py:756 .\core\views.py:779 .\core\views.py:1478
+#: .\core\views.py:1497
+msgid "Product name"
+msgstr ""
+
+#: .\core\views.py:757 .\core\views.py:780
+msgid "Product brand"
+msgstr ""
+
+#: .\core\views.py:758 .\core\views.py:781
+msgid "Product price"
+msgstr ""
+
+#: .\core\views.py:815 .\core\views.py:837
+msgid "Supplier name"
+msgstr ""
+
+#: .\core\views.py:816 .\core\views.py:838
+msgid "Supplier phone"
+msgstr ""
+
+#: .\core\views.py:817 .\core\views.py:839
+msgid "Supplier email"
+msgstr ""
+
+#: .\core\views.py:818 .\core\views.py:840
+msgid "Supplier fax"
+msgstr ""
+
+#: .\core\views.py:819 .\core\views.py:841
+msgid "Supplier address"
+msgstr ""
+
+#: .\core\views.py:888
 msgid "Change has been saved"
 msgstr ""
 
-#: .\core\views.py:549
+#: .\core\views.py:917
 msgid "Reject succesfully"
 msgstr ""
 
-#: .\core\views.py:576
+#: .\core\views.py:944
 msgid "Must provide full price"
 msgstr ""
 
-#: .\core\views.py:585
+#: .\core\views.py:953
 msgid "Quote sent"
 msgstr ""
 
-#: .\core\views.py:600
+#: .\core\views.py:968
 msgid "Delivery succesfully"
 msgstr ""
 
-#: .\core\views.py:639 .\core\views.py:702
+#: .\core\views.py:1007 .\core\views.py:1075
 msgid "Please choose a supplier"
 msgstr ""
 
-#: .\core\views.py:642 .\core\views.py:705
+#: .\core\views.py:1010 .\core\views.py:1078
 msgid "The supplier has not registered the product"
 msgstr ""
 
-#: .\core\views.py:651 .\core\views.py:724
+#: .\core\views.py:1019 .\core\views.py:1097 .\core\views.py:1400
 msgid "Please choose at least one product"
 msgstr ""
 
-#: .\core\views.py:656 .\core\views.py:838
+#: .\core\views.py:1024 .\core\views.py:1246
 msgid "Create successfully"
 msgstr ""
 
-#: .\core\views.py:737
+#: .\core\views.py:1110 .\core\views.py:1413
 msgid "Update successfully"
 msgstr ""
 
-#: .\core\views.py:755
+#: .\core\views.py:1128
 msgid "Request succesfully"
 msgstr ""
 
-#: .\core\views.py:765
+#: .\core\views.py:1138
 msgid "Cancel succesfully"
 msgstr ""
 
-#: .\core\views.py:816
+#: .\core\views.py:1224 .\core\views.py:1338
 msgid "Must at least one item"
 msgstr ""
 
-#: .\core\views.py:874
+#: .\core\views.py:1282
 msgid "Report successfully"
 msgstr ""
 
-#: .\core\views.py:884
+#: .\core\views.py:1292
 msgid "Order paid successfully"
 msgstr ""
 
