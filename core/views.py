@@ -31,18 +31,14 @@ from .mixins import *
 CSV_FILE_PATH = 'data/csv/'
 USER_CSV_FILE_TEMPLALTE = 'data/csv.csv'
 
-class Dashboard(View):
+class Dashboard(StaffRequiredMixin, View):
     def get(self, request):
 
         # user_groups = ['Manager', 'Staff']
         if 'Manager' in request.user.groups.values_list('name', flat=True) or 'Staff' in request.user.groups.values_list('name', flat=True):
             pass
         else:
-            if request.user.is_authenticated:
-                return redirect('supplier_quote_list')
-            else:
-                return redirect('dashboard')
-            
+            return redirect('supplier_quote_list')
 
 
         products = Product.objects.all()
