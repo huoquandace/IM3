@@ -1247,7 +1247,7 @@ class GRN_add(GroupRequiredMixin, View):
         return redirect('order_list')
 
 class Issue(GroupRequiredMixin, View):
-    group_required = ['Manager']
+    group_required = ['Manager', 'Staff', 'Supplier']
     
     def get(self, request, pk):
         data = []
