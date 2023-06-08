@@ -264,9 +264,12 @@
             discount = parseInt($(this).val());
         }
         
-
-        $('#total').text(dc_total - discount*dc_total/100)
+        if (mbs) {
+            $('#mbs_preview').removeAttr('hidden').children().first().text(dc_total*5/100)
+            dc_total -= dc_total*5/100
+        }
         $('#dc_preview').removeAttr('hidden').children().first().text(discount*dc_total/100)
+        $('#total').text(dc_total - discount*dc_total/100)
     })
 
     $('#sale_submit_btn').click(function(even) {
