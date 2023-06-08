@@ -33,6 +33,14 @@ USER_CSV_FILE_TEMPLALTE = 'data/csv.csv'
 
 class Dashboard(View):
     def get(self, request):
+
+        # user_groups = ['Manager', 'Staff']
+        if 'Manager' in request.user.groups.values_list('name', flat=True) or 'Staff' in request.user.groups.values_list('name', flat=True):
+            pass
+        else:
+            return redirect('supplier_quote_list')
+
+
         products = Product.objects.all()
         product_best_seller_couple = [None, 0]
         for product in products:

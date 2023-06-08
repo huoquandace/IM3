@@ -6,6 +6,24 @@
 {% block title %} {% trans "ORDER" %} {% endblock title %}
 
 {% block content %}
+    <div class="clearfix mb-10 mr-30">
+        <a class="pull-right btn btn-success"
+        
+        href="
+        {% if request.user|has_group:'Supplier'  %}
+            {% url 'supplier_quote_list' %}
+        {% else %}
+            {% if porder.is_ordered %}
+                {% url 'order_list' %}
+            {% else %}
+                {% url 'quote_list' %}
+            {% endif %}
+        {% endif %}"
+        
+        
+        >{% trans "BACK" %}</a>
+    </div>
+
 <div class="card-box mb-30" style="margin: 0 70px;">
 	<div class="pd-20 d-flex justify-content-between">
         <div class="d-flex flex-column">
